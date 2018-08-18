@@ -6,13 +6,13 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 
-class StartAVote
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class StartAVote extends Controller
 {
     public function form(){
-        return new Response(
-            '<html><body>FORM</body></html>'
-        );
+        return $this->render('start-a-vote/form.html.twig', array());
     }
 }
