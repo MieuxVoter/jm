@@ -15,8 +15,11 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-
 ###> phpstorm ###
 /.idea/
 ###< phpstorm ###
+
+###> npm ###
+/node_modules/
+###< npm ###
 
