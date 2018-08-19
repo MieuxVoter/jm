@@ -13,7 +13,7 @@
         "symfony/framework-bundle": "^4.1",
         "symfony/lts": "^4@dev",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/orm-pack": "*",
+        "symfony/orm-pack": "^1.0",
         "symfony/process": "^4.1",
         "symfony/security-bundle": "^4.1",
         "symfony/serializer-pack": "*",
@@ -28,7 +28,7 @@
     "require-dev": {
         "symfony/debug-pack": "*",
         "symfony/dotenv": "^4.1",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.6",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "^1.0",
         "symfony/web-server-bundle": "^4.1"
