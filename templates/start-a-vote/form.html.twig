@@ -4,8 +4,108 @@
 
 {% block main %}
     <main class="container">
-        <form>
-            <button class="btn btn-primary" > <i class="fas fa-check"></i> ENVOYER</button>
+        <form method="post" action="{{ path("app_jm_form") }}">
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Soumettre une proposition au jugement majoritaire</h1>
+                    <hr/>
+                    <p>Vous êtes un petit groupe de personnes et vous désirez soumettre une proposition au jugement
+                        majoritaire. Cette page est faites pour vous. En remplissant le formulaire ci-desssous, un lien
+                        unique sera généré qui vous permettra de partager ce vote aux personnes de votre choix et
+                        consulter le résultat.</p>
+                    <p>Tous les propositions sont <b>confidentielles</b> et nous ne conservons <b>aucune données
+                            personnelles</b>. Les votes et les propositions seront <b>automatiquement supprimés</b> 30
+                        jours après la fin des votes.</p>
+
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="email">Auteur <span class="text-muted">(Optionel)</span></label>
+                        <input type="text" class="form-control" id="name" maxlength="250" name="name"
+                               placeholder="Votre nom/pseudo">
+                        <div class="invalid-feedback">
+                            Le nom saisi n'est pas correct !
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="email">Présentation <span class="text-muted">(500 caractères max.)</span></label>
+                        <textarea class="form-control" rows="5" maxlength="500" id="presentation" name="presentation"
+                                  placeholder="Décrivez ici votre proposition de départ ou la raison de votre vote"></textarea>
+                        <div class="invalid-feedback">
+                            La présentation saisie n'est pas correcte !
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="email">Fin du vote :</label>
+                        <select class="form-control">
+                            <option class="6 hours">Dans 6h</option>
+                            <option class="12 hours">Dans 12h</option>
+                            <option class="24 hours">Dans 24h</option>
+                            <option class="2 days">Dans 48h</option>
+                            <option class="1 week">Dans une semaine</option>
+                            <option class="2 week">Dans deux semaines</option>
+                            <option class="3 week">Dans trois semaines</option>
+                            <option class="1 month">Dans un mois</option>
+                            <option class="2 month">Dans deux mois</option>
+                            <option class="3 month">Dans trois mois</option>
+                            <option class="6 month">Dans six mois</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h2>Propositions :</h2>
+                    <hr/>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-12" id="choices">
+                    <input type="hidden" id="number_of_choices" name="number_of_choices" value="0">
+                    <div id="choice_init" class="d-none divChoice">
+                        <div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h3 id="choice_number_init">00</h3>
+                            </div>
+                            <div class="flex-grow-1 pl-4 pr-4">
+                                <label id="choice_label_init" for="choice_value_01">Choix : <span class="text-muted">(250 car. max.)</span></label>
+                                <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
+                                       name="remove_choice_init" value="0">
+                                <input type="text" class="form-control" id="choice_value_init" maxlength="250"
+                                       name="choice_value_init" placeholder="Proposition ...">
+                            </div>
+                            <div class="d-flex flex-column justify-content-end">
+                                <button type="button" class="btn btn-outline-danger btnRemoveChoice"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-primary float-right" type="button" id="addAChoice"><i class="fas fa-plus-square"></i> Ajouter une
+                        proposition
+                    </button>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-auto m-auto pb-5">
+                    <button class="btn btn-success"><i class="fas fa-check"></i> Démarrer le vote maintenant !</button>
+                </div>
+            </div>
+
         </form>
     </main>
 {% endblock %}

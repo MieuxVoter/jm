@@ -11,14 +11,14 @@
     <meta name="HandheldFriendly" content="true" >
     <meta name="viewport" content="width = device-width,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,  user-scalable=no" >
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="/css/vendor.css">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{ publicFile('/css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ publicFile('/css/app.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
 {% block body %}{% endblock %}
-<script type="application/javascript" src="/js/vendor.min.js"></script>
-<script type="application/javascript" src="/js/app.min.js"></script>
+<script type="application/javascript" src="{{ publicFile('/js/vendor.min.js') }}"></script>
+<script type="application/javascript" src="{{ publicFile('/js/app.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
