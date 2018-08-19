@@ -1,0 +1,17 @@
+{% extends "body.html.twig" %}
+
+
+
+{% block main %}
+    <main class="container">
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Proposition enregistrée !</h1>
+                    <hr/>
+                    <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
+                        <input type="text" class="form-control" value="http://jm/vote/{{ proposal.urlKey }}">
+
+                </div>
+            </div>
+    </main>
+{% endblock %}

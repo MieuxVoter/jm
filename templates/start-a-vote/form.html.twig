@@ -4,7 +4,7 @@
 
 {% block main %}
     <main class="container">
-        <form method="post" action="{{ path("app_jm_form") }}">
+        <form method="post" action="{{ path("app_jm_form") }}" class="need-validated ">
             <div class="row mt-5">
                 <div class="col-12">
                     <h1>Soumettre une proposition au jugement majoritaire</h1>
@@ -22,12 +22,9 @@
             <div class="row mt-5">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="email">Auteur <span class="text-muted">(Optionel)</span></label>
-                        <input type="text" class="form-control" id="name" maxlength="250" name="name"
+                        <label for="author" >Auteur <span class="text-muted">(Optionel)</span></label>
+                        <input type="text" class="form-control" id="author" maxlength="250" name="author" value="{{ author }}"
                                placeholder="Votre nom/pseudo">
-                        <div class="invalid-feedback">
-                            Le nom saisi n'est pas correct !
-                        </div>
                     </div>
                 </div>
             </div>
@@ -35,8 +32,8 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label for="email">Présentation <span class="text-muted">(500 caractères max.)</span></label>
-                        <textarea class="form-control" rows="5" maxlength="500" id="presentation" name="presentation"
-                                  placeholder="Décrivez ici votre proposition de départ ou la raison de votre vote"></textarea>
+                        <textarea class="form-control {{ presentation_Invalid }}" rows="5" maxlength="500" id="presentation" name="presentation"
+                                  placeholder="Décrivez ici votre proposition de départ ou la raison de votre vote">{{ presentation }}</textarea>
                         <div class="invalid-feedback">
                             La présentation saisie n'est pas correcte !
                         </div>
@@ -46,20 +43,23 @@
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="email">Fin du vote :</label>
-                        <select class="form-control">
-                            <option class="6 hours">Dans 6h</option>
-                            <option class="12 hours">Dans 12h</option>
-                            <option class="24 hours">Dans 24h</option>
-                            <option class="2 days">Dans 48h</option>
-                            <option class="1 week">Dans une semaine</option>
-                            <option class="2 week">Dans deux semaines</option>
-                            <option class="3 week">Dans trois semaines</option>
-                            <option class="1 month">Dans un mois</option>
-                            <option class="2 month">Dans deux mois</option>
-                            <option class="3 month">Dans trois mois</option>
-                            <option class="6 month">Dans six mois</option>
+                        <label for="time_before_end">Fin du vote :</label>
+                        <select id="time_before_end"  name="time_before_end" class="form-control {{ time_before_end_Invalid }}">
+                            <option value="6 hours" {% if time_before_end=="6 hours" %}selected{% endif %} >Dans 6h</option>
+                            <option value="12 hours" {% if time_before_end=="12 hours" %}selected{% endif %}>Dans 12h</option>
+                            <option value="24 hours" {% if time_before_end=="24 hours" %}selected{% endif %}>Dans 24h</option>
+                            <option value="2 days" {% if time_before_end=="2 days" %}selected{% endif %}>Dans 48h</option>
+                            <option value="1 week" {% if time_before_end=="1 week" %}selected{% endif %}>Dans une semaine</option>
+                            <option value="2 week" {% if time_before_end=="2 week" %}selected{% endif %}>Dans deux semaines</option>
+                            <option value="3 week" {% if time_before_end=="3 week" %}selected{% endif %}>Dans trois semaines</option>
+                            <option value="1 month" {% if time_before_end=="1 month" %}selected{% endif %}>Dans un mois</option>
+                            <option value="2 month" {% if time_before_end=="2 month" %}selected{% endif %}>Dans deux mois</option>
+                            <option value="3 month" {% if time_before_end=="3 month" %}selected{% endif %}>Dans trois mois</option>
+                            <option value="6 month" {% if time_before_end=="6 month" %}selected{% endif %}>Dans six mois</option>
                         </select>
+                        <div class="invalid-feedback">
+                            La durée saisie n'est pas correcte !
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,38 +71,60 @@
             </div>
             <div class="row" >
                 <div class="col-12" id="choices">
-                    <input type="hidden" id="number_of_choices" name="number_of_choices" value="0">
-                    <div id="choice_init" class="d-none divChoice">
-                        <div class="d-flex flex-row justify-content-start mb-4">
-                            <div class="d-flex flex-column justify-content-center">
-                                <h3 id="choice_number_init">00</h3>
-                            </div>
-                            <div class="flex-grow-1 pl-4 pr-4">
-                                <label id="choice_label_init" for="choice_value_01">Choix : <span class="text-muted">(250 car. max.)</span></label>
-                                <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
-                                       name="remove_choice_init" value="0">
-                                <input type="text" class="form-control" id="choice_value_init" maxlength="250"
-                                       name="choice_value_init" placeholder="Proposition ...">
-                            </div>
-                            <div class="d-flex flex-column justify-content-end">
-                                <button type="button" class="btn btn-outline-danger btnRemoveChoice"><i class="fas fa-trash"></i></button>
+
+
+                    {% for choice in choices %}
+
+                        {% set cssDisplay="" %}
+                        {% set num=loop.index-1 %}
+                        {% if num<10 %}
+                            {% set num="0"~num %}
+                        {% endif %}
+                        {% if loop.index==1  %}
+                            {% set cssDisplay="d-none" %}
+                            {% set num="init"%}
+                        {% endif %}
+
+                        <div id="choice_{{ num }}" class="{{ cssDisplay }} divChoice {% if choice.isDeleted==1 %}opacity50{% else %}opacity100{% endif %}">
+                            <div class="d-flex flex-row justify-content-start mb-4">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 id="choice_number_{{ num }}">{{ num }}</h3>
+                                </div>
+                                <div class="flex-grow-1 pl-4 pr-4">
+                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Choix : <span class="text-muted">(250 car. max.)</span></label>
+                                    <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
+                                           name="remove_choice_{{ num }}" value="{{ choice.isDeleted }}">
+                                    <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="250"
+                                           name="choice_value_{{ num }}" placeholder="Proposition ..." value="{{ choice.label }}" {% if choice.isDeleted==1 %}readonly{% endif %}>
+                                </div>
+                                <div class="d-flex flex-column justify-content-end">
+                                    <button type="button" class="btn btn-outline-danger btnRemoveChoice"><i class="fas {% if choice.isDeleted==1 %}fa-undo{% else %}fa-trash{% endif %}"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    {% endfor %}
+
+                </div>
+                <div class="col-12">
+                    <input type="hidden" id="number_of_choices" class="form-control {{ number_of_choices_Invalid }}" name="number_of_choices" value="{{ number_of_choices }}">
+                    <div class="invalid-feedback">
+                        Merci de saisir au moins deux propositions (avec du texte) !
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <button class="btn btn-primary float-right" type="button" id="addAChoice"><i class="fas fa-plus-square"></i> Ajouter une
+                    <button class="btn btn-primary float-right" type="button" id="addAChoice"><i class="fas fa-plus-square mr-2"></i> Ajouter une
                         proposition
                     </button>
                 </div>
             </div>
             <hr/>
             <div class="row">
-                <div class="col-auto m-auto pb-5">
-                    <button class="btn btn-success"><i class="fas fa-check"></i> Démarrer le vote maintenant !</button>
+                <div class="col-12 pb-5">
+                    <a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>
+                    <button class="btn btn-success float-right"><i class="fas fa-check mr-2"></i> Valider !</button>
                 </div>
             </div>
 

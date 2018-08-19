@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,21 @@ class Proposal
      * @ORM\Column(type="integer", nullable=true)
      */
     private $participant_counter;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Choice", mappedBy="proposal", orphanRemoval=true)
+     */
+    private $choices;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $url_key;
+
+    public function __construct()
+    {
+        $this->choices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +153,49 @@ class Proposal
     public function setParticipantCounter(?int $participant_counter): self
     {
         $this->participant_counter = $participant_counter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Choice[]
+     */
+    public function getChoices(): Collection
+    {
+        return $this->choices;
+    }
+
+    public function addChoice(Choice $choice): self
+    {
+        if (!$this->choices->contains($choice)) {
+            $this->choices[] = $choice;
+            $choice->setProposal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChoice(Choice $choice): self
+    {
+        if ($this->choices->contains($choice)) {
+            $this->choices->removeElement($choice);
+            // set the owning side to null (unless already changed)
+            if ($choice->getProposal() === $this) {
+                $choice->setProposal(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUrlKey(): ?string
+    {
+        return $this->url_key;
+    }
+
+    public function setUrlKey(?string $url_key): self
+    {
+        $this->url_key = $url_key;
 
         return $this;
     }

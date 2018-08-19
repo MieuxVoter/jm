@@ -18,7 +18,7 @@ $(document).ready(function(){
            $newChoice.find("#choice_label_init").attr("id","choice_label_"+sItem);
            $newChoice.find("[for=choice_value_init]").attr("for","choice_value_"+sItem);
            $newChoice.find("#choice_value_init").attr("id","choice_value_"+sItem).attr("name","choice_value_"+sItem);
-           $newChoice.find("#remove_choice_init").attr("id","remove_choice_"+sItem).attr("id","remove_choice_"+sItem);
+           $newChoice.find("#remove_choice_init").attr("id","remove_choice_"+sItem).attr("name","remove_choice_"+sItem);
            $newChoice.removeClass("d-none");
            $('#choices').append($newChoice);
        }else{
@@ -36,16 +36,16 @@ $(document).ready(function(){
 
         if($field.val()==="1"){
             $field.val("0");
-            $div.find("input").prop("disabled",false);
+            $div.find("input").prop("readonly",false);
             $btn.find("i").removeClass("fa-undo").addClass("fa-trash");
-            $div.css("opacity",1);
+            $div.removeClass("opacity50").addClass("opacity100");
 
 
         }else{
             $field.val("1");
-            $div.find("input").prop("disabled",true);
+            $div.find("input").prop("readonly",true);
             $btn.find("i").removeClass("fa-trash").addClass("fa-undo");
-            $div.css("opacity",0.5);
+            $div.removeClass("opacity100").addClass("opacity50");
         }
     });
 
