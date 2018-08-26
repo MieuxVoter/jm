@@ -60,7 +60,7 @@
                        placeholder="Votre nom/pseudo">
             </div>
         </div>
-        <p><b>Les <u>resultats du vote</u> seront accessibles sur cette même adresse pendant 30 jours, une fois le vote terminé ({{ proposal.dateEnd|date("d/m/Y") }} à {{ proposal.dateEnd|date("H:i") }})</b></p>
+      {% include "vote/end-of-proposal.html.twig" %}
         <div class="text-center p-4">
         <button class="btn btn-success "><i class="fas fa-check mr-2"></i>Valider mon vote !</button>
         </div>

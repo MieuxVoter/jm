@@ -16,6 +16,8 @@ class StartAVote extends Controller
 {
     public function form(){
 
+        date_default_timezone_set($this->container->getParameter('timezone'));
+
         $isSaved=false;
 
         $redirectSave=$_GET["redirect-save"] ?? "";

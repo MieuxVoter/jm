@@ -17,8 +17,7 @@ class Vote extends Controller
 {
     public function form($url_key){
 
-
-
+        date_default_timezone_set($this->container->getParameter('timezone'));
 
         $isSaved=false;
 
@@ -38,6 +37,13 @@ class Vote extends Controller
 
         //si une proposition trouvée
         if(!is_null($proposal)){
+
+            //si la proposition est finie
+           /* if($proposal->getDateEnd() < strtotime("now")){
+
+            }*/
+
+
             //si données envoyéé en post
             if(count($_POST)) {
                 $isSaved=true;
@@ -78,7 +84,7 @@ class Vote extends Controller
 
 
         $dataForm["proposal"]=$proposal;
-
+        $dataForm["timezone"]=date_default_timezone_get();
         if($isSaved){
             return $this->render('vote/save.html.twig', $dataForm);
         }else{

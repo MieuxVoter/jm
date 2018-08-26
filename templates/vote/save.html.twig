@@ -20,7 +20,7 @@
                 <div class="col-12">
                     <h1>Participation enregistrée !</h1>
                     <hr/>
-                    <p><b>Les <u>resultats du vote</u> seront accessibles sur cette même adresse pendant 30 jours, une fois le vote terminé ({{ proposal.dateEnd|date("d/m/Y") }} à {{ proposal.dateEnd|date("H:i") }})</b></p>
+                    {% include "vote/end-of-proposal.html.twig" %}
                         <input type="text" class="form-control" value="{{ url("app_jm_vote",{'url_key': proposal.urlKey}) }}">
                 </div>
             </div>

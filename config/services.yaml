@@ -6,6 +6,7 @@
 parameters:
     locale: 'en'
     saltkey: '%env(SALT_KEY)%'
+    timezone: '%env(TIMEZONE)%'
 
 services:
     # default configuration for services in *this* file
