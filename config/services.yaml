@@ -7,6 +7,14 @@ parameters:
     locale: 'en'
     saltkey: '%env(SALT_KEY)%'
     timezone: '%env(TIMEZONE)%'
+    choice_values:    #valeur possible du vote, attention l'ordre doit être respecté
+      vote_0: 'A Rejeter'
+      vote_1: 'Insuffisant'
+      vote_2: 'Passable'
+      vote_3: 'Assez Bien'
+      vote_4: 'Bien'
+      vote_5: 'Trés Bien'
+
 
 services:
     # default configuration for services in *this* file
