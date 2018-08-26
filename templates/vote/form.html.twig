@@ -10,6 +10,7 @@
             <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
             <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
         </div>
+    </div>
     {% else %}
     <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" class="need-validated ">
         <div class="row mt-5">
@@ -37,7 +38,7 @@
                             <div class="flex-grow-1 pl-4 pr-4">
 
                                 <label  for="choice_value_{{ loop.index }}">{{ choice.label }} :</label>
-                               <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ loop.index }}">
+                               <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ choice.id }}">
                                    <option value="vote_0">A Rejeter</option>
                                    <option value="vote_1">Insuffisant</option>
                                    <option value="vote_2">Passable</option>
@@ -59,7 +60,7 @@
                        placeholder="Votre nom/pseudo">
             </div>
         </div>
-        <p><b>Les <u>resultats du vote</u> seront accessibles sur cette même adresse pendant 30 jours, une fois le vote terminé ({{ proposal.dateEnd|date("d/m/Y") }})</b></p>
+        <p><b>Les <u>resultats du vote</u> seront accessibles sur cette même adresse pendant 30 jours, une fois le vote terminé ({{ proposal.dateEnd|date("d/m/Y") }} à {{ proposal.dateEnd|date("H:i") }})</b></p>
         <button class="btn btn-success float-left"><i class="fas fa-check mr-2"></i>Valider !</button>
     </form>
     {% endif %}

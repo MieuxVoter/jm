@@ -132,4 +132,5 @@ class Participation
 
         return $this;
     }
+
 }
