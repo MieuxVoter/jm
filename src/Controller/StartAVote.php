@@ -18,7 +18,14 @@ class StartAVote extends Controller
 
         $isSaved=false;
 
+        $redirectSave=$_GET["redirect-save"] ?? "";
+
+        if($redirectSave!=""){
+            $isSaved=true;
+        }
+
         $dataForm=[];
+        $dataForm["redirect"]=false;
         $dataForm["author"]="";
         $dataForm["presentation"]="";
         $dataForm["time_before_end"]="6 hours";
@@ -124,6 +131,8 @@ class StartAVote extends Controller
                     $entityManager->persist($choice);
                 }
                 $entityManager->flush();
+
+                $dataForm["redirect"]=true;
 
             }
 
