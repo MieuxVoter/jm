@@ -11,6 +11,7 @@ namespace App\Controller;
 use App\Entity\Choice;
 use App\Entity\Participation;
 use App\Entity\Proposal;
+use App\Utils\MajorityJudgment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class Vote extends Controller
@@ -35,7 +36,7 @@ class Vote extends Controller
 
         $choices=$this->container->getParameter('choice_values');
         $dataForm["choices"]=$choices;
-        $choiceValues=array_values($choices);
+        $choiceValues=array_keys($choices);
 
 
         $repositoryProposal = $this->getDoctrine()->getRepository(Proposal::class);
@@ -114,8 +115,42 @@ class Vote extends Controller
 
     public function showResult($proposal){
         $dataTemplate=[];
-
         $dataTemplate["proposal"]=$proposal;
+        $choices=$this->container->getParameter('choice_values');
+        $dataTemplate["choices"]=$choices;
+        $dataTemplate["choice_colors"]=$this->container->getParameter('choice_colors');
+
+        //config du vote
+        $choiceValues=array_keys($choices);
+
+        //recupere les choix possibles
+        $choices=[];
+        foreach($proposal->getChoices() as $choice){
+            $choices[]=$choice->getId();
+        }
+
+        //recupere les votes
+        $repositoryVote = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
+        $votes = $repositoryVote->findBy(['proposal' => $proposal->getId()]);
+
+
+        //dépouille
+        $judgement = new MajorityJudgment();
+        $judgement->setChoices($choices);
+        $judgement->setValues($choiceValues);
+
+        foreach($votes as $vote){
+            $judgement->addVote($vote->getChoice()->getId(),$vote->getVoteValue());
+        }
+        $dataTemplate["meritProfiles"]=$judgement->meritProfiles();
+
+        $repositoryChoice = $this->getDoctrine()->getRepository(\App\Entity\Choice::class);
+        $dataTemplate["winner"]= $repositoryChoice ->findOneBy(["id"=>$judgement->winner()]);
+
+
+
+
+
 
         return $this->render('vote/result.html.twig', $dataTemplate);
     }
