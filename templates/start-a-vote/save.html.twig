@@ -9,7 +9,7 @@
                     <h1>Proposition enregistrée !</h1>
                     <hr/>
                     <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
-                        <input type="text" class="form-control" value="http://jm/vote/{{ proposal.urlKey }}">
+                        <input type="text" class="form-control" value="{{ url("app_jm_vote",{'url_key': proposal.urlKey}) }}">
 
                 </div>
             </div>

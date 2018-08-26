@@ -1,0 +1,67 @@
+{% extends "body.html.twig" %}
+
+
+{% block main %}
+<main class="container">
+    {% if proposal is null %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h1>Ooops ! Proposition inexistante</h1>
+            <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
+            <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+        </div>
+    {% else %}
+    <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" class="need-validated ">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h1>Jugement Majoritaire</h1>
+                <p>Cette page va vous permettre de voter une porposition en utilisant le mode de scrutin appelé "jugement majoritaire". Pour en savoir plus sur le jugement majoriatire vous pouvez <a href="https://youtu.be/YC1xDJsi_Hk">consulter cette vidéo </a>.</p>
+                <p>N'hésitez pas à soumettre vous même une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                <hr/>
+                <h4>Auteur :</h4>
+                <p>{{ proposal.author|default('Anonyme') }}
+                <h4>Présentation :</h4>
+                <p>{{ proposal.presentation }}
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h4>Propositions :</h4>
+                {% for choice in proposal.choices  %}
+                    <div >
+                        <div class="d-flex flex-row justify-content-start mb-4">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h3 >{{ loop.index }}</h3>
+                            </div>
+                            <div class="flex-grow-1 pl-4 pr-4">
+
+                                <label  for="choice_value_{{ loop.index }}">{{ choice.label }} :</label>
+                               <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ loop.index }}">
+                                   <option value="vote_0">A Rejeter</option>
+                                   <option value="vote_1">Insuffisant</option>
+                                   <option value="vote_2">Passable</option>
+                                   <option value="vote_3">Assez Bien</option>
+                                   <option value="vote_4">Bien</option>
+                                   <option value="vote_5">Trés Bien</option>
+                               </select>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr />
+        <div class="col-12">
+            <div class="mb-3">
+                <label for="author" >Votre nom <span class="text-muted">(Optionel)</span></label>
+                <input type="text" class="form-control" id="author" maxlength="250" name="author" value=""
+                       placeholder="Votre nom/pseudo">
+            </div>
+        </div>
+        <p><b>Les <u>resultats du vote</u> seront accessibles sur cette même adresse pendant 30 jours, une fois le vote terminé ({{ proposal.dateEnd|date("d/m/Y") }})</b></p>
+        <button class="btn btn-success float-left"><i class="fas fa-check mr-2"></i>Valider !</button>
+    </form>
+    {% endif %}
+</main>
+{% endblock %}

@@ -6,3 +6,7 @@
 app_jm_form:
     path: /start-a-vote/form
     controller: App\Controller\StartAVote::form
+
+app_jm_vote:
+    path: /vote/{url_key}
+    controller: App\Controller\Vote::form
