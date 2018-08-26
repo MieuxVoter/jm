@@ -39,12 +39,9 @@
 
                                 <label  for="choice_value_{{ loop.index }}">{{ choice.label }} :</label>
                                <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ choice.id }}">
-                                   <option value="vote_0">A Rejeter</option>
-                                   <option value="vote_1">Insuffisant</option>
-                                   <option value="vote_2">Passable</option>
-                                   <option value="vote_3">Assez Bien</option>
-                                   <option value="vote_4">Bien</option>
-                                   <option value="vote_5">Trés Bien</option>
+                                   {% for choice_value,choice_label in choices  %}
+                                   <option value="{{ choice_value }}">{{ choice_label }}</option>
+                                   {% endfor %}
                                </select>
                             </div>
                         </div>

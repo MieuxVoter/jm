@@ -1,0 +1,35 @@
+{% extends "body.html.twig" %}
+
+
+
+{% block main %}
+    <main class="container">
+
+        {% if proposal is null %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Ooops ! Proposition inexistante</h1>
+                    <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
+                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                </div>
+            </div>
+            {% else %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Jugement Majoritaire</h1>
+                    <p>Cette page présente le résultat d'une porposition votée en utilisant le mode de scrutin appelé "jugement majoritaire". Pour en savoir plus sur le jugement majoriatire vous pouvez <a href="https://youtu.be/YC1xDJsi_Hk">consulter cette vidéo </a>.</p>
+                    <p>N'hésitez pas à soumettre vous même une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                    <hr/>
+                    <h4>Auteur :</h4>
+                    <p>{{ proposal.author|default('Anonyme') }}
+                    <h4>Présentation :</h4>
+                    <p>{{ proposal.presentation }}</p>
+                    <h4>Résultat :</h4>
+                    <p></p>
+                    <hr />
+
+                </div>
+            </div>
+            {%  endif %}
+    </main>
+{% endblock %}
