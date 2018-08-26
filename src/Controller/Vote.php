@@ -21,9 +21,19 @@ class Vote extends Controller
 
         $repository = $this->getDoctrine()->getRepository(Proposal::class);
         $proposal = $repository->findOneBy(['url_key' => $url_key]);
-        if(is_null($proposal)){
 
+        //si une proposition trouvée
+        if(!is_null($proposal)){
+            //si données envoyéé en post
+            if(count($_POST)) {
+                $error = 0;
+                $dataForm["author"] = $_POST["author"] ?? "";
+                $dataForm["proposal_id"] = $proposal->getId();
+
+            }
         }
+
+
 
         $dataForm["proposal"]=$proposal;
         return $this->render('vote/form.html.twig', $dataForm);

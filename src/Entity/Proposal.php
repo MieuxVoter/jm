@@ -63,9 +63,15 @@ class Proposal
      */
     private $url_key;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vote", mappedBy="proposal", orphanRemoval=true)
+     */
+    private $votes;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,6 +202,37 @@ class Proposal
     public function setUrlKey(?string $url_key): self
     {
         $this->url_key = $url_key;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vote[]
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): self
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes[] = $vote;
+            $vote->setProposal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): self
+    {
+        if ($this->votes->contains($vote)) {
+            $this->votes->removeElement($vote);
+            // set the owning side to null (unless already changed)
+            if ($vote->getProposal() === $this) {
+                $vote->setProposal(null);
+            }
+        }
 
         return $this;
     }
