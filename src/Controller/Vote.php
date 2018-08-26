@@ -29,7 +29,6 @@ class Vote extends Controller
                 $error = 0;
                 $dataForm["author"] = $_POST["author"] ?? "";
                 $dataForm["proposal_id"] = $proposal->getId();
-
             }
         }
 

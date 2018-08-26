@@ -68,10 +68,16 @@ class Proposal
      */
     private $votes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participation", mappedBy="proposal", orphanRemoval=true)
+     */
+    private $participations;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
         $this->votes = new ArrayCollection();
+        $this->participations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,6 +237,37 @@ class Proposal
             // set the owning side to null (unless already changed)
             if ($vote->getProposal() === $this) {
                 $vote->setProposal(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setProposal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->contains($participation)) {
+            $this->participations->removeElement($participation);
+            // set the owning side to null (unless already changed)
+            if ($participation->getProposal() === $this) {
+                $participation->setProposal(null);
             }
         }
 
