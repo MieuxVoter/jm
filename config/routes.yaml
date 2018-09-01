@@ -4,9 +4,13 @@
 
 
 app_jm_form:
-    path: /
-    controller: App\Controller\StartAVote::form
+ path: /
+ controller: App\Controller\StartAVote::form
 
 app_jm_vote:
-    path: /vote/{url_key}
-    controller: App\Controller\Vote::form
+ path: /vote/{url_key}
+ controller: App\Controller\Vote::form
+
+app_jm_clear:
+ path: /clear
+ controller: App\Controller\Clear::run
