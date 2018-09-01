@@ -4,7 +4,7 @@
 
 
 app_jm_form:
-    path: /start-a-vote/form
+    path: /
     controller: App\Controller\StartAVote::form
 
 app_jm_vote:
