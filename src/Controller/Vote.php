@@ -11,7 +11,8 @@ namespace App\Controller;
 use App\Entity\Choice;
 use App\Entity\Participation;
 use App\Entity\Proposal;
-use App\Utils\MajorityJudgment;
+
+use oceanBigOne\MajorityJudgment\Ballot;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class Vote extends Controller
@@ -116,26 +117,80 @@ class Vote extends Controller
     public function showResult($proposal){
         $dataTemplate=[];
         $dataTemplate["proposal"]=$proposal;
-        $choices=$this->container->getParameter('choice_values');
-        $dataTemplate["choices"]=$choices;
-        $dataTemplate["choice_colors"]=$this->container->getParameter('choice_colors');
+        $mentions=$this->container->getParameter('choice_values');
+        $dataTemplate["mentions"]=$mentions;
+        $dataTemplate["mention_colors"]=$this->container->getParameter('choice_colors');
 
-        //config du vote
-        $choiceValues=array_keys($choices);
 
-        //recupere les choix possibles
-        $choices=[];
-        foreach($proposal->getChoices() as $choice){
-            $choices[]=$choice->getId();
-        }
+        //recupere les choix/candidats possibles
+        $candidates=$proposal->getChoices();
 
         //recupere les votes
         $repositoryVote = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
         $votes = $repositoryVote->findBy(['proposal' => $proposal->getId()]);
 
 
-        //dépouille
-        $judgement = new MajorityJudgment();
+        //scrutin
+        $ballot = new Ballot();
+
+        //ajoute les mentions
+        $mentionToIndex=[];
+        $indexToMention=[];
+        $index=0;
+        foreach($mentions as $mention_value=>$mention_label){
+            $ballot->addMention($mention_value);
+            $mentionToIndex[$mention_value]=$index; //en mémorisant l'index pour le retrouver plus tard
+            $indexToMention[$index]=$mention_value;
+            $index++;
+        }
+
+        //ajoutes les candidats/choix
+        $candidatesToIndex=[];
+        foreach($candidates as $index=>$candidat) {
+            $ballot->addCandidate($candidat->getLabel());
+            $candidatesToIndex[$candidat->getLabel()]=$index; //en mémorisant l'index pour le retrouver plus tard
+        }
+
+        //ajoutes les votes
+        foreach($votes as $vote){
+            $ballot->addVote( $candidatesToIndex[$vote->getChoice()->getLabel()], $mentionToIndex[$vote->getVoteValue()] );
+        }
+
+        //calcul le resultat
+        $result=Ballot::getResult($ballot);
+        $resultIndex=array_keys($result);
+
+        //affiche les profiles de merite pour chaque candidat/choix
+        $dataTemplate["meritProfiles"]=[];
+        foreach($ballot->getCandidates() as $index_of_candidate=>$candidate){
+
+            $offsetCandidat=$candidates[$index_of_candidate]->getId();
+            $dataTemplate["meritProfiles"][$offsetCandidat]=[];
+            $index_of_mention=0;
+            foreach($mentions as $mention_value=>$mention_label){
+                $meritProfilValue=$result[$index_of_candidate]["values"]["merit-profile"][$mentionToIndex[$mention_value]];
+                $dataTemplate["meritProfiles"][$offsetCandidat][$mention_value]=$meritProfilValue;
+                $index_of_mention++;
+            }
+        }
+
+
+
+
+        //recupere le gagnant
+        $repositoryChoice = $this->getDoctrine()->getRepository(Choice::class);
+        $winner = $repositoryChoice->findBy(['id' => $candidates[$resultIndex[0]]]);
+        $dataTemplate["winner"]=$winner[0];
+
+        $dataTemplate["result"]=$result;
+
+
+
+
+
+
+
+        /*$judgement = new MajorityJudgment();
         $judgement->setChoices($choices);
         $judgement->setValues($choiceValues);
 
@@ -145,7 +200,7 @@ class Vote extends Controller
         $dataTemplate["meritProfiles"]=$judgement->meritProfiles();
 
         $repositoryChoice = $this->getDoctrine()->getRepository(\App\Entity\Choice::class);
-        $dataTemplate["winner"]= $repositoryChoice ->findOneBy(["id"=>$judgement->winner()]);
+        $dataTemplate["winner"]= $repositoryChoice ->findOneBy(["id"=>$judgement->winner()]);*/
 
 
 

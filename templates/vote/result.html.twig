@@ -25,7 +25,7 @@
                     <h4>Présentation :</h4>
                     <p>{{ proposal.presentation }}</p>
                     <h4>Résultat :</h4>
-                    <p><b>{{ winner.label }}</b> <i>(Déterminé par {{ proposal.participations|length }} participation(s).)</i></p>
+                  <p><b>{{ winner.label }}</b> <i>(Déterminé par {{ proposal.participations|length }} participation(s).)</i></p>
                     <hr />
                     <h4>Profile de mérite :</h4>
                     <table class="table table-bordered">
@@ -40,12 +40,17 @@
                         </thead>
                         <tbody>
 
-                            {% for choice_value,choice_label in choices  %}
+                            {% for mention_value,mention_label  in mentions %}
                             <tr>
-                                <th scope="row" style="background-color:#{{ choice_colors[choice_value] }};">{{ choices[choice_value] }}</th>
-                                {% for choice in proposal.choices  %}
-                                <td >{{ meritProfiles[choice.id][choice_value]|round(2) }} %</td>
-                            {% endfor %}
+                                <th scope="row" style="background-color:#{{ mention_colors[mention_value] }};">{{ mention_label }}</th>
+
+                                {%  for choice in proposal.choices  %}
+                                <td >{{ meritProfiles[choice.id][mention_value]|round(2) }} %</td>
+                                 {% endfor %}
+
+
+
+
                             </tr>
                             {% endfor %}
 
@@ -73,10 +78,10 @@
 
             ],
             series: [
-                {% for choice_value,choice_label in choices  %}
+                {% for mention_value,mention_label in mentions  %}
                 [
                     {% for choice in proposal.choices  %}
-                    {{ meritProfiles[choice.id][choice_value] }},
+                     {{ meritProfiles[choice.id][mention_value] }},
                     {% endfor %}
                 ],
                 {% endfor %}
@@ -108,9 +113,9 @@
 {% block stylesheets %}
 <style>
     {% set alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'] %}
-     {% for choice_value,choice_label in choices  %}
+     {% for mention_value,mention_label in mentions  %}
      .ct-series-{{ alphabet[loop.index-1]|lower }} .ct-bar{
-         stroke:#{{ choice_colors[choice_value] }};
+         stroke:#{{ mention_colors[mention_value] }};
      }
      {% endfor %}
 

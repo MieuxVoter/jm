@@ -89,6 +89,9 @@
     "nikic/php-parser": {
         "version": "v4.0.3"
     },
+    "oceanbigone/majorityjudgment": {
+        "version": "1.0.3"
+    },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
     },

@@ -8,19 +8,19 @@ parameters:
     saltkey: '%env(SALT_KEY)%'
     timezone: '%env(TIMEZONE)%'
     choice_values:    #valeur possible du vote, attention l'ordre doit être respecté
-      vote_0: 'A Rejeter'
-      vote_1: 'Insuffisant'
-      vote_2: 'Passable'
-      vote_3: 'Assez Bien'
-      vote_4: 'Bien'
-      vote_5: 'Trés Bien'
+      vote_0: 'Trés Bien'
+      vote_1: 'Bien'
+      vote_2: 'Assez Bien'
+      vote_3: 'Passable'
+      vote_4: 'Insuffisant'
+      vote_5: 'A Rejeter'
     choice_colors:    #doit correspondre aux valeurs possible du vote !
-      vote_0: '777777'
-      vote_1: 'ff0000'
-      vote_2: 'ffff00'
-      vote_3: '9acd32'
-      vote_4: '228b22'
-      vote_5: '006400'
+      vote_0: '006400'
+      vote_1: '228b22'
+      vote_2: '9acd32'
+      vote_3: 'ffff00'
+      vote_4: 'ff0000'
+      vote_5: '777777'
 
 
 services:
