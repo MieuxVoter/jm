@@ -47,7 +47,7 @@ class Vote extends Controller
         if(!is_null($proposal)){
 
             //si la proposition est finie
-            if($proposal->getDateEnd()->getTimestamp() < strtotime("now")){
+            if($proposal->getDateEnd()->getTimestamp() < strtotime("now") || isset($_GET["show-result"])){
                 return $this->showResult($proposal);
 
             }else{
