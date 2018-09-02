@@ -80,7 +80,7 @@
     <script type="text/javascript">
         new Chartist.Bar('#chart', {
             labels: [
-                {% for choice in proposal.choices  %}'{{ choice.label }}',{% endfor %}
+                {% for choice in proposal.choices  %}'{{ choice.label|e('js')|raw }}',{% endfor %}
 
 
             ],
@@ -112,6 +112,8 @@
                 });
             }
         });
+
+        setTimeout(function(){$("#chart").height("1000px");},500);
 
 
     </script>
