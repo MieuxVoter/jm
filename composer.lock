@@ -1411,16 +1411,16 @@
         },
         {
             "name": "oceanbigone/majorityjudgment",
-            "version": "1.2.0",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oceanBigOne/MajorityJudgment.git",
-                "reference": "3091505c6491c196c9880203df9eb5f7f00771ba"
+                "reference": "fc689dfb07933712a9accca984f3bdb30989d203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oceanBigOne/MajorityJudgment/zipball/3091505c6491c196c9880203df9eb5f7f00771ba",
-                "reference": "3091505c6491c196c9880203df9eb5f7f00771ba",
+                "url": "https://api.github.com/repos/oceanBigOne/MajorityJudgment/zipball/fc689dfb07933712a9accca984f3bdb30989d203",
+                "reference": "fc689dfb07933712a9accca984f3bdb30989d203",
                 "shasum": ""
             },
             "require": {
@@ -1461,7 +1461,7 @@
                 "sort",
                 "vote"
             ],
-            "time": "2018-09-01T14:29:48+00:00"
+            "time": "2018-09-02T12:37:36+00:00"
         },
         {
             "name": "ocramius/package-versions",

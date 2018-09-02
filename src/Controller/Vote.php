@@ -182,6 +182,27 @@ class Vote extends Controller
         $winner = $repositoryChoice->findBy(['id' => $candidates[$resultIndex[0]]]);
         $dataTemplate["winner"]=$winner[0];
 
+        $dataTemplate["winners"]=[];
+
+        foreach($resultIndex as $index){
+            $winner = $repositoryChoice->findBy(['id' => $candidates[$index]]);
+
+            $majorityMention=$result[$index]["values"]["majority-mention"];
+            $pcWorse=$result[$index]["values"]["pc-worse"];
+            $pcBetter=$result[$index]["values"]["pc-better"];
+            if($pcBetter>=$pcWorse){
+                $indice=1;
+                $weight=(round($pcBetter/10,2));
+            }else{
+                $indice=-1;
+                $weight=(round($pcWorse/10,2));
+            }
+            $sortKey=(($majorityMention*100)+($indice*$weight));
+            $dataTemplate["winners"][]=["winner"=>$winner[0],"keyExplication"=>$sortKey." = $majorityMention * 100 + ( $indice * $weight ) " ];
+        }
+
+
+
         $dataTemplate["result"]=$result;
 
 

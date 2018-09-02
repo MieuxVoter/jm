@@ -27,6 +27,13 @@
                     <h4>Résultat :</h4>
                   <p><b>{{ winner.label }}</b> <i>(Déterminé par {{ proposal.participations|length }} participation(s).)</i></p>
                     <hr />
+                    <h4>Classement :</h4>
+<ol>
+                    {% for winner in winners  %}
+                       <li>{{ winner.winner.label  }} <span class="badge badge-secondary">{{ winner.keyExplication }})</span></li>
+                    {% endfor %}
+</ol>
+                    <hr />
                     <h4>Profile de mérite :</h4>
                     <table class="table table-bordered">
                         <thead>
