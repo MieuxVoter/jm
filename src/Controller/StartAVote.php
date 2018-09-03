@@ -29,6 +29,7 @@ class StartAVote extends Controller
         $dataForm=[];
         $dataForm["redirect"]=false;
         $dataForm["author"]="";
+        $dataForm["title"]="";
         $dataForm["presentation"]="";
         $dataForm["time_before_end"]="6 hours";
 
@@ -42,6 +43,7 @@ class StartAVote extends Controller
         $choicesToSave=[];
 
         //validation css
+        $dataForm["title_Invalid"]="";
         $dataForm["presentation_Invalid"]="";
         $dataForm["time_before_end_Invalid"]="";
         $dataForm["number_of_choices_Invalid"]="";
@@ -54,6 +56,13 @@ class StartAVote extends Controller
             $dataForm["presentation"]=$_POST["presentation"]??"";
             $dataForm["time_before_end"]=$_POST["time_before_end"]??"6 hours";
             $dataForm["number_of_choices"]=$_POST["number_of_choices"]??0;
+
+
+            //pas de titre
+            if($dataForm["title"]===""){
+                $dataForm["title_Invalid"]="is-invalid";
+                $error++;
+            }
 
             //pas de presentation
             if($dataForm["presentation"]===""){
@@ -103,6 +112,7 @@ class StartAVote extends Controller
                 $proposal=new Proposal();
                 $proposal->setAuthor($dataForm["author"]);
                 $proposal->setPresentation($dataForm["presentation"]);
+                $proposal->setTitle($dataForm["title"]);
                 $proposal->setNumberOfChoices($nbEnabledChoices);
 
                 $date_start=new \DateTime();
