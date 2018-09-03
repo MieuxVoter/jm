@@ -54,6 +54,7 @@ class StartAVote extends Controller
 
             $dataForm["author"]=$_POST["author"]??"";
             $dataForm["presentation"]=$_POST["presentation"]??"";
+            $dataForm["title"]=$_POST["title"]??"";
             $dataForm["time_before_end"]=$_POST["time_before_end"]??"6 hours";
             $dataForm["number_of_choices"]=$_POST["number_of_choices"]??0;
 
