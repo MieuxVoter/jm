@@ -1,0 +1,15 @@
+{% extends "body.html.twig" %}
+
+{% block main %}
+<main class="container">
+    <div class="alert alert-primary">
+        <p><b>ATTENTION : Projet en phase de test !</b></p>
+        <p><em>Code source de ce projet WEB : <a href="https://github.com/oceanBigOne/jm" target="_blank">Projet WEB sur GitHub</a></em>
+            <br /><em>Code source du module Jugement Majoritaire en PHP : <a href="https://github.com/oceanBigOne/MajorityJudgment" target="_blank">Class PHP sur GitHub</a></em>
+        <p>Pour toute remarque/suggestion sur ce projet, vous pouvez me contacter via <a href="https://github.com/oceanBigOne" target="_blank">GitHub</a></p>
+        </p>
+    </div>
+
+    <a href="{{ path("app_jm_form") }}">Démarrer un vote !</a>
+</main>
+{% endblock %}
