@@ -1,3 +1,12 @@
+function copyToClipboard(selector) {
+    let $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(selector).val()).select();
+    toastr["success"]("Lien copié !");
+
+    document.execCommand("copy");
+    $temp.remove();
+};
 $(document).ready(function(){
 
     const $body=$('body');
@@ -50,6 +59,15 @@ $(document).ready(function(){
             $btn.find("i").removeClass("fa-trash").addClass("fa-undo");
             $div.removeClass("opacity100").addClass("opacity50");
         }
+    });
+
+    $body.on('click','.autoselect',function(){
+        $(this).select();
+    });
+
+    $body.on('click','.copy-to-clipboard',function(){
+
+        copyToClipboard($(this).attr("data-target"));
     });
 
 });;

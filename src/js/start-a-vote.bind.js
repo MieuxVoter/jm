@@ -52,4 +52,13 @@ $(document).ready(function(){
         }
     });
 
+    $body.on('click','.autoselect',function(){
+        $(this).select();
+    });
+
+    $body.on('click','.copy-to-clipboard',function(){
+
+        copyToClipboard($(this).attr("data-target"));
+    });
+
 });
