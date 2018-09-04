@@ -89,6 +89,7 @@ class StartAVote extends Controller
 
                 $choice= new Choice();
                 $choice->setLabel($_POST["choice_value_".$num]??"");
+                $choice->setExplanation($_POST["choice_explanation_".$num]??"");
                 $choice->setSortValue($i);
                 $choice->setIsDeleted($_POST["remove_choice_".$num]??1);
                 $choices[]=$choice;
