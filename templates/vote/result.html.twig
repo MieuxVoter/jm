@@ -10,73 +10,91 @@
                 <div class="col-12">
                     <h1>Ooops ! Proposition inexistante</h1>
                     <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
-                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en
+                            cliquant-ici</a></p>
                 </div>
             </div>
-            {% else %}
+        {% else %}
             <div class="row mt-5">
                 <div class="col-12">
                     <h1>{{ proposal.title }}</h1>
-
                     <hr/>
-                    <h4>Auteur :</h4>
-                    <p>{{ proposal.author|default('Anonyme') }}
-                    <h4>Présentation :</h4>
+                    <h4><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h4>
+                    <p>
+                    <h4 class="mt-5">Présentation</h4>
                     <p>{{ proposal.presentation }}</p>
-                    <div class="alert alert-primary">
-                        <p>Cette page présente le résultat d'une porposition votée en utilisant le mode de scrutin appelé "jugement majoritaire". Pour en savoir plus sur le jugement majoriatire vous pouvez <a href="https://youtu.be/YC1xDJsi_Hk">consulter cette vidéo </a>.</p>
-                        <p>N'hésitez pas à soumettre vous même une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-12">
+                    <h4 class="mt-2">Résultat</h4>
+                    <div class="alert alert-success">
+                        <b>{{ winner.label }}</b>
                     </div>
+                    <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
+                            par {{ proposal.participations|length }} participation(s).</i></div>
+                </div>
+            </div>
 
-                    <h4>Résultat :</h4>
-                  <p><b>{{ winner.label }}</b> <i>(Déterminé par {{ proposal.participations|length }} participation(s).)</i></p>
-                    <hr />
-                    <h4>Classement :</h4>
-<ol>
-                    {% for winner in winners  %}
-                       <li>{{ winner.winner.label  }} <span class="badge badge-secondary">{{ winner.keyExplication }})</span></li>
-                    {% endfor %}
-</ol>
-                    <hr />
-                    <h4>Profile de mérite :</h4>
+
+            <div class="row mt-5 ">
+                <div class="col-12">
+                    <h4>Profiles de mérite :</h4>
+
+                    <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            {% for choice in proposal.choices  %}
-                                 <th scope="col">{{ choice.label }}</th>
+                            <th scope="col">&nbsp;</th>
+                            {% for mention_value,mention_label  in mentions %}
+                                <th scope="col"
+                                    style="background-color:#{{ mention_colors[mention_value] }};white-space: nowrap;">{{ mention_label }}</th>
                             {% endfor %}
 
                         </tr>
                         </thead>
                         <tbody>
 
-                            {% for mention_value,mention_label  in mentions %}
+                        {% for choice in proposal.choices %}
                             <tr>
-                                <th scope="row" style="background-color:#{{ mention_colors[mention_value] }};">{{ mention_label }}</th>
+                                <th scope="row"
+                                   >{{ choice.label }}</th>
 
-                                {%  for choice in proposal.choices  %}
-                                <td >{{ meritProfiles[choice.id][mention_value]|round(2) }} %</td>
-                                 {% endfor %}
-
-
+                                {% for mention_value,mention_label  in mentions %}
+                                    <td>{{ meritProfiles[choice.id][mention_value]|round(2) }} %</td>
+                                {% endfor %}
 
 
                             </tr>
-                            {% endfor %}
+                        {% endfor %}
 
 
                         </tbody>
-                    </table>
-                    <hr />
-                    <h4>Histogramme :</h4>
-                    <div id="chart" style="height:600px"></div>
-                    </div>
-                    <p class="mb-5">&nbsp;</p>
+                    </table></div>
+                </div>
+            </div>
+            <div class="row mt-5 ">
+                <div class="col-12">
+                    <h4>Classement :</h4>
+                    <ol>
+                        {% for winner in winners %}
+                            <li>{{ winner.winner.label }} <span
+                                        class="badge badge-secondary">{{ winner.keyExplication }})</span></li>
+                        {% endfor %}
+                    </ol>
 
                 </div>
             </div>
-            {%  endif %}
+            <div class="row mt-5 ">
+                <div class="col-12">
+                    <h4>Histogramme :</h4>
+                    <div id="chart" style="height:600px"></div>
+                </div>
+                <p class="mb-5">&nbsp;</p>
+
+            </div>
+            </div>
+        {% endif %}
     </main>
 {% endblock %}
 
@@ -84,15 +102,15 @@
     <script type="text/javascript">
         new Chartist.Bar('#chart', {
             labels: [
-                {% for choice in proposal.choices  %}'{{ choice.label|e('js')|raw }}',{% endfor %}
+                {% for choice in proposal.choices %}'{{ choice.label|e('js')|raw }}',{% endfor %}
 
 
             ],
             series: [
-                {% for mention_value,mention_label in mentions  %}
+                {% for mention_value,mention_label in mentions %}
                 [
-                    {% for choice in proposal.choices  %}
-                     {{ meritProfiles[choice.id][mention_value] }},
+                    {% for choice in proposal.choices %}
+                    {{ meritProfiles[choice.id][mention_value] }},
                     {% endfor %}
                 ],
                 {% endfor %}
@@ -100,39 +118,41 @@
         }, {
             stackBars: true,
             axisY: {
-                labelInterpolationFnc: function(value) {
-                    if(value>100){
+                labelInterpolationFnc: function (value) {
+                    if (value > 100) {
                         return ""
-                    }else{
+                    } else {
                         return (value) + '%';
                     }
 
                 }
             }
-        }).on('draw', function(data) {
-            if(data.type === 'bar') {
+        }).on('draw', function (data) {
+            if (data.type === 'bar') {
                 data.element.attr({
                     style: 'stroke-width: {{ (100/(proposal.choices|length + 1 ))|round(2, 'floor') }}%'
                 });
             }
         });
 
-        setTimeout(function(){$("#chart").height("1000px");},500);
+        setTimeout(function () {
+            $("#chart").height("1000px");
+        }, 500);
 
 
     </script>
 {% endblock %}
 
 {% block stylesheets %}
-<style>
-    {% set alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'] %}
-     {% for mention_value,mention_label in mentions  %}
-     .ct-series-{{ alphabet[loop.index-1]|lower }} .ct-bar{
-         stroke:#{{ mention_colors[mention_value] }};
-     }
-     {% endfor %}
+    <style>
+        {% set alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'] %}
+        {% for mention_value,mention_label in mentions  %}
+        .ct-series-{{ alphabet[loop.index-1]|lower }} .ct-bar {
+            stroke: #{{ mention_colors[mention_value] }};
+        }
+
+        {% endfor %}
 
 
-
-</style>
+    </style>
 {% endblock stylesheets %}
