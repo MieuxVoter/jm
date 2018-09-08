@@ -51,7 +51,8 @@ That's all...
 
 ## Versions
 
-### Develop branch only for the moment
+### 1.0.0
+- Initial version
 
 
 
