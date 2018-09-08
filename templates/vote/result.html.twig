@@ -33,6 +33,9 @@
                     <h4 class="mt-2">Résultat  <span class="badge badge-secondary" style="background-color:#{{ winnerMentionColor }};color:#000;">{{ winnerMention }}</span></h4>
                         <div class="alert alert-success">
                         <b>{{ winner.label }}</b>
+                            <br /><small  class="form-text text-muted">
+                                {{ winner.explanation }}
+                            </small>
 
                     </div>
                     <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
@@ -45,7 +48,11 @@
                     <h4>Classement complet :</h4>
                     <ol>
                         {% for winner in winners %}
-                            <li>{{ winner.winner.label }}</li>
+                            <li class="mb-4">{{ winner.winner.label }}
+                                <br /><small  class="form-text text-muted">
+                                    {{ winner.winner.explanation }}
+                                </small>
+                            </li>
                         {% endfor %}
                     </ol>
 
