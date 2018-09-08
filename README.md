@@ -51,6 +51,12 @@ That's all...
 
 ## Versions
 
+#### 1.1.2
+- fix version in readme 
+
+#### 1.1.1
+- spelling errors
+
 ### 1.1.0
 - User interface update
 
