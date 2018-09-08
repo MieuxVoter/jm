@@ -28,21 +28,34 @@
                     <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
                 </div>
             </div>
-            <div class="row ">
+            <div class="row mt-5 ">
                 <div class="col-12">
-                    <h4 class="mt-2">Résultat</h4>
-                    <div class="alert alert-success">
+                    <h4 class="mt-2">Résultat  <span class="badge badge-secondary" style="background-color:#{{ winnerMentionColor }};color:#000;">{{ winnerMention }}</span></h4>
+                        <div class="alert alert-success">
                         <b>{{ winner.label }}</b>
 
                     </div>
                     <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
-                            par {{ proposal.participations|length }} participation.</i></div>
+                            par {{ proposal.participations|length }} participations et la mention majoritaire : {{ winnerMention }}</i></div>
+                </div>
+            </div>
+
+            <div class="row mt-5 ">
+                <div class="col-12">
+                    <h4>Classement complet :</h4>
+                    <ol>
+                        {% for winner in winners %}
+                            <li>{{ winner.winner.label }}</li>
+                        {% endfor %}
+                    </ol>
+
                 </div>
             </div>
 
 
             <div class="row mt-5 ">
                 <div class="col-12">
+
                     <h4>Profiles de mérite :</h4>
 
                     <div class="table-responsive">
@@ -77,26 +90,29 @@
                     </table></div>
                 </div>
             </div>
-            <div class="row mt-5 ">
-                <div class="col-12">
-                    <h4>Classement :</h4>
-                    <ol>
-                        {% for winner in winners %}
-                            <li>{{ winner.winner.label }}</li>
-                        {% endfor %}
-                    </ol>
 
-                </div>
-            </div>
             <div class="row mt-5 ">
                 <div class="col-12">
                     <h4>Histogramme :</h4>
                     <div id="chart" style="height:600px"></div>
                 </div>
-                <p class="mb-5">&nbsp;</p>
+                <div class="col-12">
+                    <div class="alert alert-secondary">
+                    <h6>Légende :</h6>
+                    <ol>
+                    {% for choice in proposal.choices %}
+                        <li>{{ choice.label }}</li>
+                    {% endfor %}
+                    </ol>
+                    </div>
+
+                </div>
+
 
             </div>
-            </div>
+
+
+
         {% endif %}
     </main>
 {% endblock %}
@@ -118,7 +134,8 @@
                 ],
                 {% endfor %}
             ]
-        }, {
+        }
+            ,{
             stackBars: true,
             axisY: {
                 labelInterpolationFnc: function (value) {
@@ -133,14 +150,14 @@
         }).on('draw', function (data) {
             if (data.type === 'bar') {
                 data.element.attr({
-                    style: 'stroke-width: {{ (100/(proposal.choices|length + 1 ))|round(2, 'floor') }}%'
+                    style: 'stroke-width: {{  (250/(proposal.choices|length))|round }}px;'
                 });
             }
         });
 
-        setTimeout(function () {
+      /*  setTimeout(function () {
             $("#chart").height("1000px");
-        }, 500);
+        }, 500);*/
 
 
     </script>
@@ -155,6 +172,35 @@
         }
 
         {% endfor %}
+
+        .ct-bar{
+            stroke-width: {{  (100/((proposal.choices|length)+4))|round }}px !important;
+        }
+
+
+        @media screen and (min-width: 576px){
+            .ct-bar{
+                stroke-width: {{  (450/((proposal.choices|length)+4))|round }}px !important;
+            }
+        }
+
+        @media screen and (min-width: 768px){
+            .ct-bar{
+                stroke-width: {{  (630/((proposal.choices|length)+4))|round }}px !important;
+            }
+        }
+
+        @media screen and (min-width: 992px){
+            .ct-bar{
+                stroke-width: {{  (860/((proposal.choices|length)+4))|round }}px !important;
+            }
+        }
+
+        @media screen and (min-width: 1200px){
+            .ct-bar{
+                stroke-width: {{  (1040/((proposal.choices|length)+4))|round }}px !important;
+            }
+        }
 
 
     </style>
