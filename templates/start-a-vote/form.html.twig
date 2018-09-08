@@ -4,25 +4,13 @@
 
 {% block main %}
     <main class="container">
-        <form method="post" action="{{ path("app_jm_form") }}" class="need-validated ">
+        <form method="post" action="{{ path("app_jm_form") }}"  autocomplete="off" class="need-validated ">
             <div class="row mt-5">
                 <div class="col-12">
-                    <h1>Soumettre une proposition au jugement majoritaire</h1>
+                    <h1>Nouveau vote</h1>
                     <hr/>
-                    <div class="alert alert-primary">
-                    <p><b>ATTENTION : Projet en phase de test !</b></p>
-                    <p><em>Code source de ce projet WEB : <a href="https://github.com/oceanBigOne/jm" target="_blank">Projet WEB sur GitHub</a></em>
-                <br /><em>Code source du module Jugement Majoritaire en PHP : <a href="https://github.com/oceanBigOne/MajorityJudgment" target="_blank">Class PHP sur GitHub</a></em>
-                        <p>Pour toute remarque/suggestion sur ce projet, vous pouvez me contacter via <a href="https://github.com/oceanBigOne" target="_blank">GitHub</a></p>
-                    </p>
-                    </div>
-                    <p>Vous êtes un petit groupe de personnes et vous désirez soumettre une proposition au jugement
-                        majoritaire. Cette page est faite pour vous. En remplissant le formulaire ci-desssous, un lien
-                        unique sera généré qui vous permettra de partager ce vote aux personnes de votre choix et
-                        de consulter le résultat.</p>
-                    <p>Tous les propositions sont <b>confidentielles</b> et nous ne conservons <b>aucune donnée
-                            personnelle</b>. Les votes et les propositions seront <b>automatiquement supprimés</b> 30
-                        jours après la fin des votes.</p>
+
+
 
                 </div>
             </div>
@@ -32,6 +20,18 @@
                         <label for="author" >Auteur <span class="text-muted">(Optionel)</span></label>
                         <input type="text" class="form-control" id="author" maxlength="250" name="author" value="{{ author }}"
                                placeholder="Votre nom/pseudo">
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="author" >Titre <span class="text-muted">(obligatoire)</span></label>
+                        <input type="text" class="form-control {{ title_Invalid }}" id="title" maxlength="250" name="title" value="{{ title }}"
+                               placeholder="Titre du vote">
+                        <div class="invalid-feedback">
+                            Le titre saisi n'est pas correcte !
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,11 +98,13 @@
                                     <h3 id="choice_number_{{ num }}">{{ num }}</h3>
                                 </div>
                                 <div class="flex-grow-1 pl-4 pr-4">
-                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Choix : <span class="text-muted">(250 car. max.)</span></label>
+                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Choix : <span class="text-muted">(50 car. max.)</span></label>
                                     <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
                                            name="remove_choice_{{ num }}" value="{{ choice.isDeleted }}">
-                                    <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="250"
+                                    <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="50"
                                            name="choice_value_{{ num }}" placeholder="Proposition ..." value="{{ choice.label }}" {% if choice.isDeleted==1 %}readonly{% endif %}>
+                                    <textarea class="form-control" rows="5" maxlength="500" id="choice_explanation_{{ num }}" name="choice_explanation_{{ num }}" {% if choice.isDeleted==1 %}readonly{% endif %}
+                                              placeholder="Explication supplémentaire sur ce choix"></textarea>
                                 </div>
                                 <div class="d-flex flex-column justify-content-end">
                                     <button type="button" class="btn btn-outline-danger btnRemoveChoice"><i class="fas {% if choice.isDeleted==1 %}fa-undo{% else %}fa-trash{% endif %}"></i></button>
@@ -131,7 +133,7 @@
             <div class="row">
                 <div class="col-12 pb-5">
                     <a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>
-                    <button class="btn btn-success float-right"><i class="fas fa-check mr-2"></i> Valider !</button>
+                    <button class="btn btn-success float-right" data-toggle="tooltip" data-placement="top" title="Attention ! Vous ne pourrez plus faire de modification."><i class="fas fa-check mr-2"></i> Valider !</button>
                 </div>
             </div>
 

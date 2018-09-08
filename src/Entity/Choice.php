@@ -44,6 +44,11 @@ class Choice
      */
     private $votes;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $explanation;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -129,6 +134,18 @@ class Choice
                 $vote->setChoice(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getExplanation(): ?string
+    {
+        return $this->explanation;
+    }
+
+    public function setExplanation(?string $explanation): self
+    {
+        $this->explanation = $explanation;
 
         return $this;
     }

@@ -1411,16 +1411,16 @@
         },
         {
             "name": "oceanbigone/majorityjudgment",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oceanBigOne/MajorityJudgment.git",
-                "reference": "fc689dfb07933712a9accca984f3bdb30989d203"
+                "reference": "d7f99f8b9e26f23ca5144a7a40006c16fa942ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oceanBigOne/MajorityJudgment/zipball/fc689dfb07933712a9accca984f3bdb30989d203",
-                "reference": "fc689dfb07933712a9accca984f3bdb30989d203",
+                "url": "https://api.github.com/repos/oceanBigOne/MajorityJudgment/zipball/d7f99f8b9e26f23ca5144a7a40006c16fa942ed9",
+                "reference": "d7f99f8b9e26f23ca5144a7a40006c16fa942ed9",
                 "shasum": ""
             },
             "require": {
@@ -1461,7 +1461,7 @@
                 "sort",
                 "vote"
             ],
-            "time": "2018-09-02T12:37:36+00:00"
+            "time": "2018-09-02T13:35:33+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -2780,16 +2780,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "d6f5fed47ddad2eb25d5cc19316692203a2898eb"
+                "reference": "9fb60f232af0764d58002e7872acb43a74506d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/d6f5fed47ddad2eb25d5cc19316692203a2898eb",
-                "reference": "d6f5fed47ddad2eb25d5cc19316692203a2898eb",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/9fb60f232af0764d58002e7872acb43a74506d25",
+                "reference": "9fb60f232af0764d58002e7872acb43a74506d25",
                 "shasum": ""
             },
             "require": {
@@ -2823,7 +2823,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2018-08-21T07:51:18+00:00"
+            "time": "2018-09-03T08:17:12+00:00"
         },
         {
             "name": "symfony/form",

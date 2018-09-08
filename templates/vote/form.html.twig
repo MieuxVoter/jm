@@ -1,6 +1,9 @@
 {% extends "body.html.twig" %}
 
 
+{% block title %}{{ proposal.title }}{% endblock %}
+{% block ogtitle %}{{ proposal.title }}{% endblock %}
+{% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 {% block main %}
 <main class="container">
     {% if proposal is null %}
@@ -12,37 +15,38 @@
         </div>
     </div>
     {% else %}
-    <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" class="need-validated ">
+    <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" autocomplete="off" class="need-validated ">
         <div class="row mt-5">
             <div class="col-12">
-                <h1>Jugement Majoritaire</h1>
-                <p>Cette page va vous permettre de voter une proposition en utilisant le mode de scrutin appelé "jugement majoritaire". Pour en savoir plus sur le jugement majoritaire vous pouvez <a href="https://youtu.be/YC1xDJsi_Hk">consulter cette vidéo </a>.</p>
-                <p>N'hésitez pas à soumettre vous même une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                <h1>{{ proposal.title }}</h1>
                 <hr/>
-                <h4>Auteur :</h4>
-                <p>{{ proposal.author|default('Anonyme') }}
-                <h4>Présentation :</h4>
-                <p>{{ proposal.presentation }}
-                <hr />
+                <p>
+                <h4 class="mt-5">Présentation</h4>
+                <p>{{ proposal.presentation }}</p>
+                <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-12">
-                <h4>Propositions :</h4>
+                <h4>Liste des propositions</h4>
+               <p>Merci de donner votre appréciation pour chacun des choix ci dessous</p>
                 {% for choice in proposal.choices  %}
-                    <div >
+                    <div class="mt-5">
                         <div class="d-flex flex-row justify-content-start mb-4">
                             <div class="d-flex flex-column justify-content-center">
                                 <h3 >{{ loop.index }}</h3>
                             </div>
                             <div class="flex-grow-1 pl-4 pr-4">
 
-                                <label  for="choice_value_{{ loop.index }}">{{ choice.label }} :</label>
+                                <label  for="choice_value_{{ loop.index }}">{{ choice.label }}</label>
                                <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ choice.id }}">
-                                   {% for choice_value,choice_label in choices  %}
+                                   {% for choice_value,choice_label in choices|reverse  %}
                                    <option value="{{ choice_value }}">{{ choice_label }}</option>
                                    {% endfor %}
                                </select>
+                                <small  class="form-text text-muted">
+                                    {{ choice.explanation }}
+                                </small>
                             </div>
                         </div>
                     </div>

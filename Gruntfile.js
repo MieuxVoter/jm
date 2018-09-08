@@ -13,6 +13,7 @@ module.exports = function (grunt) {
                             'node_modules/popper.js/dist/umd/popper.js',
                             'node_modules/bootstrap/dist/js/bootstrap.js',
                             'node_modules/chartist/dist/chartist.min.js',
+                            'node_modules/chartist-plugin-targetline/chartist-plugin-targetline.js',
                             'node_modules/toastr/toastr.js'
                         ]
                     },

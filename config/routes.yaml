@@ -2,9 +2,12 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+app_jm_home:
+ path: /
+ controller: App\Controller\Pages::home
 
 app_jm_form:
- path: /
+ path: /start
  controller: App\Controller\StartAVote::form
 
 app_jm_vote:

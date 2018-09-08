@@ -5,25 +5,47 @@
 {% block main %}
     <main class="container">
         {% if redirect %}
-            <script> document.location.href='{{ path("app_jm_form") }}?redirect-save=true&key={{ proposal.urlKey }}' </script>
+            <script> document.location.href = '{{ path("app_jm_form") }}?redirect-save=true&key={{ proposal.urlKey }}' </script>
         {% endif %}
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h1>Proposition enregistrée !</h1>
-                    <hr/>
-                    <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
-                    {% if redirect  %}
-                        <input type="text" class="form-control" disabled value="Veuillez patienter ...">
-                    {% else %}
-                        <input type="text" class="form-control" value="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}">
-                        <div class="text-center p-4">
-                        <a href="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}" class="btn btn-success"><i class="fas fa-users mr-2"></i>Participer maintenant !</a>
-                        </div>
-                    {% endif %}
-                    <hr/>
-                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+        <div class="row mt-5">
+            <div class="col-12">
+                <h1>Proposition enregistrée !</h1>
+                <hr/>
+                <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-12 col-md-6">
+                {% if redirect %}
+                <input type="text" class="form-control" disabled value="Veuillez patienter ...">
+                {% else %}
+
+                <div class="input-group  ">
+                    <input type="text" class="form-control autoselect" id="url"
+                           value="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}">
+
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary copy-to-clipboard" data-target="#url" type="button"><i
+                                    class="fas fa-copy mr-2"></i> Copier</button>
+                    </div>
 
                 </div>
+                <small class="text-primary">Pensez a enregistrer ce lien dans les favoris de votre navigateur !</small>
+
+
+
             </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+
+                <a href="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}" class="btn btn-success"><i
+                            class="fas fa-users mr-2"></i>Participer maintenant !</a>
+
+                {% endif %}
+
+
+            </div>
+        </div>
     </main>
 {% endblock %}
