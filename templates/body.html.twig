@@ -6,10 +6,8 @@
         {% block header %}{% endblock %}
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="{{ path("app_jm_home") }}">
-                <div class="m-0 p-0">PLATEFORME</div>
-                <h6 class="m-0 p-0" style="margin-top:-8px !important;">
-                    <small>Jugement Majoritaire</small>
-                </h6>
+               <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo.png" style="width:200px;" />
+
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +22,17 @@
                         <a class="nav-link" href="{{ path("app_jm_form") }}">Lancer un vote</a>
                     </li>
 
-                </ul>
 
+                </ul>
+                <ul class="navbar-nav pull-right">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fab fa-github mr-2"></i> Codes source</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="https://github.com/oceanBigOne" target="_blank">Plateforme de vote</a>
+                        <a class="dropdown-item" href="https://github.com/oceanBigOne/MajorityJudgment" target="_blank">Class PHP</a>
+                    </div>
+                </li>
+                </ul>
             </div>
         </nav>
     </header>

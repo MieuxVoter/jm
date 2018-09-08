@@ -1,6 +1,9 @@
 {% extends "body.html.twig" %}
 
 
+{% block title %}{{ proposal.title }}{% endblock %}
+{% block ogtitle %}{{ proposal.title }}{% endblock %}
+{% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 {% block main %}
 <main class="container">
     {% if proposal is null %}
