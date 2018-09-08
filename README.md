@@ -51,6 +51,9 @@ That's all...
 
 ## Versions
 
+#### 1.1.3
+- License
+
 #### 1.1.2
 - fix version in readme 
 
