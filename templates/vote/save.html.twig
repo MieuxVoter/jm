@@ -1,0 +1,29 @@
+{% extends "body.html.twig" %}
+
+
+
+{% block main %}
+    <main class="container">
+        {% if redirect %}
+            <script> document.location.href='{{ path("app_jm_vote",{'url_key': url_key}) }}?redirect-save=true' </script>
+        {% endif %}
+        {% if proposal is null %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Ooops ! Proposition inexistante</h1>
+                    <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
+                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+                </div>
+            </div>
+            {% else %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Participation enregistrée !</h1>
+                    <hr/>
+                    {% include "vote/end-of-proposal.html.twig" %}
+                        <input type="text" class="form-control" value="{{ url("app_jm_vote",{'url_key': proposal.urlKey}) }}">
+                </div>
+            </div>
+            {%  endif %}
+    </main>
+{% endblock %}

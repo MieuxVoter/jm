@@ -1,0 +1,38 @@
+{
+  "name": "jm",
+  "version": "0.0.0",
+  "description": "Jugement Majoritaire",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
+    "bootstrap": "^4.1.3",
+    "chartist": "^0.11.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
+    "toastr": "^2.1.4"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-concat-css": "^0.3.2",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-uglify-es": "^3.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanBigOne/jm.git"
+  },
+  "author": "Clement GARROT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oceanBigOne/jm/issues"
+  },
+  "homepage": "https://github.com/oceanBigOne/jm#readme"
+}

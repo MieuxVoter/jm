@@ -5,6 +5,23 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    saltkey: '%env(SALT_KEY)%'
+    timezone: '%env(TIMEZONE)%'
+    choice_values:    #valeur possible du vote, attention l'ordre doit être respecté
+      vote_0: 'Trés Bien'
+      vote_1: 'Bien'
+      vote_2: 'Assez Bien'
+      vote_3: 'Passable'
+      vote_4: 'Insuffisant'
+      vote_5: 'A Rejeter'
+    choice_colors:    #doit correspondre aux valeurs possible du vote !
+      vote_0: '006400'
+      vote_1: '228b22'
+      vote_2: '9acd32'
+      vote_3: 'ffff00'
+      vote_4: 'ff0000'
+      vote_5: '777777'
+
 
 services:
     # default configuration for services in *this* file

@@ -1,0 +1,29 @@
+{% extends "body.html.twig" %}
+
+
+
+{% block main %}
+    <main class="container">
+        {% if redirect %}
+            <script> document.location.href='{{ path("app_jm_form") }}?redirect-save=true&key={{ proposal.urlKey }}' </script>
+        {% endif %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Proposition enregistrée !</h1>
+                    <hr/>
+                    <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
+                    {% if redirect  %}
+                        <input type="text" class="form-control" disabled value="Veuillez patienter ...">
+                    {% else %}
+                        <input type="text" class="form-control" value="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}">
+                        <div class="text-center p-4">
+                        <a href="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}" class="btn btn-success"><i class="fas fa-users mr-2"></i>Participer maintenant !</a>
+                        </div>
+                    {% endif %}
+                    <hr/>
+                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
+
+                </div>
+            </div>
+    </main>
+{% endblock %}
