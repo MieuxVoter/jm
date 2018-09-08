@@ -198,7 +198,7 @@ class Vote extends Controller
                 $weight=(round($pcWorse/10,2));
             }
             $sortKey=(($majorityMention*100)+($indice*$weight));
-            $dataTemplate["winners"][]=["winner"=>$winner[0],"keyExplication"=>$sortKey." = $majorityMention * 100 + ( $indice * $weight ) " ];
+            $dataTemplate["winners"][]=["winner"=>$winner[0]];
         }
 
 

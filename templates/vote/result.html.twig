@@ -21,10 +21,11 @@
                 <div class="col-12">
                     <h1>{{ proposal.title }}</h1>
                     <hr/>
-                    <h4><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h4>
+
                     <p>
                     <h4 class="mt-5">Présentation</h4>
                     <p>{{ proposal.presentation }}</p>
+                    <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
                 </div>
             </div>
             <div class="row ">
@@ -32,9 +33,10 @@
                     <h4 class="mt-2">Résultat</h4>
                     <div class="alert alert-success">
                         <b>{{ winner.label }}</b>
+
                     </div>
                     <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
-                            par {{ proposal.participations|length }} participation(s).</i></div>
+                            par {{ proposal.participations|length }} participation.</i></div>
                 </div>
             </div>
 
@@ -103,7 +105,7 @@
     <script type="text/javascript">
         new Chartist.Bar('#chart', {
             labels: [
-                {% for choice in proposal.choices %}'{{ choice.label|e('js')|raw }}',{% endfor %}
+                {% for choice in proposal.choices %}{{ loop.index }}{# {{ choice.label|e('js')|raw }} #},{% endfor %}
 
 
             ],

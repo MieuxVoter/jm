@@ -2,7 +2,14 @@
 
 {% block main %}
     <main class="container">
-        <div class="alert alert-primary mt-5">
+        <div class="row">
+            <div class="col-12 pr-4 pl-4 mt-5">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo.png" style="width:300px;display:block;margin:auto;" />
+            </div>
+        </div>
+
+        <hr/>
+        <div class="alert alert-primary ">
             <p><b>ATTENTION : Projet en phase de test !</b></p>
             <p><em>Code source de ce projet WEB : <a href="https://github.com/oceanBigOne/jm" target="_blank">Projet WEB
                         sur GitHub</a></em>
@@ -14,6 +21,7 @@
             </p>
         </div>
         <hr/>
+
         <div class="row">
             <div class="col-12 pr-4 pl-4">
 
@@ -25,7 +33,7 @@
                         personnelle</b>. Les votes et les propositions seront <b>automatiquement supprimés</b> 30
                     jours après la fin des votes.</p>
                 <hr/>
-                Pour en savoir plus sur le Jugement Majoritaire, nous vous conseillons de consulter cette vidéo :
+                Pour en savoir plus sur le Jugement Majoritaire, vous pouvez consulter cette vidéo :
                 <a href="https://www.youtube.com/watch?v=ZoGH7d51bvc" target="_blank">https://youtu.be/ZoGH7d51bvc</a>
             </div>
         </div>
@@ -39,6 +47,7 @@
 
             </div>
         </div>
+
 
     </main>
 {% endblock %}

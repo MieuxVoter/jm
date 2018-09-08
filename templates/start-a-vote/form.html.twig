@@ -4,7 +4,7 @@
 
 {% block main %}
     <main class="container">
-        <form method="post" action="{{ path("app_jm_form") }}" class="need-validated ">
+        <form method="post" action="{{ path("app_jm_form") }}"  autocomplete="off" class="need-validated ">
             <div class="row mt-5">
                 <div class="col-12">
                     <h1>Nouveau vote</h1>
@@ -133,7 +133,7 @@
             <div class="row">
                 <div class="col-12 pb-5">
                     <a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>
-                    <button class="btn btn-success float-right"><i class="fas fa-check mr-2"></i> Valider !</button>
+                    <button class="btn btn-success float-right" data-toggle="tooltip" data-placement="top" title="Attention ! Vous ne pourrez plus faire de modification."><i class="fas fa-check mr-2"></i> Valider !</button>
                 </div>
             </div>
 

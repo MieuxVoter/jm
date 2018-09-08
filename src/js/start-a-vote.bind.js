@@ -2,6 +2,9 @@ $(document).ready(function(){
 
     const $body=$('body');
 
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     $body.on('click','#addAChoice',function(){
        const $choiceInit=$('#choice_init');
        const $inputNumberOfChoices=$('#number_of_choices');
