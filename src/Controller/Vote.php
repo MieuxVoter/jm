@@ -181,6 +181,9 @@ class Vote extends Controller
         $repositoryChoice = $this->getDoctrine()->getRepository(Choice::class);
         $winner = $repositoryChoice->findBy(['id' => $candidates[$resultIndex[0]]]);
         $dataTemplate["winner"]=$winner[0];
+        $dataTemplate["winnerMention"]= $dataTemplate["mentions"][$indexToMention[$result[$resultIndex[0]]["values"]["majority-mention"]]];
+        $dataTemplate["winnerMentionColor"]= $dataTemplate["mention_colors"][$indexToMention[$result[$resultIndex[0]]["values"]["majority-mention"]]];
+
 
         $dataTemplate["winners"]=[];
 
@@ -198,7 +201,7 @@ class Vote extends Controller
                 $weight=(round($pcWorse/10,2));
             }
             $sortKey=(($majorityMention*100)+($indice*$weight));
-            $dataTemplate["winners"][]=["winner"=>$winner[0],"keyExplication"=>$sortKey." = $majorityMention * 100 + ( $indice * $weight ) " ];
+            $dataTemplate["winners"][]=["winner"=>$winner[0]];
         }
 
 

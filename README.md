@@ -51,6 +51,9 @@ That's all...
 
 ## Versions
 
+### 1.1.0
+- User interface update
+
 ### 1.0.0
 - Initial version
 

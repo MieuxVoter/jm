@@ -1,0 +1,53 @@
+{% extends "body.html.twig" %}
+
+{% block main %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 pr-4 pl-4 mt-5">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo.png" style="width:100%;max-width:300px;display:block;margin:auto;" />
+            </div>
+        </div>
+
+        <hr/>
+        <div class="alert alert-primary ">
+            <p><b>ATTENTION : Projet en phase de test !</b></p>
+            <p><em>Code source de ce projet WEB : <a href="https://github.com/oceanBigOne/jm" target="_blank">Projet WEB
+                        sur GitHub</a></em>
+                <br/><em>Code source du module Jugement Majoritaire en PHP : <a
+                            href="https://github.com/oceanBigOne/MajorityJudgment" target="_blank">Class PHP sur
+                        GitHub</a></em>
+            <p>Pour toute remarque/suggestion sur ce projet, vous pouvez me contacter via <a
+                        href="https://github.com/oceanBigOne" target="_blank">GitHub</a></p>
+            </p>
+        </div>
+        <hr/>
+
+        <div class="row">
+            <div class="col-12 pr-4 pl-4">
+
+                <p>Vous êtes un petit groupe de personnes et vous désirez soumettre une proposition au jugement
+                    majoritaire. Cette page est faite pour vous. En remplissant le formulaire ci-desssous, un lien
+                    unique sera généré qui vous permettra de partager ce vote aux personnes de votre choix et
+                    de consulter le résultat.</p>
+                <p>Tous les votes sont <b>confidentielles</b> et nous ne conservons <b>aucune donnée
+                        personnelle</b>. Les votes et les propositions seront <b>automatiquement supprimés</b> 30
+                    jours après la fin des votes.</p>
+                <hr/>
+                Pour en savoir plus sur le Jugement Majoritaire, vous pouvez consulter cette vidéo :
+                <a href="https://www.youtube.com/watch?v=ZoGH7d51bvc" target="_blank">https://youtu.be/ZoGH7d51bvc</a>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-12 pr-4 pl-4 pb-5 text-center">
+
+
+                    <a class="btn btn-success btn-lg " href="{{ path("app_jm_form") }}"><i
+                                class="fas fa-rocket mr-2"></i>Lancer un vote !</a>
+
+            </div>
+        </div>
+
+
+    </main>
+{% endblock %}

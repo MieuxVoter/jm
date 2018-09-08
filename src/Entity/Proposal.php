@@ -73,6 +73,11 @@ class Proposal
      */
     private $participations;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
@@ -270,6 +275,18 @@ class Proposal
                 $participation->setProposal(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }
