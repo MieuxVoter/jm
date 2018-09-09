@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 1.2.0
+- update Barchart
+
 #### 1.1.5
 - Create .htaccess.sample
 
