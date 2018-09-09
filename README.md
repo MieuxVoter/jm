@@ -42,6 +42,8 @@ git reser --hard origin/develop
 php bin/console doctrine:migrations:migrate
 ```
 
+- Create ``public/.htaccess`` with ``public/.htaccess.sample`` (check if config of your sever require somes changes)
+
 - And clear symfony cache :
 ```
 php bin/console cache:clear --no-warmup -e prod
@@ -50,6 +52,9 @@ php bin/console cache:clear --no-warmup -e prod
 That's all...
 
 ## Versions
+
+#### 1.1.5
+- Create .htaccess.sample
 
 #### 1.1.4
 - update htaccess : "force" HTTPS
