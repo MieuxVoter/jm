@@ -30,16 +30,20 @@
             </div>
             <div class="row mt-5 ">
                 <div class="col-12">
-                    <h4 class="mt-2">Résultat  <span class="badge badge-secondary" style="background-color:#{{ winnerMentionColor }};color:#000;">{{ winnerMention }}</span></h4>
-                        <div class="alert alert-success">
+                    <h4 class="mt-2">Résultat <span class="badge badge-secondary"
+                                                    style="background-color:#{{ winnerMentionColor }};color:#000;">{{ winnerMention }}</span>
+                    </h4>
+                    <div class="alert alert-success">
                         <b>{{ winner.label }}</b>
-                            <br /><small  class="form-text text-muted">
-                                {{ winner.explanation }}
-                            </small>
+                        <br/>
+                        <small class="form-text text-muted">
+                            {{ winner.explanation }}
+                        </small>
 
                     </div>
                     <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
-                            par {{ proposal.participations|length }} participations et la mention majoritaire : {{ winnerMention }}</i></div>
+                            par {{ proposal.participations|length }} participations et la mention majoritaire
+                            : {{ winnerMention }}</i></div>
                 </div>
             </div>
 
@@ -49,7 +53,8 @@
                     <ol>
                         {% for winner in winners %}
                             <li class="mb-4">{{ winner.winner.label }}
-                                <br /><small  class="form-text text-muted">
+                                <br/>
+                                <small class="form-text text-muted">
                                     {{ winner.winner.explanation }}
                                 </small>
                             </li>
@@ -66,35 +71,45 @@
                     <h4>Profiles de mérite :</h4>
 
                     <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">&nbsp;</th>
-                            {% for mention_value,mention_label  in mentions %}
-                                <th scope="col"
-                                    style="background-color:#{{ mention_colors[mention_value] }};white-space: nowrap;">{{ mention_label }}</th>
-                            {% endfor %}
-
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        {% for choice in proposal.choices %}
+                        <table class="table table-bordered">
+                            <thead>
                             <tr>
-                                <th scope="row"
-                                   >{{ choice.label }}</th>
-
+                                <th scope="col">&nbsp;</th>
                                 {% for mention_value,mention_label  in mentions %}
-                                    <td>{{ meritProfiles[choice.id][mention_value]|round(2) }} %</td>
+                                    <th scope="col"
+                                        style="background-color:#{{ mention_colors[mention_value] }};white-space: nowrap;">{{ mention_label }}</th>
                                 {% endfor %}
 
-
                             </tr>
-                        {% endfor %}
+                            </thead>
+                            <tbody>
+
+                            {% for choice in proposal.choices %}
+                                <tr>
+                                    <th scope="row"
+                                    >{{ choice.label }}</th>
+
+                                    {% for mention_value,mention_label  in mentions %}
+                                        {% set valueMention=meritProfiles[choice.id][mention_value] %}
+                                        <td style="white-space: nowrap;" class="text-right">
+                                        {% if valueMention==0 %}
+                                            -
+                                        {% else %}
+                                            {{ valueMention|round(2)|number_format(2, '.', ',') }}%
+                                        {% endif %}
 
 
-                        </tbody>
-                    </table></div>
+                                        </td>
+                                    {% endfor %}
+
+
+                                </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -103,22 +118,22 @@
                     <h4>Histogramme :</h4>
                     <div id="chart" style="height:600px"></div>
                 </div>
-                <div class="col-12">
+               {# <div class="col-12 m-2">
                     <div class="alert alert-secondary">
-                    <h6>Légende :</h6>
-                    <ol>
-                    {% for choice in proposal.choices %}
-                        <li>{{ choice.label }}</li>
-                    {% endfor %}
-                    </ol>
+                        <h6>Légende :</h6>
+                        <ol>
+                            {% for choice in proposal.choices %}
+                                <li>{{ choice.label }}</li>
+                            {% endfor %}
+                        </ol>
                     </div>
 
-                </div>
+                </div>#}
 
 
             </div>
 
-
+<div class="mb-5">&nbsp;</div>
 
         {% endif %}
     </main>
@@ -126,45 +141,65 @@
 
 {% block javascripts %}
     <script type="text/javascript">
-        new Chartist.Bar('#chart', {
-            labels: [
-                {% for choice in proposal.choices %}{{ loop.index }}{# {{ choice.label|e('js')|raw }} #},{% endfor %}
+        {# {{ choice.label|e('js')|raw }} #}
+        {#{{ ((proposal.choices|length)+1)-loop.index }} #}
+        let chart = new Chartist.Bar('#chart', {
+                labels: [
+                    {% for choice in proposal.choices %}"{{ choice.label|e('js')|raw }}",{% endfor %}
 
 
-            ],
-            series: [
-                {% for mention_value,mention_label in mentions %}
-                [
-                    {% for choice in proposal.choices %}
-                    {{ meritProfiles[choice.id][mention_value] }},
-                    {% endfor %}
                 ],
-                {% endfor %}
-            ]
-        }
-            ,{
-            stackBars: true,
-            axisY: {
-                labelInterpolationFnc: function (value) {
-                    if (value > 100) {
-                        return ""
-                    } else {
-                        return (value) + '%';
-                    }
+                series: [
+                    {% for mention_value,mention_label in mentions %}
+                    [
 
-                }
+
+                        {% for choice in proposal.choices|reverse %}
+
+                        {% set valueMention=meritProfiles[choice.id][mention_value] %}
+                        {{ valueMention-0.01 }},
+                        {% endfor %}
+                    ],
+                    {% endfor %}
+                ]
             }
-        }).on('draw', function (data) {
+            , {
+
+                stackBars: true,
+
+                horizontalBars: true,
+                axisY: {
+                    offset: 150
+                },
+
+                axisX: {
+                    offset: 0,
+                    onlyInteger: true,
+                    position: 'start',
+                    labelInterpolationFnc: function (value) {
+                        if (value >= 100) {
+                            return ""
+                        } else {
+                            return (value) + '%';
+                        }
+
+                    }
+                },
+                plugins: [
+                    Chartist.plugins.ctGoalLine({
+                        value: 50,
+                        axis: 'x'
+                    })
+                ]
+
+            }
+        ).on('draw', function (data) {
             if (data.type === 'bar') {
                 data.element.attr({
-                    style: 'stroke-width: {{  (250/(proposal.choices|length))|round }}px;'
+                    style: 'stroke-width:25px;'
                 });
             }
         });
-
-      /*  setTimeout(function () {
-            $("#chart").height("1000px");
-        }, 500);*/
 
 
     </script>
@@ -180,6 +215,14 @@
 
         {% endfor %}
 
+        .ct-goal-line {
+            stroke: blue;
+            stroke-width: 2px;
+            stroke-dasharray: 4px;
+            shape-rendering: crispEdges;
+        }
+
+        {#
         .ct-bar{
             stroke-width: {{  (100/((proposal.choices|length)+4))|round }}px !important;
         }
@@ -207,7 +250,7 @@
             .ct-bar{
                 stroke-width: {{  (1040/((proposal.choices|length)+4))|round }}px !important;
             }
-        }
+        }#}
 
 
     </style>

@@ -13,8 +13,7 @@ module.exports = function (grunt) {
                             'node_modules/popper.js/dist/umd/popper.js',
                             'node_modules/bootstrap/dist/js/bootstrap.js',
                             'node_modules/chartist/dist/chartist.min.js',
-                            'node_modules/chartist-plugin-targetline/chartist-plugin-targetline.js',
-                            'node_modules/toastr/toastr.js'
+                            'node_modules/toastr/toastr.js',
                         ]
                     },
                     {
@@ -53,7 +52,7 @@ module.exports = function (grunt) {
                         'node_modules/bootstrap/dist/css/bootstrap.css',
                         'node_modules/@fortawesome/fontawesome-free/css/*.css',
                         'node_modules/chartist/dist/chartist.min.css',
-                        'node_modules/toastr/build/toastr.css',
+                        'node_modules/toastr/build/toastr.css'
                     ]
                 }, {
                     'public/css/app.css': [
