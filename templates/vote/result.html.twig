@@ -145,7 +145,7 @@
         {#{{ ((proposal.choices|length)+1)-loop.index }} #}
         let chart = new Chartist.Bar('#chart', {
                 labels: [
-                    {% for choice in proposal.choices %}"{{ choice.label|e('js')|raw }}",{% endfor %}
+                    {% for choice in proposal.choices|reverse %}"{{ choice.label|e('js')|raw }}",{% endfor %}
 
 
                 ],
