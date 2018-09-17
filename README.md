@@ -53,7 +53,10 @@ That's all...
 
 ## Versions
 
-### 1.2.1
+#### 1.2.2
+- hotfix : Barchart height
+
+#### 1.2.1
 - hotfix : reverse label on Barchart
 
 ### 1.2.0
