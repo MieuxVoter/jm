@@ -55,6 +55,7 @@ That's all...
 
 #### 1.2.2
 - hotfix : Barchart height
+- hotfix : maxlength to 150 chars for label choice
 
 #### 1.2.1
 - hotfix : reverse label on Barchart
