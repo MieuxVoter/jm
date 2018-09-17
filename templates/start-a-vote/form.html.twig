@@ -98,10 +98,10 @@
                                     <h3 id="choice_number_{{ num }}">{{ num }}</h3>
                                 </div>
                                 <div class="flex-grow-1 pl-4 pr-4">
-                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Choix : <span class="text-muted">(50 car. max.)</span></label>
+                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Choix : <span class="text-muted">(150 car. max.)</span></label>
                                     <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
                                            name="remove_choice_{{ num }}" value="{{ choice.isDeleted }}">
-                                    <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="50"
+                                    <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="150"
                                            name="choice_value_{{ num }}" placeholder="Proposition ..." value="{{ choice.label }}" {% if choice.isDeleted==1 %}readonly{% endif %}>
                                     <textarea class="form-control" rows="5" maxlength="500" id="choice_explanation_{{ num }}" name="choice_explanation_{{ num }}" {% if choice.isDeleted==1 %}readonly{% endif %}
                                               placeholder="Explication supplémentaire sur ce choix"></textarea>

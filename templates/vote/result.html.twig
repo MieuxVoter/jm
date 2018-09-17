@@ -116,7 +116,7 @@
             <div class="row mt-5 ">
                 <div class="col-12">
                     <h4>Histogramme :</h4>
-                    <div id="chart" style="height:600px"></div>
+                    <div id="chart" style="height:{{ (proposal.choices|length)*80 }}px"></div>
                 </div>
                {# <div class="col-12 m-2">
                     <div class="alert alert-secondary">
