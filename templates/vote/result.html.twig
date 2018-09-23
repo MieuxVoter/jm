@@ -41,11 +41,16 @@
                         </small>
 
                     </div>
+
+                        {% if  result[0].percentOfBetterThanMajorityMention >= result[0].percentOfWorseThanMajorityMention  %}{% set compareFirst="+" %}{% else %}{% set compareFirst="-" %}{% endif %}
+                        {% if  result[1].percentOfBetterThanMajorityMention >= result[1].percentOfWorseThanMajorityMention  %}{% set compareSecond="+" %}{% else %}{% set compareSecond="-" %}{% endif %}
+                        {%  if( result[0].majorityMention.label==result[1].majorityMention.label and compareSecond==compareFirst) %}
+                            {% set compareFirst="+" %}
                     <div class="alert alert-info">
-                        {%  if( result[0].majorityMention.label==result[1].majorityMention.label ) %}
                             Ex-aequo avec au minimum 1 proposition : Vérifiez le classement ci-dessous
-                        {% endif %}
                     </div>
+                        {% endif %}
+
                     <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
                             par {{ proposal.participations|length }} participations et la mention majoritaire
                             : {{ winnerMention }}</i></div>
