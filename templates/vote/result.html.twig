@@ -31,20 +31,27 @@
             <div class="row mt-5 ">
                 <div class="col-12">
                     <h4 class="mt-2">Résultat <span class="badge badge-secondary"
-                                                    style="background-color:#{{ winnerMentionColor }};color:#000;">{{ winnerMention }}</span>
+                                                    style="background-color:#{{ mentionLabelColors[ result[0].majorityMention.label] }};color:#000;">{{ result[0].majorityMention.label }} {% if  result[0].percentOfBetterThanMajorityMention >= result[0].percentOfWorseThanMajorityMention  %}+{% else %}-{% endif %} </span>
                     </h4>
                     <div class="alert alert-success">
-                        <b>{{ winner.label }}</b>
+                        <b>{{ result[0].candidate.label }}</b>
                         <br/>
                         <small class="form-text text-muted">
-                            {{ winner.explanation }}
+                            {{ result[0].candidate.explanation }}
                         </small>
 
+                    </div>
+                    <div class="alert alert-info">
+                        {%  if( result[0].majorityMention.label==result[1].majorityMention.label ) %}
+                            Ex-aequo avec au minimum 1 proposition : Vérifiez le classement ci-dessous
+                        {% endif %}
                     </div>
                     <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
                             par {{ proposal.participations|length }} participations et la mention majoritaire
                             : {{ winnerMention }}</i></div>
+
                 </div>
+
             </div>
 
             <div class="row mt-5 ">
@@ -52,7 +59,8 @@
                     <h4>Classement complet :</h4>
                     <ol>
                         {% for winner in result %}
-                            <li class="mb-4">{{ winner.candidate.label }}
+                            <li class="mb-4">{{ winner.candidate.label }} <span class="badge badge-secondary"
+                                                                                style="background-color:#{{ mentionLabelColors[winner.majorityMention.label] }};color:#000;">{{ winner.majorityMention.label }}{% if  winner.percentOfBetterThanMajorityMention >= winner.percentOfWorseThanMajorityMention  %}+{% else %}-{% endif %} </span>
                                 <br/>
                                 <small class="form-text text-muted">
                                     {{ winner.candidate.explanation }}

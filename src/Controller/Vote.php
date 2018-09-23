@@ -125,6 +125,8 @@ class Vote extends Controller
         $dataTemplate["mention_colors"]=$this->container->getParameter('choice_colors');
 
 
+
+
         //recupere les choix/candidats possibles
         $candidates=$proposal->getChoices();
 
@@ -139,11 +141,12 @@ class Vote extends Controller
         //ajoute les mentions
         $mentionToObject=[];
         $mentionLabelToValue=[];
-
+        $dataTemplate["mentionLabelColors"]=[];
         foreach($mentions as $mention_value=>$mention_label){
             $mentionToObject[$mention_value]=new \oceanBigOne\MajorityJudgment\Mention($mention_label); //en mémorisant l'index pour le retrouver plus tard
             $mentionLabelToValue[$mention_label]=$mention_value;
             $ballot->addMention( $mentionToObject[$mention_value]);
+            $dataTemplate["mentionLabelColors"][$mention_label]=$dataTemplate["mention_colors"][$mention_value];
         }
 
 
@@ -180,7 +183,9 @@ class Vote extends Controller
                     "candidate"=> $repositoryChoice->findBy(['id' => $candidateToId[$candidate->getName()]])[0],
                     "meritProfile"=>$meritProfile->getAsMeritArray($candidate,$ballot->getVotes(),$ballot->getMentions()),
                     "majorityMention"=>$meritProfile->processMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions()),
-                    "percentOfMajorityMention"=>$meritProfile->processPercentOfMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions())
+                    "percentOfMajorityMention"=>$meritProfile->processPercentOfMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions()),
+                    "percentOfBetterThanMajorityMention"=>$meritProfile->processPercentOfBetterThanMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions()),
+                    "percentOfWorseThanMajorityMention"=>$meritProfile->processPercentOfWorseThanMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions())
                 ];
             $dataTemplate["result"][]=$data;
             $dataTemplate["meritProfiles"][$candidateToId[$candidate->getName()]]=[];
