@@ -13,6 +13,9 @@ use App\Entity\Participation;
 use App\Entity\Proposal;
 
 use oceanBigOne\MajorityJudgment\Ballot;
+use oceanBigOne\MajorityJudgment\Candidate;
+use oceanBigOne\MajorityJudgment\Mention;
+use oceanBigOne\MajorityJudgment\MeritProfile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class Vote extends Controller
@@ -134,102 +137,62 @@ class Vote extends Controller
         $ballot = new Ballot();
 
         //ajoute les mentions
-        $mentionToIndex=[];
-        $indexToMention=[];
-        $index=0;
+        $mentionToObject=[];
+        $mentionLabelToValue=[];
+
         foreach($mentions as $mention_value=>$mention_label){
-            $ballot->addMention($mention_value);
-            $mentionToIndex[$mention_value]=$index; //en mémorisant l'index pour le retrouver plus tard
-            $indexToMention[$index]=$mention_value;
-            $index++;
+            $mentionToObject[$mention_value]=new \oceanBigOne\MajorityJudgment\Mention($mention_label); //en mémorisant l'index pour le retrouver plus tard
+            $mentionLabelToValue[$mention_label]=$mention_value;
+            $ballot->addMention( $mentionToObject[$mention_value]);
         }
 
+
         //ajoutes les candidats/choix
-        $candidatesToIndex=[];
+        $candidateToObject=[];
+        $candidateToId=[];
         foreach($candidates as $index=>$candidat) {
-            $ballot->addCandidate($candidat->getLabel());
-            $candidatesToIndex[$candidat->getLabel()]=$index; //en mémorisant l'index pour le retrouver plus tard
+            $candidateToObject[$candidat->getLabel()] = new \oceanBigOne\MajorityJudgment\Candidate($candidat->getLabel());
+            $candidateToId[$candidat->getLabel()]=$candidat->getId();
+            $ballot->addCandidate($candidateToObject[$candidat->getLabel()]);
         }
+
 
         //ajoutes les votes
         foreach($votes as $vote){
-            $ballot->addVote( $candidatesToIndex[$vote->getChoice()->getLabel()], $mentionToIndex[$vote->getVoteValue()] );
+            try{
+                $ballot->addVote(new \oceanBigOne\MajorityJudgment\Vote($candidateToObject[$vote->getChoice()->getLabel()],$mentionToObject[$vote->getVoteValue()]));
+            }catch(\Exception $e){
+                echo $e->getMessage();
+            }
         }
 
         //calcul le resultat
-        $result=Ballot::getResult($ballot);
-        $resultIndex=array_keys($result);
+        $result=$ballot->proceedElection();
+
 
         //affiche les profiles de merite pour chaque candidat/choix
-        $dataTemplate["meritProfiles"]=[];
-        foreach($ballot->getCandidates() as $index_of_candidate=>$candidate){
-
-            $offsetCandidat=$candidates[$index_of_candidate]->getId();
-            $dataTemplate["meritProfiles"][$offsetCandidat]=[];
-            $index_of_mention=0;
-            foreach($mentions as $mention_value=>$mention_label){
-                $meritProfilValue=$result[$index_of_candidate]["values"]["merit-profile"][$mentionToIndex[$mention_value]];
-                $dataTemplate["meritProfiles"][$offsetCandidat][$mention_value]=$meritProfilValue;
-                $index_of_mention++;
-            }
-        }
-
-
-
-
-        //recupere le gagnant
         $repositoryChoice = $this->getDoctrine()->getRepository(Choice::class);
-        $winner = $repositoryChoice->findBy(['id' => $candidates[$resultIndex[0]]]);
-        $dataTemplate["winner"]=$winner[0];
-        $dataTemplate["winnerMention"]= $dataTemplate["mentions"][$indexToMention[$result[$resultIndex[0]]["values"]["majority-mention"]]];
-        $dataTemplate["winnerMentionColor"]= $dataTemplate["mention_colors"][$indexToMention[$result[$resultIndex[0]]["values"]["majority-mention"]]];
-
-
-        $dataTemplate["winners"]=[];
-
-        foreach($resultIndex as $index){
-            $winner = $repositoryChoice->findBy(['id' => $candidates[$index]]);
-
-            $majorityMention=$result[$index]["values"]["majority-mention"];
-            $pcWorse=$result[$index]["values"]["pc-worse"];
-            $pcBetter=$result[$index]["values"]["pc-better"];
-            if($pcBetter>=$pcWorse){
-                $indice=1;
-                $weight=(round($pcBetter/10,2));
-            }else{
-                $indice=-1;
-                $weight=(round($pcWorse/10,2));
+        $dataTemplate["result"]=[];
+        $dataTemplate["meritProfiles"]=[];
+        foreach($result as $candidate){
+            $meritProfile = new MeritProfile();
+            $data=[
+                    "candidate"=> $repositoryChoice->findBy(['id' => $candidateToId[$candidate->getName()]])[0],
+                    "meritProfile"=>$meritProfile->getAsMeritArray($candidate,$ballot->getVotes(),$ballot->getMentions()),
+                    "majorityMention"=>$meritProfile->processMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions()),
+                    "percentOfMajorityMention"=>$meritProfile->processPercentOfMajorityMention($candidate,$ballot->getVotes(),$ballot->getMentions())
+                ];
+            $dataTemplate["result"][]=$data;
+            $dataTemplate["meritProfiles"][$candidateToId[$candidate->getName()]]=[];
+            foreach($data["meritProfile"] as $merit)
+            {
+                $dataTemplate["meritProfiles"][$candidateToId[$candidate->getName()]][$mentionLabelToValue[$merit->getMention()->getLabel()]]=$merit->getPercent();
             }
-            $sortKey=(($majorityMention*100)+($indice*$weight));
-            $dataTemplate["winners"][]=["winner"=>$winner[0]];
         }
 
-
-
-        $dataTemplate["result"]=$result;
-
-
-
-
-
-
-
-        /*$judgement = new MajorityJudgment();
-        $judgement->setChoices($choices);
-        $judgement->setValues($choiceValues);
-
-        foreach($votes as $vote){
-            $judgement->addVote($vote->getChoice()->getId(),$vote->getVoteValue());
-        }
-        $dataTemplate["meritProfiles"]=$judgement->meritProfiles();
-
-        $repositoryChoice = $this->getDoctrine()->getRepository(\App\Entity\Choice::class);
-        $dataTemplate["winner"]= $repositoryChoice ->findOneBy(["id"=>$judgement->winner()]);*/
-
-
-
-
-
+        $dataTemplate["winner"]=$dataTemplate["result"][0]["candidate"];
+        $dataTemplate["winnerMention"]=$dataTemplate["result"][0]["majorityMention"]->getLabel();
+        $dataTemplate["winnerMentionColor"]=$dataTemplate["mention_colors"][$mentionLabelToValue[$dataTemplate["result"][0]["majorityMention"]->getLabel()]];
 
         return $this->render('vote/result.html.twig', $dataTemplate);
     }
