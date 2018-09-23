@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 1.5.0
+- Use index to compare ex-eaquo
+
 ### 1.4.0
 - Add index on result page
 
