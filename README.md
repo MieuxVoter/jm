@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 1.4.0
+- Add index on result page
+
 ### 1.3.0
 - Use MajorityJudgement 2.X instead of 1.X
 
