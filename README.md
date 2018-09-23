@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 1.3.0
+- Use MajorityJudgement 2.X instead of 1.X
+
 #### 1.2.2
 - hotfix : Barchart height
 - hotfix : maxlength to 150 chars for label choice
