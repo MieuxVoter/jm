@@ -51,11 +51,11 @@
                 <div class="col-12">
                     <h4>Classement complet :</h4>
                     <ol>
-                        {% for winner in winners %}
-                            <li class="mb-4">{{ winner.winner.label }}
+                        {% for winner in result %}
+                            <li class="mb-4">{{ winner.candidate.label }}
                                 <br/>
                                 <small class="form-text text-muted">
-                                    {{ winner.winner.explanation }}
+                                    {{ winner.candidate.explanation }}
                                 </small>
                             </li>
                         {% endfor %}
