@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e168a26b217439f328fddeda24ea8b6",
+    "content-hash": "2ac5bcb2aa8ebd718477bf364eb636cb",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1411,16 +1411,16 @@
         },
         {
             "name": "oceanbigone/majorityjudgment",
-            "version": "2.1.0",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oceanBigOne/MajorityJudgment.git",
-                "reference": "9cc0d24566be3db26cb31dbb244b6752d4631444"
+                "reference": "5ddca053d000d38b04206bdc3a8c7fbb75d7e8c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oceanBigOne/MajorityJudgment/zipball/9cc0d24566be3db26cb31dbb244b6752d4631444",
-                "reference": "9cc0d24566be3db26cb31dbb244b6752d4631444",
+                "url": "https://api.github.com/repos/oceanBigOne/MajorityJudgment/zipball/5ddca053d000d38b04206bdc3a8c7fbb75d7e8c6",
+                "reference": "5ddca053d000d38b04206bdc3a8c7fbb75d7e8c6",
                 "shasum": ""
             },
             "require": {
@@ -1461,7 +1461,7 @@
                 "sort",
                 "vote"
             ],
-            "time": "2018-10-14T11:23:40+00:00"
+            "time": "2018-10-14T12:32:56+00:00"
         },
         {
             "name": "ocramius/package-versions",
