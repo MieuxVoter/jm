@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 1.6.1
+- Composer Update (update version of MajorityJudgement package)
+
 ### 1.6.0
 - Composer Update (update version of MajorityJudgement package)
 
