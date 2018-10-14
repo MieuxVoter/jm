@@ -4,7 +4,7 @@
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
-        "oceanbigone/majorityjudgment": "2.1.0",
+        "oceanbigone/majorityjudgment": "^2.1.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "^4.1",
         "symfony/console": "^4.1",
