@@ -5,3 +5,29 @@
 .opacity100{
     opacity:1;
 }
+
+.pointer{
+    cursor:pointer;
+}
+
+.jsSelectMention > img{
+    opacity:0.5;
+}
+.jsSelectMention:hover > img{
+    opacity:1;
+}
+
+.mention-selected.jsSelectMention > img{
+    opacity:1;
+}
+
+/*.mention-selected:before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0a6";
+    font-size: 30px;
+    position: absolute;
+    margin-top: 20px;
+    transform: rotate(20deg);
+    color:#000000;
+}*/

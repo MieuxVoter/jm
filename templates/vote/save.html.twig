@@ -10,7 +10,7 @@
         {% if proposal is null %}
             <div class="row mt-5">
                 <div class="col-12">
-                    <h1>Ooops ! Proposition inexistante</h1>
+                    <h1 class="title">Ooops ! Proposition inexistante</h1>
                     <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
                     <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en
                             cliquant-ici</a></p>
@@ -20,7 +20,7 @@
 
             <div class="row mt-5">
                 <div class="col-12">
-                    <h1>Participation enregistrée !</h1>
+                    <h1 class="title">Participation enregistrée !</h1>
                     <hr/>
                     {% include "vote/end-of-proposal.html.twig" %}
                 </div>

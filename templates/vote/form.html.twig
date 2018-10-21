@@ -5,68 +5,114 @@
 {% block ogtitle %}{{ proposal.title }}{% endblock %}
 {% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 {% block main %}
-<main class="container">
-    {% if proposal is null %}
-    <div class="row mt-5">
-        <div class="col-12">
-            <h1>Ooops ! Proposition inexistante</h1>
-            <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
-            <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en cliquant-ici</a></p>
-        </div>
-    </div>
-    {% else %}
-    <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" autocomplete="off" class="need-validated ">
-        <div class="row mt-5">
-            <div class="col-12">
-                <h1>{{ proposal.title }}</h1>
-                <hr/>
-                <p>
-                <h4 class="mt-5">Présentation</h4>
-                <p>{{ proposal.presentation }}</p>
-                <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
+    <main class="container">
+        {% if proposal is null %}
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Ooops ! Proposition inexistante</h1>
+                    <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
+                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en
+                            cliquant-ici</a></p>
+                </div>
             </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-12">
-                <h4>Liste des propositions</h4>
-               <p>Merci de donner votre appréciation pour chacun des choix ci dessous</p>
-                {% for choice in proposal.choices  %}
-                    <div class="mt-5">
-                        <div class="d-flex flex-row justify-content-start mb-4">
-                            <div class="d-flex flex-column justify-content-center">
-                                <h3 >{{ loop.index }}</h3>
-                            </div>
-                            <div class="flex-grow-1 pl-4 pr-4">
+        {% else %}
+            <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" autocomplete="off"
+                  class="need-validated ">
+                <div class="row mt-5">
+                    <div class="col-12 mb-4">
+                        <h1 class="title">{{ proposal.title }}</h1>
+                    </div>
+                    <div class="col-12">
 
-                                <label  for="choice_value_{{ loop.index }}">{{ choice.label }}</label>
-                               <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ choice.id }}">
-                                   {% for choice_value,choice_label in choices|reverse  %}
-                                   <option value="{{ choice_value }}">{{ choice_label }}</option>
-                                   {% endfor %}
-                               </select>
-                                <small  class="form-text text-muted">
-                                    {{ choice.explanation }}
-                                </small>
+                        <p>{{ proposal.presentation }}</p>
+                        <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
+                    </div>
+                </div>
+                <div class="row mt-5">
+
+
+                    {% for choice in proposal.choices %}
+                        <div class="col-12 col-md-6 col-lg-4 d-flex ">
+                            <div class="card mb-4   shadow p-3 mb-5 bg-white rounded align-self-stretch">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div><h5 class="card-title title  ">{{ choice.label }}</h5>
+                                        <hr />
+                                        <p class="card-text"> {{ choice.explanation }}</p>
+                                    </div>
+                                   {# <div>
+                                        <div class="float-left" style="height:48px;line-height:48px;"><b>Qu'en pensez-vous ?
+                                                :</b></div>
+                                        <div class="btn-group float-right" role="group">
+                                            <input type="hidden" class="form-control jsInputMention"
+                                                   id="choice_value_{{ loop.index }}"
+                                                   name="choice_value_{{ choice.id }}" value="empty">
+                                            <button id="btnGroupDrop1" type="button"
+                                                    class="btn btn-light dropdown-toggle " data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                <img src="/css/img/empty.png" class="jsImgMention" width="48">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                {% for choice_value,choice_label in choices|reverse %}
+                                                    <a class="dropdown-item jsSelectMention"
+                                                       data-value="{{ choice_value }}" href="javascript:void(0);"><img
+                                                                src="/css/img/{{ choice_value }}.png"
+                                                                width="32"> {{ choice_label }}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div> #}
+                                    <div class="row mt-5">
+                                        <input type="hidden" class="form-control jsInputMention"
+                                               id="choice_value_{{ loop.index }}"
+                                               name="choice_value_{{ choice.id }}" value="empty">
+                                        {% for choice_value,choice_label in choices|reverse %}
+                                            <div class="col-2 p-0">
+
+                                                <a  class="w-100 jsSelectMention {% if choice_value=="vote_5" %}mention-selected{% endif %}"
+                                                   data-value="{{ choice_value }}" href="javascript:void(0);"><img src="/css/img/{{ choice_value }}" width="80%"  class="m-auto d-block pointer" data-toggle="tooltip" data-placement="top" title="{{choice_label }}"></a></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <hr />
-        <div class="col-12">
-            <div class="mb-3">
-                <label for="author" >Votre nom <span class="text-muted">(Optionel)</span></label>
-                <input type="text" class="form-control" id="author" maxlength="250" name="author" value=""
-                       placeholder="Votre nom/pseudo">
-            </div>
-        </div>
-      {% include "vote/end-of-proposal.html.twig" %}
-        <div class="text-center p-4">
-        <button class="btn btn-success "><i class="fas fa-check mr-2"></i>Valider mon vote !</button>
-        </div>
-        <p class="mb-5">&nbsp;</p>
-    </form>
-    {% endif %}
-</main>
+
+
+                        {# <div class="mt-5">
+                             <div class="d-flex flex-row justify-content-start mb-4">
+                                 <div class="d-flex flex-column justify-content-center">
+                                     <h3 >}</h3>
+                                 </div>
+                                 <div class="flex-grow-1 pl-4 pr-4">
+
+                                     <label  for="choice_value_{{ loop.index }}">{{ choice.label }}</label>
+                                    <select class="form-control" id="choice_value_{{ loop.index }}" name="choice_value_{{ choice.id }}">
+                                        {% for choice_value,choice_label in choices|reverse  %}
+                                        <option value="{{ choice_value }}">{{ choice_label }}</option>
+                                        {% endfor %}
+                                    </select>
+                                     <small  class="form-text text-muted">
+                                         {{ choice.explanation }}
+                                     </small>
+                                 </div>
+                             </div>
+                         </div>#}
+                    {% endfor %}
+                </div>
+
+                <hr/>
+                {# <div class="col-12">
+                     <div class="mb-3">
+                         <label for="author" >Votre nom <span class="text-muted">(Optionel)</span></label>
+                         <input type="text" class="form-control" id="author" maxlength="250" name="author" value=""
+                                placeholder="Votre nom/pseudo">
+                     </div>
+                 </div>#}
+                {% include "vote/end-of-proposal.html.twig" %}
+                <div class="text-center p-4">
+                    <button class="btn btn-success "><i class="fas fa-check mr-2"></i>Valider mon vote !</button>
+                </div>
+                <p class="mb-5">&nbsp;</p>
+            </form>
+        {% endif %}
+    </main>
 {% endblock %}
