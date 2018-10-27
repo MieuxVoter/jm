@@ -2,72 +2,74 @@
 
 {% block main %}
 
-        <div class="container">
-            <form method="post" action="{{ path("app_jm_form") }}"  autocomplete="off">
-                <div class="row">
-                    <div class="col-12 text-center"><h5 class="title mb-4">Simple, gratuit et anonyme : organisez un
-                            vote à l'aide du Jugement Majoritaire.</h5></div>
+    <div class="container">
+        <form method="post" action="{{ path("app_jm_form") }}"  autocomplete="off">
+            <div class="row">
+                <div class="col-12 text-center"><h5 class="title mb-4">Simple, gratuit et anonyme : organisez un
+                        vote à l'aide du Jugement Majoritaire.</h5></div>
+            </div>
+            <div class="row">
+                <div class="col-12 offset-xl-2  col-md-7 col-xl-6">
+                    <input type="text" class="form-control w-100" placeholder="Titre du vote" name="title">
                 </div>
-                <div class="row">
-                    <div class="col-12 offset-xl-2  col-md-7 col-xl-6">
-                        <input type="text" class="form-control w-100" placeholder="Titre du vote" name="title">
-                    </div>
-                    <div class="col-12 col-md-5 col-xl-2">
-                        <button type="submit" class="btn btn-primary w-100  mt-2 mt-md-0"><i
-                                    class="fas fa-rocket mr-2"></i>Lancer un vote
-                        </button>
-                    </div>
-                    <div class="col-12 text-center pt-2">
-                        <p><h6 class="text-muted"><small>Pas de publicité et pas de cookie publicitaire.</small></h6></p>
-                    </div>
+                <div class="col-12 col-md-5 col-xl-2">
+                    <button type="submit" class="btn btn-primary w-100  mt-2 mt-md-0"><i
+                                class="fas fa-rocket mr-2"></i>Lancer un vote
+                    </button>
                 </div>
-            </form>
-        </div>
+                <div class="col-12 text-center pt-2">
+                    <p><h6 class="text-muted"><small>Pas de publicité et pas de cookie publicitaire.</small></h6></p>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="bg-primary mt-5">
-    <div class="container pt-5 pb-5 ">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h3 class="title text-white">Le Jugement Majoritaire, c'est quoi ?</h3>
-            </div>
-            <div class="col-12 pr-4 pl-4 text-white">
-                <div style="width:50%;margin:auto" class="mt-5">
-                    <iframe width="100%" height="250" src="https://www.youtube-nocookie.com/embed/YC1xDJsi_Hk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
-
-                    <p class="mt-5"> Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur le site de l'association Mieux Voter :
-                        <br /><a href="https://mieuxvoter.fr/" class="text-white underline" target="_blank">https://mieuxvoter.fr/</a>
-                    </p>
+        <div class="container pt-5 pb-5 ">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="title text-white">Le Jugement Majoritaire, c'est quoi ?</h3>
                 </div>
-
             </div>
-        </div>
-    </div>
-    </div>
-        <div >
-            <div class="container pt-5 pb-5">
+            <div class="row">
+                <div class="col-12 m-auto col-md-6 pr-4 pl-4 text-white">
+                    <div style="" class="mt-5">
+                        <iframe width="100%" height="250" src="https://www.youtube-nocookie.com/embed/YC1xDJsi_Hk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe>
 
-                <div class="row">
-                    <div class="col-12">
-                        <h4 class="title "><img src="/css/img/who.png" width="128"> Pour qui ?</h4>
-                    </div>
-                    <div class="col-12 pr-4 pl-4">
-
-                        <p>Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) et vous désirez soumettre une proposition au Jugement
-                            Majoritaire. </p>
-
-                        <p>Cet outil est particulièrement adapté à la prise de décisions en groupe, dans un contexte de vote non confidentiel où chaque participant donne son avis. Par exemple : l'un après l'autre derrière un même écran.</p>
-
-    <h5 class="title">Avertissement</h5>
-                        <p>
-                            Cette page n'est pas conçue pour des votes à fort enjeux car aucune vérification d'identité des votants n'est effectuée. Un participant peut voter autant de fois qu'il le souhaite.
-                            Il est cependant possible de savoir combien de participations ont été enregistrées à la fin d'un vote. Il donc possible pour un groupe de personnes de déceller un problème, si il y a plus de participations que de personnes.
+                        <p class="mt-5"> Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur le site de l'association Mieux Voter :
+                            <br /><a href="https://mieuxvoter.fr/" class="text-white underline" target="_blank">https://mieuxvoter.fr/</a>
                         </p>
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-       <div>
+    </div>
+    <div >
+        <div class="container pt-5 pb-5">
+
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="title "><img src="/css/img/who.png" width="128"> Pour qui ?</h4>
+                </div>
+                <div class="col-12 pr-4 pl-4">
+
+                    <p>Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) et vous désirez soumettre une proposition au Jugement
+                        Majoritaire. </p>
+
+                    <p>Cet outil est particulièrement adapté à la prise de décisions en groupe, dans un contexte de vote non confidentiel où chaque participant donne son avis. Par exemple : l'un après l'autre derrière un même écran.</p>
+
+                    <h5 class="title">Avertissement</h5>
+                    <p>
+                        Cette page n'est pas conçue pour des votes à fort enjeux car aucune vérification d'identité des votants n'est effectuée. Un participant peut voter autant de fois qu'il le souhaite.
+                        Il est cependant possible de savoir combien de participations ont été enregistrées à la fin d'un vote. Il donc possible pour un groupe de personnes de déceller un problème, si il y a plus de participations que de personnes.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
 
 
         <div class="bg-primary">
@@ -84,8 +86,8 @@
                             <li>Saisissez les propositions/candidats possibles.</li>
                             <li>Validez le formulaire.</li>
                             <li>Copiez-collez le lien fourni et partagez le aux personnes de votre choix.<br/>
-                            <b>Attention ! Conservez bien ce lien.</b>
-                            <br>Il vous permettra de voter <b>ET</b> de consulter le résultat du scrutin terminé.</li>
+                                <b>Attention ! Conservez bien ce lien.</b>
+                                <br>Il vous permettra de voter <b>ET</b> de consulter le résultat du scrutin terminé.</li>
                             <li>Sur la page de vote, les participants peuvent donner leur avis sur chacun(e) des propositions/candidats.</li>
                         </ol>
 
@@ -94,7 +96,7 @@
                             30 jours après la fin du vote.</p>
 
 
-<hr/>
+                        <hr/>
 
                     </div>
                 </div>
@@ -110,20 +112,20 @@
                     </div>
                     <div class="col-12 pr-4 pl-4 ">
 
-                       <ul>
-                           <li class="mt-3"><h5 class="title">Pourquoi c'est gratuit ?</h5>
-                          Notre but est uniquement de promouvoir le Jugement Majoritaire. Nous pensons que c'est en l'utilisant dans la vie de tous les jours que nous pourrons faire progresser l'idée qu'il s'agit d'un mode de scrutin bien plus efficace que le simple comptage du nombre de voix.
-                           </li>
-                           <li class="mt-5"><h5 class="title">Comment puis-je modifier mon vote ou ma participation ?</h5>
-                               Afin de préserver l'intégrité du résultat, ce n'est malheureusement pas possible. En revanche, il est trés simple de recommencer un nouveau vote (aucune limite de création).
-                           </li>
-                           <li class="mt-5"><h5 class="title">J'ai perdu mon lien, comment puis je le récupérer ?</h5>
-                               N'ayant aucune information nous permettant de vous identifier, ce n'est malheureusement pas possible. En revanche, il est trés simple de recommencer un nouveau vote (aucune limite de création).
-                           </li>
-                           <li class="mt-5"><h5 class="title">Moi aussi je souhaite promouvoir le Jugement Majoritaire, que puis-je faire ?</h5>
-                               Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici l'adresse de leur site : <a href="https://mieuxvoter.fr/" target="_blank" class="underline">https://mieuxvoter.fr/</a>
-                           </li>
-                       </ul>
+                        <ul>
+                            <li class="mt-3"><h5 class="title">Pourquoi c'est gratuit ?</h5>
+                                Notre but est uniquement de promouvoir le Jugement Majoritaire. Nous pensons que c'est en l'utilisant dans la vie de tous les jours que nous pourrons faire progresser l'idée qu'il s'agit d'un mode de scrutin bien plus efficace que le simple comptage du nombre de voix.
+                            </li>
+                            <li class="mt-5"><h5 class="title">Comment puis-je modifier mon vote ou ma participation ?</h5>
+                                Afin de préserver l'intégrité du résultat, ce n'est malheureusement pas possible. En revanche, il est trés simple de recommencer un nouveau vote (aucune limite de création).
+                            </li>
+                            <li class="mt-5"><h5 class="title">J'ai perdu mon lien, comment puis je le récupérer ?</h5>
+                                N'ayant aucune information nous permettant de vous identifier, ce n'est malheureusement pas possible. En revanche, il est trés simple de recommencer un nouveau vote (aucune limite de création).
+                            </li>
+                            <li class="mt-5"><h5 class="title">Moi aussi je souhaite promouvoir le Jugement Majoritaire, que puis-je faire ?</h5>
+                                Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici l'adresse de leur site : <a href="https://mieuxvoter.fr/" target="_blank" class="underline">https://mieuxvoter.fr/</a>
+                            </li>
+                        </ul>
 
 
 

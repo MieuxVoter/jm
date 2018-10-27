@@ -53,10 +53,13 @@ That's all...
 
 ## Versions
 
+#### 1.7.1
+- fix home : width of video (responsibe problem)
+
 ### 1.7.0
 - Design and ergonomics
 
-### 1.6.1
+#### 1.6.1
 - Composer Update (update version of MajorityJudgement package)
 
 ### 1.6.0
