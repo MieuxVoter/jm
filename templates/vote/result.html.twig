@@ -5,55 +5,49 @@
 {% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 
 {% block main %}
-    <main class="container">
+    <div class="container">
 
         {% if proposal is null %}
-            <div class="row mt-5">
+            <div class="row ">
                 <div class="col-12">
-                    <h1>Ooops ! Proposition inexistante</h1>
-                    <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
-                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en
+                    <h1 class="title">Ooops ! Scrutin inexistant</h1>
+                    <p>Ce scrutin n'existe pas ou n'est plus disponible aux votes.</p>
+                    <p>N'hésitez pas à créer un nouveau scrutin <a href="{{ path("app_jm_form") }}">en
                             cliquant-ici</a></p>
                 </div>
             </div>
         {% else %}
-            <div class="row mt-5">
+            <div class="row ">
+                <div class="col-12 mb-4">
+                    <h1 class="title">{{ proposal.title }}</h1>
+                </div>
                 <div class="col-12">
-                    <h1>{{ proposal.title }}</h1>
-                    <hr/>
 
-                    <p>
-                    <h4 class="mt-5">Présentation</h4>
                     <p>{{ proposal.presentation }}</p>
                     <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
                 </div>
             </div>
             <div class="row mt-5 ">
                 <div class="col-12">
-                    <h4 class="mt-2">Résultat <span class="badge badge-secondary"
-                                                    style="background-color:#{{ mentionLabelColors[ result[0].majorityMention.label] }};color:#000;">{{ result[0].majorityMention.label }} {% if  result[0].percentOfBetterThanMajorityMention >= result[0].percentOfWorseThanMajorityMention  %}+{% else %}-{% endif %} </span>
-                    </h4>
-                    <div class="alert alert-success">
-                        <b>{{ result[0].candidate.label }}</b>
-                        <br/>
-                        <small class="form-text text-muted">
-                            {{ result[0].candidate.explanation }}
-                        </small>
-
+                    <h4 class="mt-2 title">Résultat</h4>
+                    <div class="col-12 p-0">
+                        <div class="card mb-4   shadow p-3 mb-5 bg-white rounded align-self-stretch">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div><h5 class="card-title title mt-0 "><img src="/css/img/{{ mentionLabelToValue[result[0].majorityMention.label] }}.png" style="width:32px;" class="mr-2"> {{ result[0].candidate.label }}</h5>
+                                    <hr />
+                                    <p class="card-text"> {{ result[0].candidate.explanation }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                        {% if  result[0].percentOfBetterThanMajorityMention >= result[0].percentOfWorseThanMajorityMention  %}{% set compareFirst="+" %}{% else %}{% set compareFirst="-" %}{% endif %}
-                        {% if  result[1].percentOfBetterThanMajorityMention >= result[1].percentOfWorseThanMajorityMention  %}{% set compareSecond="+" %}{% else %}{% set compareSecond="-" %}{% endif %}
-                        {%  if( result[0].majorityMention.label==result[1].majorityMention.label and compareSecond==compareFirst) %}
-                            {% set compareFirst="+" %}
-                    <div class="alert alert-info">
-                            Ex-aequo avec au minimum 1 proposition : Vérifiez le classement ci-dessous
-                    </div>
-                        {% endif %}
 
-                    <div class="text-muted" style="margin-top:-15px;"><i>Déterminé
+
+                    <div class="text-muted" style="margin-top:-30px;"><i>Déterminé
                             par {{ proposal.participations|length }} participations et la mention majoritaire
                             : {{ winnerMention }}</i></div>
+
+
 
                 </div>
 
@@ -61,11 +55,15 @@
 
             <div class="row mt-5 ">
                 <div class="col-12">
-                    <h4>Classement complet :</h4>
+                    <h4 class="title">Classement complet</h4>
                     <ol>
                         {% for winner in result %}
-                            <li class="mb-4">{{ winner.candidate.label }} <span class="badge badge-secondary"
-                                                                                style="background-color:#{{ mentionLabelColors[winner.majorityMention.label] }};color:#000;">{{ winner.majorityMention.label }}{% if  winner.percentOfBetterThanMajorityMention >= winner.percentOfWorseThanMajorityMention  %}+{% else %}-{% endif %} </span>
+                            <li class="mb-4">
+                                <img src="/css/img/{{ mentionLabelToValue[winner.majorityMention.label] }}.png" style="width:32px;" class="mr-2">
+                                <b>{{ winner.candidate.label }}</b>
+                                {#<span class="badge badge-secondary"
+                                                                                style="background-color:#{{ mentionLabelColors[winner.majorityMention.label] }};color:#000;">{{ winner.majorityMention.label }}{% if  winner.percentOfBetterThanMajorityMention >= winner.percentOfWorseThanMajorityMention  %}+{% else %}-{% endif %} </span>#}
+
                                 <br/>
                                 <small class="form-text text-muted">
                                     {{ winner.candidate.explanation }}
@@ -81,7 +79,7 @@
             <div class="row mt-5 ">
                 <div class="col-12">
 
-                    <h4>Profiles de mérite :</h4>
+                    <h4 class="title">Profils de mérite</h4>
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -90,7 +88,7 @@
                                 <th scope="col">&nbsp;</th>
                                 {% for mention_value,mention_label  in mentions %}
                                     <th scope="col"
-                                        style="background-color:#{{ mention_colors[mention_value] }};white-space: nowrap;">{{ mention_label }}</th>
+                                        style="background-color:#fff;;white-space: nowrap;"><img src="/css/img/{{ mention_value }}.png" style="width:32px;"> {{ mention_label }}</th>
                                 {% endfor %}
 
                             </tr>
@@ -128,7 +126,7 @@
 
             <div class="row mt-5 ">
                 <div class="col-12">
-                    <h4>Histogramme :</h4>
+                    <h4 class="title">Histogramme</h4>
                     <div id="chart" style="height:{{ (proposal.choices|length)*80 }}px"></div>
                 </div>
                {# <div class="col-12 m-2">
@@ -149,7 +147,7 @@
 <div class="mb-5">&nbsp;</div>
 
         {% endif %}
-    </main>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

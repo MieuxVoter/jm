@@ -1,3 +1,5 @@
+const sass = require('node-sass');
+
 module.exports = function (grunt) {
     grunt.initConfig({
         "pkg": grunt.file.readJSON("package.json"),
@@ -44,12 +46,27 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        "sass": {
+            "web": {
+                "options":{
+                    sourceMap: true,
+                    implementation: sass
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/scss',
+                    src: '**/*.{scss,sass}',
+                    dest: 'src/cssBootstrap',
+                    ext: '.css'
+                }]
+            }
+        },
         "concat_css": {
             "options": {},
             "web": {
                 "files": [{
                     'public/css/vendor.css': [
-                        'node_modules/bootstrap/dist/css/bootstrap.css',
+                        'src/cssBootstrap/bootstrap.css',
                         'node_modules/@fortawesome/fontawesome-free/css/*.css',
                         'node_modules/chartist/dist/chartist.min.css',
                         'node_modules/toastr/build/toastr.css'
@@ -106,8 +123,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-sass');
 
 
-    grunt.registerTask('default', ['concat', 'uglify' , 'concat_css', 'cssmin', 'copy']);
+    grunt.registerTask('default', ['concat', 'uglify' ,'sass', 'concat_css', 'cssmin', 'copy']);
 
 };
