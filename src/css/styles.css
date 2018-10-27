@@ -10,6 +10,9 @@
     cursor:pointer;
 }
 
+.underline{
+    text-decoration: underline;
+}
 .jsSelectMention > img{
     opacity:0.5;
 }
