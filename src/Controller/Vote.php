@@ -36,7 +36,7 @@ class Vote extends Controller
         $dataForm["redirect"]=false;
         $dataForm["url_key"]=$url_key;
         $dataForm["author"] = $_POST["author"] ?? "";
-
+        $dataForm["error"]=false;
 
         $choices=$this->container->getParameter('choice_values');
         $dataForm["choices"]=$choices;
@@ -110,6 +110,9 @@ class Vote extends Controller
             }
 
         }else{
+            $dataForm["proposal"]=new Proposal();
+            $dataForm["error"]=true;
+            $dataForm["timezone"]=date_default_timezone_get();
             return $this->render('vote/form.html.twig', $dataForm);
         }
 
@@ -198,6 +201,7 @@ class Vote extends Controller
         $dataTemplate["winner"]=$dataTemplate["result"][0]["candidate"];
         $dataTemplate["winnerMention"]=$dataTemplate["result"][0]["majorityMention"]->getLabel();
         $dataTemplate["winnerMentionColor"]=$dataTemplate["mention_colors"][$mentionLabelToValue[$dataTemplate["result"][0]["majorityMention"]->getLabel()]];
+        $dataTemplate["mentionLabelToValue"]=$mentionLabelToValue;
 
         return $this->render('vote/result.html.twig', $dataTemplate);
     }
