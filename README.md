@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+#### 1.7.3
+- Margin fix on header picture
+
 #### 1.7.2
 - opportunity to vote a few minutes
 
