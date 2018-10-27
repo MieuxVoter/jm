@@ -3,19 +3,18 @@
 
 
 {% block main %}
-    <main class="container">
+    <div class="container">
         {% if redirect %}
             <script> document.location.href = '{{ path("app_jm_form") }}?redirect-save=true&key={{ proposal.urlKey }}' </script>
         {% endif %}
-        <div class="row mt-5">
-            <div class="col-12">
-                <h1 class="title">Proposition enregistrée !</h1>
-                <hr/>
+        <div class="row ">
+            <div class="col-12 text-center">
+                <h1 class="title mb-5">Proposition enregistrée !</h1>
                 <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
             </div>
         </div>
         <div class="row ">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 m-auto text-center">
                 {% if redirect %}
                 <input type="text" class="form-control" disabled value="Veuillez patienter ...">
                 {% else %}
@@ -36,16 +35,16 @@
 
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col-12">
+        <div class="row mt-5">
+            <div class="col-12 text-center">
 
                 <a href="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}" class="btn btn-success"><i
-                            class="fas fa-users mr-2"></i>Participer maintenant !</a>
+                            class="fas fa-users mr-2"></i>Participer maintenant</a>
 
                 {% endif %}
 
 
             </div>
         </div>
-    </main>
+    </div>
 {% endblock %}

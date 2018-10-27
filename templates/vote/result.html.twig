@@ -5,19 +5,19 @@
 {% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 
 {% block main %}
-    <main class="container">
+    <div class="container">
 
         {% if proposal is null %}
-            <div class="row mt-5">
+            <div class="row ">
                 <div class="col-12">
-                    <h1>Ooops ! Proposition inexistante</h1>
-                    <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
-                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en
+                    <h1 class="title">Ooops ! Scrutin inexistant</h1>
+                    <p>Ce scrutin n'existe pas ou n'est plus disponible aux votes.</p>
+                    <p>N'hésitez pas à créer un nouveau scrutin <a href="{{ path("app_jm_form") }}">en
                             cliquant-ici</a></p>
                 </div>
             </div>
         {% else %}
-            <div class="row mt-5">
+            <div class="row ">
                 <div class="col-12 mb-4">
                     <h1 class="title">{{ proposal.title }}</h1>
                 </div>
@@ -147,7 +147,7 @@
 <div class="mb-5">&nbsp;</div>
 
         {% endif %}
-    </main>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

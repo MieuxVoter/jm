@@ -3,9 +3,9 @@
 
 
 {% block main %}
-    <main class="container">
+    <div class="container">
         <form method="post" action="{{ path("app_jm_form") }}"  autocomplete="off" class="need-validated ">
-            <div class="row mt-5">
+            <div class="row ">
                 <div class="col-12">
                     <h1 class="title">Nouveau vote</h1>
                     <hr/>
@@ -14,19 +14,11 @@
 
                 </div>
             </div>
+
             <div class="row mt-5">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="author" >Auteur <span class="text-muted">(Optionel)</span></label>
-                        <input type="text" class="form-control" id="author" maxlength="250" name="author" value="{{ author }}"
-                               placeholder="Votre nom/pseudo">
-                    </div>
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-12">
-                    <div class="mb-3">
-                        <label for="author" >Titre <span class="text-muted">(obligatoire)</span></label>
+                        <label for="author" ><b>Titre</b> <span class="text-muted">(obligatoire)</span></label>
                         <input type="text" class="form-control {{ title_Invalid }}" id="title" maxlength="250" name="title" value="{{ title }}"
                                placeholder="Titre du vote">
                         <div class="invalid-feedback">
@@ -35,10 +27,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="email">Présentation <span class="text-muted">(500 caractères max.)</span></label>
+                        <label for="author" ><b>Auteur</b> <span class="text-muted">(Optionel)</span></label>
+                        <input type="text" class="form-control" id="author" maxlength="250" name="author" value="{{ author }}"
+                               placeholder="Votre nom/pseudo">
+                    </div>
+                </div>
+            </div>
+            <div class="row  mt-3">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="email"><b>Présentation</b> <span class="text-muted">(500 caractères max.)</span></label>
                         <textarea class="form-control {{ presentation_Invalid }}" rows="5" maxlength="500" id="presentation" name="presentation"
                                   placeholder="Décrivez ici votre proposition de départ ou la raison de votre vote">{{ presentation }}</textarea>
                         <div class="invalid-feedback">
@@ -47,10 +48,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="time_before_end">Fin du vote :</label>
+                        <label for="time_before_end"><b>Fin du scrutin :</b></label>
                         <select id="time_before_end"  name="time_before_end" class="form-control {{ time_before_end_Invalid }}">
                             <option value="6 hours" {% if time_before_end=="6 hours" %}selected{% endif %} >Dans 6h</option>
                             <option value="12 hours" {% if time_before_end=="12 hours" %}selected{% endif %}>Dans 12h</option>
@@ -95,18 +96,18 @@
                         <div id="choice_{{ num }}" class="{{ cssDisplay }} divChoice {% if choice.isDeleted==1 %}opacity50{% else %}opacity100{% endif %}">
                             <div class="d-flex flex-row justify-content-start mb-4">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <h3 id="choice_number_{{ num }}">{{ num }}</h3>
+                                    <span class="badge badge-primary"><h3 class="title m-0" id="choice_number_{{ num }}">{{ num }}</h3></span>
                                 </div>
                                 <div class="flex-grow-1 pl-4 pr-4">
-                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Choix : <span class="text-muted">(150 car. max.)</span></label>
+                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Proposition/Candidat : <span class="text-muted">(150 car. max.)</span></label>
                                     <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
                                            name="remove_choice_{{ num }}" value="{{ choice.isDeleted }}">
                                     <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="150"
                                            name="choice_value_{{ num }}" placeholder="Proposition ..." value="{{ choice.label }}" {% if choice.isDeleted==1 %}readonly{% endif %}>
                                     <textarea class="form-control" rows="5" maxlength="500" id="choice_explanation_{{ num }}" name="choice_explanation_{{ num }}" {% if choice.isDeleted==1 %}readonly{% endif %}
-                                              placeholder="Explication supplémentaire sur ce choix"></textarea>
+                                              placeholder="Explication de cette proposition ..."></textarea>
                                 </div>
-                                <div class="d-flex flex-column justify-content-end">
+                                <div class="d-flex flex-column justify-content-center">
                                     <button type="button" class="btn btn-outline-danger btnRemoveChoice"><i class="fas {% if choice.isDeleted==1 %}fa-undo{% else %}fa-trash{% endif %}"></i></button>
                                 </div>
                             </div>
@@ -124,19 +125,19 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <button class="btn btn-primary float-right" type="button" id="addAChoice"><i class="fas fa-plus-square mr-2"></i> Ajouter une
+                    <button class="btn btn-primary " type="button" id="addAChoice"><i class="fas fa-plus-square mr-2"></i> Ajouter une
                         proposition
                     </button>
                 </div>
             </div>
             <hr/>
-            <div class="row">
-                <div class="col-12 pb-5">
-                    <a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>
-                    <button class="btn btn-success float-right" data-toggle="tooltip" data-placement="top" title="Attention ! Vous ne pourrez plus faire de modification."><i class="fas fa-check mr-2"></i> Valider !</button>
+            <div class="row mt-5">
+                <div class="col-12 pb-5 text-center">
+                    {#<a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>#}
+                    <button class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Attention ! Vous ne pourrez plus faire de modification."><i class="fas fa-check mr-2"></i> Valider</button>
                 </div>
             </div>
 
         </form>
-    </main>
+    </div>
 {% endblock %}

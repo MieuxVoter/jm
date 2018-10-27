@@ -37,6 +37,12 @@
         </nav>
     </header>
     <main class="pt-5 mt-5">
+        <div class="row">
+            <div class="col-12 pr-4 pl-4 mt-5">
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo-beta.png"
+                     style="width:100%;max-width:300px;display:block;margin:auto;"/>
+            </div>
+        </div>
         {% block main %}{% endblock %}
     </main>
     <footer>

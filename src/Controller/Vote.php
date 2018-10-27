@@ -36,7 +36,7 @@ class Vote extends Controller
         $dataForm["redirect"]=false;
         $dataForm["url_key"]=$url_key;
         $dataForm["author"] = $_POST["author"] ?? "";
-
+        $dataForm["error"]=false;
 
         $choices=$this->container->getParameter('choice_values');
         $dataForm["choices"]=$choices;
@@ -110,6 +110,9 @@ class Vote extends Controller
             }
 
         }else{
+            $dataForm["proposal"]=new Proposal();
+            $dataForm["error"]=true;
+            $dataForm["timezone"]=date_default_timezone_get();
             return $this->render('vote/form.html.twig', $dataForm);
         }
 

@@ -1,24 +1,24 @@
 {% extends "body.html.twig" %}
 
+    {% block title %}{{ proposal.title }}{% endblock %}
+    {% block ogtitle %}{{ proposal.title }}{% endblock %}
+    {% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 
-{% block title %}{{ proposal.title }}{% endblock %}
-{% block ogtitle %}{{ proposal.title }}{% endblock %}
-{% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 {% block main %}
-    <main class="container">
-        {% if proposal is null %}
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h1>Ooops ! Proposition inexistante</h1>
-                    <p>Cette proposition n'existe pas ou n'est plus disponible au vote.</p>
-                    <p>N'hésitez pas à soumettre une nouvelle proposition <a href="{{ path("app_jm_form") }}">en
+    <div class="container">
+        {% if error==true %}
+            <div class="row ">
+                <div class="col-12 text-center">
+                    <h1 class="title">Ooops ! Scrutin inexistant</h1>
+                    <p>Ce scrutin n'existe pas ou n'est plus disponible aux votes.</p>
+                    <p>N'hésitez pas à créer un nouveau scrutin <a href="{{ path("app_jm_form") }}">en
                             cliquant-ici</a></p>
                 </div>
             </div>
         {% else %}
             <form method="post" action="{{ path("app_jm_vote",{'url_key': url_key}) }}" autocomplete="off"
                   class="need-validated ">
-                <div class="row mt-5">
+                <div class="row ">
                     <div class="col-12 mb-4">
                         <h1 class="title">{{ proposal.title }}</h1>
                     </div>
@@ -32,7 +32,7 @@
 
 
                     {% for choice in proposal.choices %}
-                        <div class="col-12 col-md-6 col-lg-4 d-flex ">
+                        <div class="col-12 col-md-6 col-lg-6 d-flex ">
                             <div class="card mb-4   shadow p-3 mb-5 bg-white rounded align-self-stretch">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div><h5 class="card-title title  ">{{ choice.label }}</h5>
@@ -66,10 +66,13 @@
                                                id="choice_value_{{ loop.index }}"
                                                name="choice_value_{{ choice.id }}" value="empty">
                                         {% for choice_value,choice_label in choices|reverse %}
-                                            <div class="col-2 p-0">
+                                            <div class="col-3 col-md-4 col-lg-2 p-0 text-center mb-4">
 
                                                 <a  class="w-100 jsSelectMention {% if choice_value=="vote_5" %}mention-selected{% endif %}"
-                                                   data-value="{{ choice_value }}" href="javascript:void(0);"><img src="/css/img/{{ choice_value }}" width="80%"  class="m-auto d-block pointer" data-toggle="tooltip" data-placement="top" title="{{choice_label }}"></a></div>
+                                                   data-value="{{ choice_value }}" href="javascript:void(0);">
+                                                    <img src="/css/img/{{ choice_value }}" width="80%"  class="m-auto d-block pointer" >
+                                                    <span style="font-size:12px;color:#000;">{{choice_label }}</span>
+                                                </a></div>
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -114,5 +117,5 @@
                 <p class="mb-5">&nbsp;</p>
             </form>
         {% endif %}
-    </main>
+    </div>
 {% endblock %}

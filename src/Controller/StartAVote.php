@@ -48,8 +48,15 @@ class StartAVote extends Controller
         $dataForm["time_before_end_Invalid"]="";
         $dataForm["number_of_choices_Invalid"]="";
 
+        if(count($_POST)==1){
+            //pas de titre
+            if(isset($_POST["title"])){
+                $dataForm["title"]=$_POST["title"];
+
+            }
+        }
         //si données envoyéé en post
-        if(count($_POST)){
+        if(count($_POST)>1){
             $error=0;
 
             $dataForm["author"]=$_POST["author"]??"";
