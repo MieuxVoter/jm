@@ -53,6 +53,12 @@
                     <div class="mb-3">
                         <label for="time_before_end"><b>Fin du scrutin :</b></label>
                         <select id="time_before_end"  name="time_before_end" class="form-control {{ time_before_end_Invalid }}">
+                            <option value="5 minutes" {% if time_before_end=="5 minutes" %}selected{% endif %} >Dans 5 min.</option>
+                            <option value="10 minutes" {% if time_before_end=="10 minutes" %}selected{% endif %} >Dans 10 min.</option>
+                            <option value="15 minutes" {% if time_before_end=="15 minutes" %}selected{% endif %} >Dans 15 min.</option>
+                            <option value="30 minutes" {% if time_before_end=="30 minutes" %}selected{% endif %} >Dans 30 min.</option>
+                            <option value="1 hour" {% if time_before_end=="1 hour" %}selected{% endif %} >Dans 1h</option>
+                            <option value="2 hours" {% if time_before_end=="2 hours" %}selected{% endif %} >Dans 2h</option>
                             <option value="6 hours" {% if time_before_end=="6 hours" %}selected{% endif %} >Dans 6h</option>
                             <option value="12 hours" {% if time_before_end=="12 hours" %}selected{% endif %}>Dans 12h</option>
                             <option value="24 hours" {% if time_before_end=="24 hours" %}selected{% endif %}>Dans 24h</option>
