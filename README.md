@@ -53,8 +53,11 @@ That's all...
 
 ## Versions
 
+#### 1.7.2
+- opportunity to vote a few minutes
+
 #### 1.7.1
-- fix home : width of video (responsibe problem)
+- fix home : width of video (responsive problem)
 
 ### 1.7.0
 - Design and ergonomics
