@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+#### 1.7.4
+- Bad default value on vote form
+
 #### 1.7.3
 - Margin fix on header picture
 
