@@ -23,6 +23,7 @@ class Vote extends Controller
     public function form($url_key){
 
         date_default_timezone_set($this->container->getParameter('timezone'));
+        $error=0;
 
         $isSaved=false;
 
@@ -37,14 +38,32 @@ class Vote extends Controller
         $dataForm["url_key"]=$url_key;
         $dataForm["author"] = $_POST["author"] ?? "";
         $dataForm["error"]=false;
+        $dataForm["toastrmessage"]=null;
 
         $choices=$this->container->getParameter('choice_values');
         $dataForm["choices"]=$choices;
         $choiceValues=array_keys($choices);
 
-
         $repositoryProposal = $this->getDoctrine()->getRepository(Proposal::class);
         $proposal = $repositoryProposal->findOneBy(['url_key' => $url_key]);
+
+
+        $dataForm["selected_values"]=[];
+        foreach($proposal->getChoices() as $choice){
+            $vote_value=null;
+            if(count($_POST)) {
+                $vote_value = $_POST["choice_value_" . $choice->getId()] ?? null;
+                if (!in_array($vote_value, ["vote_0", "vote_1", "vote_2", "vote_3", "vote_4", "vote_5"])) {
+                    $error++;
+                }
+            }
+            $dataForm["selected_values"]["choice_value_" . $choice->getId()]=$vote_value;
+        }
+        if($error>0){
+            $dataForm["toastrmessage"]=["type"=>"error","title"=>"Erreur","text"=>"Vous devez évaluer toutes les propositions !"];
+
+        }
+
 
         //si une proposition trouvée
         if(!is_null($proposal)){
@@ -57,45 +76,51 @@ class Vote extends Controller
                 //si proposition toujours en cours
                 //ET si données envoyéé en post
                 if(count($_POST)) {
-                    $isSaved=true;
+
 
                     //TODO : vérification d'erreurs possibles ?
-                    $error=0;
-
-                    $entityManager = $this->getDoctrine()->getManager();
 
 
-                    $dataForm["proposal_id"] = $proposal->getId();
 
-                    $participation= new Participation();
-                    $participation->setProposal($proposal);
-                    $participation->setAuthor($dataForm["author"]);
-                    $date_start=new \DateTime();
-                    $date_start->setTimestamp(strtotime("now"));
-                    $participation->setDateCreate($date_start);
-                    $entityManager->persist($participation);
-                    $entityManager->flush();
+                    if($error==0) {
 
-                    //protection contre une tentative de changement d'ID seuls les choix en base sont parcouru
-                    foreach($proposal->getChoices() as $choice){
+                        $isSaved=true;
 
-                        //si valeur pas définie on prend le plus bas -> "a rejeter"
-                        $vote_value=$_POST["choice_value_".$choice->getId()] ?? $choiceValues[0];
+                        $entityManager = $this->getDoctrine()->getManager();
 
-                        //protection contre la saisie d'une valeur "inconnue" : on prend le plus bas -> "a rejeter"
-                        if(!in_array($vote_value,$choiceValues)){
-                            $vote_value=$choiceValues[0];
-                        }
-                        $vote= new \App\Entity\Vote();
-                        $vote->setProposal($proposal);
-                        $vote->setParticipation($participation);
-                        $vote->setChoice($choice);
-                        $vote->setVoteValue($vote_value);
-                        $entityManager->persist($vote);
+
+                        $dataForm["proposal_id"] = $proposal->getId();
+
+                        $participation = new Participation();
+                        $participation->setProposal($proposal);
+                        $participation->setAuthor($dataForm["author"]);
+                        $date_start = new \DateTime();
+                        $date_start->setTimestamp(strtotime("now"));
+                        $participation->setDateCreate($date_start);
+                        $entityManager->persist($participation);
                         $entityManager->flush();
-                    }
 
-                    $dataForm["redirect"]=true;
+                        //protection contre une tentative de changement d'ID seuls les choix en base sont parcouru
+                        foreach ($proposal->getChoices() as $choice) {
+
+                            //si valeur pas définie on prend le plus bas -> "a rejeter"
+                            $vote_value = $_POST["choice_value_" . $choice->getId()] ?? $choiceValues[0];
+
+                            //protection contre la saisie d'une valeur "inconnue" : on prend le plus bas -> "a rejeter"
+                            if (!in_array($vote_value, $choiceValues)) {
+                                $vote_value = $choiceValues[0];
+                            }
+                            $vote = new \App\Entity\Vote();
+                            $vote->setProposal($proposal);
+                            $vote->setParticipation($participation);
+                            $vote->setChoice($choice);
+                            $vote->setVoteValue($vote_value);
+                            $entityManager->persist($vote);
+                            $entityManager->flush();
+                        }
+
+                        $dataForm["redirect"] = true;
+                    }
 
                 }
 

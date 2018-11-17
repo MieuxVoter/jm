@@ -5,6 +5,9 @@
     {% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 
 {% block main %}
+    {% if toastrmessage is not null %}
+        <input type="hidden" class="toastr-msg" data-type="{{ toastrmessage.type }}" data-title="{{ toastrmessage.title }}" data-text="{{ toastrmessage.text }}" >
+    {% endif %}
     <div class="container">
         {% if error==true %}
             <div class="row ">
@@ -64,11 +67,11 @@
                                     <div class="row mt-5">
                                         <input type="hidden" class="form-control jsInputMention"
                                                id="choice_value_{{ loop.index }}"
-                                               name="choice_value_{{ choice.id }}" value="vote_5">
+                                               name="choice_value_{{ choice.id }}" value="{{ selected_values["choice_value_"~choice.id] }}">
                                         {% for choice_value,choice_label in choices|reverse %}
                                             <div class="col-3 col-md-4 col-lg-2 p-0 text-center mb-4">
 
-                                                <a  class="w-100 jsSelectMention {% if choice_value=="vote_5" %}mention-selected{% endif %}"
+                                                <a  class="w-100 jsSelectMention {% if choice_value==selected_values["choice_value_"~choice.id] %}mention-selected{% endif %}"
                                                    data-value="{{ choice_value }}" href="javascript:void(0);">
                                                     <img src="/css/img/{{ choice_value }}" width="80%"  class="m-auto d-block pointer" >
                                                     <span style="font-size:12px;color:#000;">{{choice_label }}</span>
