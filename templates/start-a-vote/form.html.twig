@@ -77,6 +77,52 @@
                     </div>
                 </div>
             </div>
+
+            <p>
+                <a class="btn btn-link" data-toggle="collapse" href="#options" role="button" aria-expanded="false" aria-controls="options" style="text-decoration: underline;">
+                    Options avancées
+                </a>
+            </p>
+            <div class="collapse" id="options">
+                <div class="card card-body">
+                    <ul style="list-style: none;">
+                        <li>
+                            <label class="switch">
+                                <input type="checkbox"  value="oui" name="visible-before-end"  id="visible-before-end">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Générer un lien permettant de visualiser le résultat à n'importe quel moment du vote</b><br/>Les participants seront informés qu'un utilisateur peut voir les résultats en temps réel (et donc potentiellement influencer le résultat)</div>
+                        </li>
+                        <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="oui" name="limit-participation"  id="limit-participation">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Limiter le nombre de participants à <input name="limit-participation-value" type="number" value="10" class="form-control d-inline-block" style="width:75px;" ></b>
+                                <br />le résultat sera visible immédiatement après que le dernier vote soit enregistré</div>
+                        </li>
+                        <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="oui" name="envoi-mail"  id="envoi-mail">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Envoyer par e-mail à l'adresse suivante : <input name="mail-value" type="text" placeholder="votre@email.com" class="form-control d-inline-block" style="width:200px;" ></b>
+                                <br />Le mail contiendra le ou les mails nécessaires au déroulement du vote.<br />Une seule adresse possible (Il ne sera pas conservé sur notre serveur).</div>
+                        </li>
+                        <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="oui" name="envoi-mail"  id="envoi-mail">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Partage Facebook</b>
+                                <br />Un bouton de partage Facebook sera disponible sur le formulaire de vote et sur la page de résultat<br />Attention : Facebook aura alors accès aux données du scrutin.</div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
             <div class="row mt-4">
                 <div class="col-12">
                     <h2 class="title">Propositions :</h2>
@@ -137,6 +183,10 @@
                 </div>
             </div>
             <hr/>
+
+
+
+
             <div class="row mt-5">
                 <div class="col-12 pb-5 text-center">
                     {#<a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>#}
