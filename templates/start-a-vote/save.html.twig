@@ -38,9 +38,29 @@
                 </div>
                 {% endif %}
 
+                {% if  proposal.urlResultKey  %}
+                    <div class="col-12 text-center mt-5">
+                        <p>Lien <u>d'aperçu des résultats</u> en temps réel :</p>
+                        <div class="input-group  ">
+                            <input type="text" class="form-control autoselect" id="url_result"
+                                   value="{{ url("app_jm_vote",{'url_key':  proposal.urlResultKey }) }}">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary copy-to-clipboard" data-target="#url_result" type="button"><i
+                                            class="fas fa-copy mr-2"></i> Copier</button>
+                            </div>
+
+                        </div>
+                        <small class="text-primary">Pensez a enregistrer également ce lien dans les favoris de votre navigateur !</small>
+                    </div>
+                {% endif %}
+
+
+
 
             </div>
         </div>
+
         <div class="row mt-5">
             <div class="col-12 text-center">
 

@@ -236,7 +236,7 @@ class StartAVote extends Controller
                     $text.="Voici le lien vers le formulaire de vote :\n\r".$link.$url;
                     if($proposal->getUrlResultKey()){
                         $urlResult=$this->generateUrl('app_jm_vote', array('url_key' => $proposal->getUrlResultKey()));
-                        $text.="\n\r\n\rVoici le lien vers la page de resultat des votes :\n\r".$link.$urlResult;
+                        $text.="\n\r\n\rVoici le lien vers la page de resultat des votes en temps reel :\n\r".$link.$urlResult;
                     }
                     $text.="\n\r\n\r ** Mail envoye automatiquement, merci de ne pas y repondre **";
 

@@ -30,6 +30,11 @@
                         <p>{{ proposal.presentation }}</p>
                         <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
                     </div>
+                    {% if  proposal.urlResultKey  %}
+                        <div class="mt-4 col-12 alert alert-primary">
+                            <b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des votes en temps réel.
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="row mt-5">
 
