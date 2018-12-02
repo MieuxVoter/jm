@@ -34,6 +34,7 @@ class Vote extends Controller
         }
 
         $dataForm=[];
+        $dataForm["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
         $dataForm["redirect"]=false;
         $dataForm["url_key"]=$url_key;
         $dataForm["author"] = $_POST["author"] ?? "";
@@ -148,6 +149,7 @@ class Vote extends Controller
     public function showResult($proposal){
         $dataTemplate=[];
         $dataTemplate["proposal"]=$proposal;
+        $dataTemplate["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
         $mentions=$this->container->getParameter('choice_values');
         $dataTemplate["mentions"]=$mentions;
         $dataTemplate["mention_colors"]=$this->container->getParameter('choice_colors');

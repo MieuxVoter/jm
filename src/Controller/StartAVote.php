@@ -25,8 +25,9 @@ class StartAVote extends Controller
         if($redirectSave!=""){
             $isSaved=true;
         }
-
+        $proposal=null;
         $dataForm=[];
+        $dataForm["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
         $dataForm["redirect"]=false;
         $dataForm["author"]="";
         $dataForm["title"]="";
@@ -257,6 +258,12 @@ class StartAVote extends Controller
         $dataForm["number_of_choices"]=count($choices)-1;
 
         if($isSaved){
+            if(is_null($proposal)){
+                $repositoryProposal = $this->getDoctrine()->getRepository(Proposal::class);
+                $proposal = $repositoryProposal->findOneBy(['url_key' => $_GET["key"]]);
+            }
+            $dataForm["proposal"]=$proposal;
+
             return $this->render('start-a-vote/save.html.twig', $dataForm);
         }else{
             return $this->render('start-a-vote/form.html.twig', $dataForm);

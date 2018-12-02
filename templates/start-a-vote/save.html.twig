@@ -31,6 +31,12 @@
                 </div>
                 <small class="text-primary">Pensez a enregistrer ce lien dans les favoris de votre navigateur !</small>
 
+                {%  if  proposal.isFacebookEnabled %}
+                <div class="text-center mt-4 alert alert-primary ">
+                    <p>Vous avez opté pour l'option partage <b>FACEBOOK</b>. Voici donc le bouton pour partager ce vote :</p>
+                    <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url("app_jm_vote",{'url_key':  app.request.query.get('key') })|url_encode}}&layout=button&size=large&mobile_iframe=true&appId={{ facebook_api_id }}&width=89&height=28" width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                </div>
+                {% endif %}
 
 
             </div>
