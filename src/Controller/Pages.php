@@ -16,4 +16,9 @@ class Pages extends Controller
         $data=[];
         return $this->render('pages/home.html.twig', $data);
     }
+
+    public function privacyPolicy(){
+        $data=[];
+        return $this->render('pages/privacy-policy.html.twig', $data);
+    }
 }
