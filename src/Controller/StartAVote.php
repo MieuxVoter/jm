@@ -32,6 +32,14 @@ class StartAVote extends Controller
         $dataForm["title"]="";
         $dataForm["presentation"]="";
         $dataForm["time_before_end"]="6 hours";
+        $dataForm["visibleBeforeEnd"]="no";
+        $dataForm["limitParticipation"]="no";
+        $dataForm["sendMail"]="no";
+        $dataForm["facebookEnabled"]="no";
+        $dataForm["nameRequired"]="no";
+        $dataForm["mailValue"]="";
+        $dataForm["limitParticipationValue"]="10";
+
 
         $choices=[];
 
@@ -64,6 +72,33 @@ class StartAVote extends Controller
             $dataForm["title"]=$_POST["title"]??"";
             $dataForm["time_before_end"]=$_POST["time_before_end"]??"6 hours";
             $dataForm["number_of_choices"]=$_POST["number_of_choices"]??0;
+
+            $dataForm["visibleBeforeEnd"]=$_POST["visibleBeforeEnd"]??"no";
+            $dataForm["limitParticipation"]=$_POST["limitParticipation"]??"no";
+            $dataForm["sendMail"]=$_POST["sendMail"]??"no";
+            $dataForm["facebookEnabled"]=$_POST["facebookEnabled"]??"no";
+            $dataForm["nameRequired"]=$_POST["nameRequired"]??"no";
+            $dataForm["mailValue"]=$_POST["mailValue"]??"";
+            $dataForm["limitParticipationValue"]=$_POST["limitParticipationValue"]??10;
+
+            $options=[$dataForm["visibleBeforeEnd"],$dataForm["limitParticipation"],$dataForm["sendMail"], $dataForm["facebookEnabled"],   $dataForm["nameRequired"]];
+            $dataForm["collapseOptions"]="yes";
+            if(in_array("yes",$options)){
+                $dataForm["collapseOptions"]="no";
+            }
+
+            $dataForm["limitParticipationValue_Invalid"]="";
+            if($dataForm["limitParticipation"]=="yes" && ( intval($dataForm["limitParticipationValue"])<2 || intval($dataForm["limitParticipationValue"])>=100 ) ){
+                $dataForm["limitParticipationValue_Invalid"]="is-invalid";
+                 $error++;
+            }
+
+            $dataForm["mailValue_Invalid"]="";
+            if($dataForm["sendMail"]=="yes" && !filter_var($dataForm["mailValue"], FILTER_VALIDATE_EMAIL)){
+                $dataForm["mailValue_Invalid"]="is-invalid";
+                $error++;
+            }
+
 
 
             //pas de titre

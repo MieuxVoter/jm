@@ -93,6 +93,11 @@ class Proposal
      */
     private $is_facebook_enabled;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_name_required;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
@@ -338,6 +343,18 @@ class Proposal
     public function setIsFacebookEnabled(bool $is_facebook_enabled): self
     {
         $this->is_facebook_enabled = $is_facebook_enabled;
+
+        return $this;
+    }
+
+    public function getIsNameRequired(): ?bool
+    {
+        return $this->is_name_required;
+    }
+
+    public function setIsNameRequired(?bool $is_name_required): self
+    {
+        $this->is_name_required = $is_name_required;
 
         return $this;
     }
