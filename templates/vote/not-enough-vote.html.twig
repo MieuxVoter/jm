@@ -1,0 +1,22 @@
+{% extends "body.html.twig" %}
+
+{% block title %}{{ proposal.title }}{% endblock %}
+{% block ogtitle %}{{ proposal.title }}{% endblock %}
+{% block ogdescription %}{{ proposal.presentation }}{% endblock %}
+
+{% block main %}
+
+
+
+    <div class="container">
+
+        <div class="row ">
+            <div class="col-12 text-center">
+                <h1 class="title">Ooops ! Trop peu de participations</h1>
+                <p>Ce scrutin ne comporte pas assez de vote pour afficher le résultat.</p>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
