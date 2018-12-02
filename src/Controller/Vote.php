@@ -56,10 +56,20 @@ class Vote extends Controller
         }
 
         $dataForm["selected_values"]=[];
+
         //si une proposition trouvée
         if(!is_null($proposal)){
 
+
+            //compte le nombre de participations
+            //recupere les votes
+            $repositoryVote = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
+            $votes = $repositoryVote->findBy(['proposal' => $proposal->getId()]);
+
+
+            $nChoices=0;
             foreach ($proposal->getChoices() as $choice) {
+                $nChoices++;
                 $vote_value = null;
                 if (count($_POST)) {
                     $vote_value = $_POST["choice_value_" . $choice->getId()] ?? null;
@@ -73,13 +83,11 @@ class Vote extends Controller
                 $dataForm["toastrmessage"] = ["type" => "error", "title" => "Erreur", "text" => "Vous devez évaluer toutes les propositions !"];
 
             }
-
-
-
+            $nbParticipations =count($votes)/$nChoices;
 
 
             //si la proposition est finie
-            if($proposal->getDateEnd()->getTimestamp() < strtotime("now") || $isResultLink==true ){
+            if($proposal->getDateEnd()->getTimestamp() < strtotime("now") || $isResultLink==true || ($proposal->getMaxParticipation()>1 and $nbParticipations>=$proposal->getMaxParticipation() ) ){
                 return $this->showResult($proposal);
 
             }else{
