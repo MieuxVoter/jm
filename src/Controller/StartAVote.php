@@ -39,6 +39,7 @@ class StartAVote extends Controller
         $dataForm["nameRequired"]="no";
         $dataForm["mailValue"]="";
         $dataForm["limitParticipationValue"]="10";
+        $dataForm["collapseOptions"]="yes";
 
 
         $choices=[];
@@ -55,6 +56,9 @@ class StartAVote extends Controller
         $dataForm["presentation_Invalid"]="";
         $dataForm["time_before_end_Invalid"]="";
         $dataForm["number_of_choices_Invalid"]="";
+        $dataForm["mailValue_Invalid"]="";
+        $dataForm["limitParticipationValue_Invalid"]="";
+
 
         if(count($_POST)==1){
             //pas de titre
@@ -142,6 +146,7 @@ class StartAVote extends Controller
                 }
             }
 
+
             if($nbEnabledChoices<2){
                 $error++;
                 $dataForm["number_of_choices_Invalid"]="is-invalid";
@@ -171,12 +176,41 @@ class StartAVote extends Controller
                 $date_delete->setTimestamp(strtotime("now +".$dataForm["time_before_end"] ."+30 days"));
                 $proposal->setDateDelete($date_delete);
 
+                //Options
+                if( $dataForm["limitParticipation"]=="yes"){
+                    $proposal->setMaxParticipation($dataForm["limitParticipationValue"]);
+                }
+
+                if( $dataForm["facebookEnabled"]=="yes"){
+                    $proposal->setIsFacebookEnabled(true);
+                }else{
+                    $proposal->setIsFacebookEnabled(false);
+                }
+
+                if( $dataForm["nameRequired"]== "yes"){
+                    $proposal->setIsNameRequired(true);
+                }else{
+                    $proposal->setIsNameRequired(false);
+                }
+
+
                 $entityManager->persist($proposal);
                 $entityManager->flush();
 
                 $key=$proposal->getId().sha1($proposal->getId().strtotime("now").substr($this->container->getParameter('saltkey'),0,10));
+                $keyResult=$proposal->getId().sha1("RESULT".$proposal->getId().strtotime("now").substr($this->container->getParameter('saltkey'),0,10));
 
                 $proposal->setUrlKey($key);
+
+                //URL RESULT
+                if($dataForm["visibleBeforeEnd"]=="yes"){
+                    $proposal->setUrlResultKey($keyResult);
+                }
+
+
+
+
+
                 $entityManager->persist($proposal);
                 $entityManager->flush();
                 $dataForm["proposal"]=$proposal;
@@ -189,6 +223,31 @@ class StartAVote extends Controller
                 $entityManager->flush();
 
                 $dataForm["redirect"]=true;
+
+                //envoi du mail
+                if($dataForm["sendMail"]=="yes"){
+
+                    $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER["HTTP_HOST"];
+
+                    $url=$this->generateUrl('app_jm_vote', array('url_key' => $proposal->getUrlKey()));
+                    $text="Bonjour,\n\r\n\r";
+                    $text.="Un nouveau vote vient d'etre lance sur ".$_SERVER['SERVER_NAME'].".\n\r\n\r";
+                    $text.="Voici le lien vers le formulaire de vote :\n\r".$link.$url;
+                    if($proposal->getUrlResultKey()){
+                        $urlResult=$this->generateUrl('app_jm_vote', array('url_key' => $proposal->getUrlResultKey()));
+                        $text.="\n\r\n\rVoici le lien vers la page de resultat des votes :\n\r".$link.$urlResult;
+                    }
+                    $text.="\n\r\n\r ** Mail envoye automatiquement, merci de ne pas y repondre **";
+
+                    $to      = $dataForm["mailValue"];
+                    $subject = "Lancement d'un nouveau vote";
+                    $message = $text;
+                    $headers = 'From: Jugement Majoritaire<noreply@'.$_SERVER['SERVER_NAME'] . ">\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+                    //TODO MISE EN FORME DU MAIL AVEC TWIG (phpmailer ?)
+                    mail($to, $subject, $message, $headers);
+
+                }
 
             }
 

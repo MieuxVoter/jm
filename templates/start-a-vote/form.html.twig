@@ -101,9 +101,9 @@
                             <div class="switch-label"><b>Limiter le nombre de participants à <input name="limitParticipationValue" type="number" value="{{ limitParticipationValue }}" class="form-control d-inline-block {{ limitParticipationValue_Invalid }}" style="width:75px;" > <div class="invalid-feedback">
                                         Vous devez saisir un nombre entre 2 et 100
                                     </div></b>
-                                <br />le résultat sera visible immédiatement après que le dernier vote soit enregistré</div>
+                                <br />Le résultat sera visible immédiatement après que le dernier vote soit enregistré</div>
                         </li>
-                        <li class="mt-4">
+                       <li class="mt-4">
                             <label class="switch">
                                 <input type="checkbox"  value="yes" name="sendMail"  id="sendMail"  {% if sendMail=="yes" %}checked{% endif %}>
                                 <span class="slider round"></span>
@@ -111,7 +111,7 @@
                             <div class="switch-label"><b>Envoyer par e-mail à l'adresse suivante : <input name="mailValue" type="text" value="{{ mailValue }}" placeholder="votre@email.com" class="form-control d-inline-block {{ mailValue_Invalid }}" style="width:200px;" ><div class="invalid-feedback">
                                     Vérifiez la saisie de cette adresse e-mail.
                                     </div></b>
-                                <br />Le mail contiendra le ou les mails nécessaires au déroulement du vote.<br />Une seule adresse possible (Il ne sera pas conservé sur notre serveur).</div>
+                                <br />Le mail contiendra le ou les liens nécessaires au déroulement du vote.<br />Une seule adresse possible (Il ne sera pas conservé sur notre serveur).</div>
                         </li>
                         <li class="mt-4">
                             <label class="switch">
