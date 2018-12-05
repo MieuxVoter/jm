@@ -111,14 +111,24 @@
                 </div>
 
                 <hr/>
-                {# <div class="col-12">
+                {% if  proposal.isNameRequired  %}
+                 <div class="col-12">
                      <div class="mb-3">
-                         <label for="author" >Votre nom <span class="text-muted">(Optionel)</span></label>
-                         <input type="text" class="form-control" id="author" maxlength="250" name="author" value=""
+                         <label for="author" >Votre nom <span class="text-muted"></span></label>
+                         <input type="text" class="form-control  {{ author_Invalid }}" id="author" maxlength="250" name="author" value=""
                                 placeholder="Votre nom/pseudo">
+                         <div class="invalid-feedback">
+                            A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire pour valider ce vote.
+                         </div>
+                         <small  class="form-text text-muted">
+                             Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur de savoir qui a participé ou non.
+                         </small>
                      </div>
-                 </div>#}
+                 </div>
+                {% endif %}
                 {% include "vote/end-of-proposal.html.twig" %}
+
+
                 <div class="text-center p-4">
                     <button class="btn btn-success "><i class="fas fa-check mr-2"></i>Valider mon vote !</button>
                 </div>

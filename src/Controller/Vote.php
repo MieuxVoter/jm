@@ -40,6 +40,7 @@ class Vote extends Controller
         $dataForm["author"] = $_POST["author"] ?? "";
         $dataForm["error"]=false;
         $dataForm["toastrmessage"]=null;
+        $dataForm["author_Invalid"]="";
 
         $choices=$this->container->getParameter('choice_values');
         $dataForm["choices"]=$choices;
@@ -97,7 +98,10 @@ class Vote extends Controller
 
 
                     //TODO : vérification d'erreurs possibles ?
-
+                    if($proposal->getIsNameRequired() && trim($dataForm["author"])===""){
+                        $error++;
+                        $dataForm["author_Invalid"]="is-invalid";
+                    }
 
 
                     if($error==0) {
@@ -111,7 +115,7 @@ class Vote extends Controller
 
                         $participation = new Participation();
                         $participation->setProposal($proposal);
-                        $participation->setAuthor($dataForm["author"]);
+                        $participation->setAuthor(trim($dataForm["author"]));
                         $date_start = new \DateTime();
                         $date_start->setTimestamp(strtotime("now"));
                         $participation->setDateCreate($date_start);
@@ -181,6 +185,11 @@ class Vote extends Controller
         $repositoryVote = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
         $votes = $repositoryVote->findBy(['proposal' => $proposal->getId()]);
 
+        //recupere les participants
+        $dataTemplate["participations"]=[];
+        $repositoryParticipations = $this->getDoctrine()->getRepository(\App\Entity\Participation::class);
+        $dataTemplate["participations"] = $repositoryParticipations->findBy(['proposal' => $proposal->getId()]);
+        shuffle($dataTemplate["participations"]);
 
         //scrutin
         $ballot = new Ballot();
@@ -195,6 +204,8 @@ class Vote extends Controller
             $ballot->addMention( $mentionToObject[$mention_value]);
             $dataTemplate["mentionLabelColors"][$mention_label]=$dataTemplate["mention_colors"][$mention_value];
         }
+
+
 
 
         //ajoutes les candidats/choix
