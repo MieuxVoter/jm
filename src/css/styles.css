@@ -106,3 +106,34 @@ input:checked + .slider:before {
     margin-left:15px;
 }
 
+
+
+.talkbubble {
+    width: 240px;
+    height: 40px;
+    text-align:center;
+    display:inline-block;
+    padding:5px;
+    background: #eee;
+    position: relative;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    margin-right: -120px;
+    box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, .2);
+
+}
+.talkbubble:before {
+    content: "";
+    position: absolute;
+    right: calc(50% - 13px);
+    top: 40px;
+    width: 0;
+    height: 0;
+    border-right: 13px solid transparent;
+    border-top: 26px solid #eee;
+    border-left: 13px solid transparent;
+
+}
+
