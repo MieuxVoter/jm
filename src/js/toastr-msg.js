@@ -15,3 +15,17 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
 };
+
+
+$(document).ready(function() {
+
+    const $body = $('body');
+
+    $('.toastr-msg').each(function(){
+
+        let $obj=$(this);
+        toastr[$obj.attr("data-type")]($obj.attr("data-text"), $obj.attr("data-title"))
+
+    });
+
+});

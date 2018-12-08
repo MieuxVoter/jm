@@ -25,13 +25,23 @@ class StartAVote extends Controller
         if($redirectSave!=""){
             $isSaved=true;
         }
-
+        $proposal=null;
         $dataForm=[];
+        $dataForm["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
         $dataForm["redirect"]=false;
         $dataForm["author"]="";
         $dataForm["title"]="";
         $dataForm["presentation"]="";
         $dataForm["time_before_end"]="6 hours";
+        $dataForm["visibleBeforeEnd"]="no";
+        $dataForm["limitParticipation"]="no";
+        $dataForm["sendMail"]="no";
+        $dataForm["facebookEnabled"]="no";
+        $dataForm["nameRequired"]="no";
+        $dataForm["mailValue"]="";
+        $dataForm["limitParticipationValue"]="10";
+        $dataForm["collapseOptions"]="yes";
+
 
         $choices=[];
 
@@ -47,6 +57,9 @@ class StartAVote extends Controller
         $dataForm["presentation_Invalid"]="";
         $dataForm["time_before_end_Invalid"]="";
         $dataForm["number_of_choices_Invalid"]="";
+        $dataForm["mailValue_Invalid"]="";
+        $dataForm["limitParticipationValue_Invalid"]="";
+
 
         if(count($_POST)==1){
             //pas de titre
@@ -64,6 +77,33 @@ class StartAVote extends Controller
             $dataForm["title"]=$_POST["title"]??"";
             $dataForm["time_before_end"]=$_POST["time_before_end"]??"6 hours";
             $dataForm["number_of_choices"]=$_POST["number_of_choices"]??0;
+
+            $dataForm["visibleBeforeEnd"]=$_POST["visibleBeforeEnd"]??"no";
+            $dataForm["limitParticipation"]=$_POST["limitParticipation"]??"no";
+            $dataForm["sendMail"]=$_POST["sendMail"]??"no";
+            $dataForm["facebookEnabled"]=$_POST["facebookEnabled"]??"no";
+            $dataForm["nameRequired"]=$_POST["nameRequired"]??"no";
+            $dataForm["mailValue"]=$_POST["mailValue"]??"";
+            $dataForm["limitParticipationValue"]=$_POST["limitParticipationValue"]??10;
+
+            $options=[$dataForm["visibleBeforeEnd"],$dataForm["limitParticipation"],$dataForm["sendMail"], $dataForm["facebookEnabled"],   $dataForm["nameRequired"]];
+            $dataForm["collapseOptions"]="yes";
+            if(in_array("yes",$options)){
+                $dataForm["collapseOptions"]="no";
+            }
+
+            $dataForm["limitParticipationValue_Invalid"]="";
+            if($dataForm["limitParticipation"]=="yes" && ( intval($dataForm["limitParticipationValue"])<2 || intval($dataForm["limitParticipationValue"])>=100 ) ){
+                $dataForm["limitParticipationValue_Invalid"]="is-invalid";
+                 $error++;
+            }
+
+            $dataForm["mailValue_Invalid"]="";
+            if($dataForm["sendMail"]=="yes" && !filter_var($dataForm["mailValue"], FILTER_VALIDATE_EMAIL)){
+                $dataForm["mailValue_Invalid"]="is-invalid";
+                $error++;
+            }
+
 
 
             //pas de titre
@@ -107,6 +147,7 @@ class StartAVote extends Controller
                 }
             }
 
+
             if($nbEnabledChoices<2){
                 $error++;
                 $dataForm["number_of_choices_Invalid"]="is-invalid";
@@ -136,12 +177,41 @@ class StartAVote extends Controller
                 $date_delete->setTimestamp(strtotime("now +".$dataForm["time_before_end"] ."+30 days"));
                 $proposal->setDateDelete($date_delete);
 
+                //Options
+                if( $dataForm["limitParticipation"]=="yes"){
+                    $proposal->setMaxParticipation($dataForm["limitParticipationValue"]);
+                }
+
+                if( $dataForm["facebookEnabled"]=="yes"){
+                    $proposal->setIsFacebookEnabled(true);
+                }else{
+                    $proposal->setIsFacebookEnabled(false);
+                }
+
+                if( $dataForm["nameRequired"]== "yes"){
+                    $proposal->setIsNameRequired(true);
+                }else{
+                    $proposal->setIsNameRequired(false);
+                }
+
+
                 $entityManager->persist($proposal);
                 $entityManager->flush();
 
                 $key=$proposal->getId().sha1($proposal->getId().strtotime("now").substr($this->container->getParameter('saltkey'),0,10));
+                $keyResult=$proposal->getId().sha1("RESULT".$proposal->getId().strtotime("now").substr($this->container->getParameter('saltkey'),0,10));
 
                 $proposal->setUrlKey($key);
+
+                //URL RESULT
+                if($dataForm["visibleBeforeEnd"]=="yes"){
+                    $proposal->setUrlResultKey($keyResult);
+                }
+
+
+
+
+
                 $entityManager->persist($proposal);
                 $entityManager->flush();
                 $dataForm["proposal"]=$proposal;
@@ -155,6 +225,31 @@ class StartAVote extends Controller
 
                 $dataForm["redirect"]=true;
 
+                //envoi du mail
+                if($dataForm["sendMail"]=="yes"){
+
+                    $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://'.$_SERVER["HTTP_HOST"];
+
+                    $url=$this->generateUrl('app_jm_vote', array('url_key' => $proposal->getUrlKey()));
+                    $text="Bonjour,\n\r\n\r";
+                    $text.="Un nouveau vote vient d'etre lance sur ".$_SERVER['SERVER_NAME'].".\n\r\n\r";
+                    $text.="Voici le lien vers le formulaire de vote (ou page de resultat une fois le vote termine) :\n\r".$link.$url;
+                    if($proposal->getUrlResultKey()){
+                        $urlResult=$this->generateUrl('app_jm_vote', array('url_key' => $proposal->getUrlResultKey()));
+                        $text.="\n\r\n\rVoici le lien vers la page de resultat des votes en temps reel :\n\r".$link.$urlResult;
+                    }
+                    $text.="\n\r\n\r ** Mail envoye automatiquement, merci de ne pas y repondre **";
+
+                    $to      = $dataForm["mailValue"];
+                    $subject = "Lancement d'un nouveau vote";
+                    $message = $text;
+                    $headers = 'From: Jugement Majoritaire<noreply@'.$_SERVER['SERVER_NAME'] . ">\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+                    //TODO MISE EN FORME DU MAIL AVEC TWIG (phpmailer ?)
+                    mail($to, $subject, $message, $headers);
+
+                }
+
             }
 
         }
@@ -163,6 +258,12 @@ class StartAVote extends Controller
         $dataForm["number_of_choices"]=count($choices)-1;
 
         if($isSaved){
+            if(is_null($proposal)){
+                $repositoryProposal = $this->getDoctrine()->getRepository(Proposal::class);
+                $proposal = $repositoryProposal->findOneBy(['url_key' => $_GET["key"]]);
+            }
+            $dataForm["proposal"]=$proposal;
+
             return $this->render('start-a-vote/save.html.twig', $dataForm);
         }else{
             return $this->render('start-a-vote/form.html.twig', $dataForm);

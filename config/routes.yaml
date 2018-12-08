@@ -6,6 +6,10 @@ app_jm_home:
  path: /
  controller: App\Controller\Pages::home
 
+app_jm_privacypolicy:
+ path: /privacy-policy
+ controller: App\Controller\Pages::privacyPolicy
+
 app_jm_form:
  path: /start
  controller: App\Controller\StartAVote::form

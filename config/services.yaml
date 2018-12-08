@@ -7,6 +7,7 @@ parameters:
     locale: 'en'
     saltkey: '%env(SALT_KEY)%'
     timezone: '%env(TIMEZONE)%'
+    facebook_api_id: '%env(FACEBOOK_API_ID)%'
     choice_values:    #valeur possible du vote, attention l'ordre doit être respecté
       vote_0: 'Trés Bien'
       vote_1: 'Bien'
