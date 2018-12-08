@@ -30,6 +30,11 @@
                         <p>{{ proposal.presentation }}</p>
                         <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
                     </div>
+                    {% if  proposal.urlResultKey  %}
+                        <div class="mt-4 col-12 alert alert-primary">
+                            <b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des votes en temps réel.
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="row mt-5">
 
@@ -106,17 +111,32 @@
                 </div>
 
                 <hr/>
-                {# <div class="col-12">
+                {% if  proposal.isNameRequired  %}
+                 <div class="col-12">
                      <div class="mb-3">
-                         <label for="author" >Votre nom <span class="text-muted">(Optionel)</span></label>
-                         <input type="text" class="form-control" id="author" maxlength="250" name="author" value=""
+                         <label for="author" >Votre nom <span class="text-muted"></span></label>
+                         <input type="text" class="form-control  {{ author_Invalid }}" id="author" maxlength="250" name="author" value=""
                                 placeholder="Votre nom/pseudo">
+                         <div class="invalid-feedback">
+                            A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire pour valider ce vote.
+                         </div>
+                         <small  class="form-text text-muted">
+                             Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur de savoir qui a participé ou non.
+                         </small>
                      </div>
-                 </div>#}
+                 </div>
+                {% endif %}
                 {% include "vote/end-of-proposal.html.twig" %}
+
+
                 <div class="text-center p-4">
                     <button class="btn btn-success "><i class="fas fa-check mr-2"></i>Valider mon vote !</button>
                 </div>
+                {%  if  proposal.isFacebookEnabled %}
+                    <div class="text-center mt-4 ">
+                        <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url("app_jm_vote",{'url_key':  url_key })|url_encode}}&layout=button&size=large&mobile_iframe=true&appId={{ facebook_api_id }}&width=89&height=28" width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                    </div>
+                {% endif %}
                 <p class="mb-5">&nbsp;</p>
             </form>
         {% endif %}

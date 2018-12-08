@@ -77,6 +77,64 @@
                     </div>
                 </div>
             </div>
+
+            <p>
+                <a class="btn btn-link" data-toggle="collapse" href="#options" role="button" aria-expanded="{% if collapseOptions=="yes" %}false{% else %}true{% endif %}" aria-controls="options" style="text-decoration: underline;">
+                    Options avancées
+                </a>
+            </p>
+            <div class="collapse {% if collapseOptions=="yes" %} {% else %}show{% endif %}" id="options">
+                <div class="card card-body">
+                    <ul style="list-style: none;">
+                        <li>
+                            <label class="switch">
+                                <input type="checkbox"  value="yes" name="visibleBeforeEnd"  id="visibleBeforeEnd"  {% if visibleBeforeEnd=="yes" %}checked{% endif %} >
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Générer un lien permettant de visualiser le résultat du vote à n'importe quel moment</b><br/>Les participants seront informés qu'un utilisateur peut voir les résultats en temps réel (et donc potentiellement influencer le résultat)</div>
+                        </li>
+                        <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="yes" name="limitParticipation"  id="limitParticipation" {% if limitParticipation=="yes" %}checked{% endif %}>
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Limiter le nombre de participants à <input name="limitParticipationValue" type="number" value="{{ limitParticipationValue }}" class="form-control d-inline-block {{ limitParticipationValue_Invalid }}" style="width:75px;" > <div class="invalid-feedback">
+                                        Vous devez saisir un nombre entre 2 et 100
+                                    </div></b>
+                                <br />Le résultat sera visible immédiatement après que le dernier vote soit enregistré</div>
+                        </li>
+                       <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="yes" name="sendMail"  id="sendMail"  {% if sendMail=="yes" %}checked{% endif %}>
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Envoyer par e-mail à l'adresse suivante : <input name="mailValue" type="text" value="{{ mailValue }}" placeholder="votre@email.com" class="form-control d-inline-block {{ mailValue_Invalid }}" style="width:200px;" ><div class="invalid-feedback">
+                                    Vérifiez la saisie de cette adresse e-mail.
+                                    </div></b>
+                                <br />Le mail contiendra le ou les liens nécessaires au déroulement du vote.<br />Une seule adresse possible (Il ne sera pas conservé sur notre serveur).</div>
+                        </li>
+                        <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="yes" name="facebookEnabled"  id="facebookEnabled" {% if facebookEnabled=="yes" %}checked{% endif %}>
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Partage Facebook</b>
+                                <br />Un bouton de partage Facebook sera disponible sur le formulaire de vote et sur la page de résultat<br />Attention : Facebook aura alors accès aux données du scrutin.</div>
+                        </li>
+                        <li class="mt-4">
+                            <label class="switch">
+                                <input type="checkbox"  value="yes" name="nameRequired"  id="nameRequired"  {% if nameRequired=="yes" %}checked{% endif %} >
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="switch-label"><b>Demander un nom/pseudo aux participants</b>
+                                <br />Permet de savoir qui a participé ou non sur la page de résultat<br /></div>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+
             <div class="row mt-4">
                 <div class="col-12">
                     <h2 class="title">Propositions :</h2>
@@ -137,6 +195,10 @@
                 </div>
             </div>
             <hr/>
+
+
+
+
             <div class="row mt-5">
                 <div class="col-12 pb-5 text-center">
                     {#<a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>#}

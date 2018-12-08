@@ -78,6 +78,26 @@ class Proposal
      */
     private $title;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $url_result_key;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $max_participation;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_facebook_enabled;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_name_required;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
@@ -287,6 +307,54 @@ class Proposal
     public function setTitle(?string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getUrlResultKey(): ?string
+    {
+        return $this->url_result_key;
+    }
+
+    public function setUrlResultKey(?string $url_result_key): self
+    {
+        $this->url_result_key = $url_result_key;
+
+        return $this;
+    }
+
+    public function getMaxParticipation(): ?int
+    {
+        return $this->max_participation;
+    }
+
+    public function setMaxParticipation(?int $max_participation): self
+    {
+        $this->max_participation = $max_participation;
+
+        return $this;
+    }
+
+    public function getIsFacebookEnabled(): ?bool
+    {
+        return $this->is_facebook_enabled;
+    }
+
+    public function setIsFacebookEnabled(bool $is_facebook_enabled): self
+    {
+        $this->is_facebook_enabled = $is_facebook_enabled;
+
+        return $this;
+    }
+
+    public function getIsNameRequired(): ?bool
+    {
+        return $this->is_name_required;
+    }
+
+    public function setIsNameRequired(?bool $is_name_required): self
+    {
+        $this->is_name_required = $is_name_required;
 
         return $this;
     }

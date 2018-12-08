@@ -5,6 +5,11 @@
 {% block ogdescription %}{{ proposal.presentation }}{% endblock %}
 
 {% block main %}
+    {%  if  proposal.isFacebookEnabled %}
+        <div class="text-center mt-4 ">
+            <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url("app_jm_vote",{'url_key':  proposal.urlKey })|url_encode}}&layout=button&size=large&mobile_iframe=true&appId={{ facebook_api_id }}&width=89&height=28" width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+        </div>
+    {% endif %}
     <div class="container">
 
         {% if proposal is null %}
@@ -29,13 +34,40 @@
             </div>
             <div class="row mt-5 ">
                 <div class="col-12">
-                    <h4 class="mt-2 title">Résultat</h4>
+                    <h4 class="mt-2 title">Candidat/proposition retenu(e)</h4>
                     <div class="col-12 p-0">
                         <div class="card mb-4   shadow p-3 mb-5 bg-white rounded align-self-stretch">
                             <div class="card-body d-flex flex-column justify-content-between">
-                                <div><h5 class="card-title title mt-0 "><img src="/css/img/{{ mentionLabelToValue[result[0].majorityMention.label] }}.png" style="width:32px;" class="mr-2"> {{ result[0].candidate.label }}</h5>
-                                    <hr />
-                                    <p class="card-text"> {{ result[0].candidate.explanation }}</p>
+                                <div><h5 class="card-title title mt-0 ">{{ result[0].candidate.label }}</h5>
+                                    <p class="card-text mt-2 mb-2"> {{ result[0].candidate.explanation }}</p>
+                                    <table style="width:100%;" cellpadding="0" cellspacing="0" >
+                                        <td style="width:50%;text-align:right;"><div class="talkbubble"><img src="/css/img/{{ mentionLabelToValue[result[0].majorityMention.label] }}.png" style="width:32px;" class="mr-2"> {{ winnerMention }}* </div></td>
+                                        <td style="width:50%"></td>
+                                    </table>
+                                    <table style="width:100%;" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                    {% for choice in proposal.choices %}
+                                        {% if choice.label==result[0].candidate.label  %}
+
+                                            {% for mention_value,mention_label  in mentions %}
+                                                {% set valueMention=meritProfiles[choice.id][mention_value] %}
+                                                    {% if valueMention>1 %}
+                                                        <td style="height:15px;white-space: nowrap;color:#ffffff;padding:5px;text-center;width:{{ valueMention|round(2,'floor') }}%;background-color:#{{ mention_colors[mention_value] }}">
+                                                        </td>
+                                                        {# {{ valueMention|round(2,'floor')|number_format(2, '.', ',') }}% #}
+                                                    {% endif %}
+
+                                            {% endfor %}
+
+                                        {% endif %}
+                                    {% endfor %}</tr></table>
+                                    <table style="width:100%;" cellpadding="0" cellspacing="0" >
+                                        <td style="width:30%;text-align:left;">0%</td>
+                                        <td style="width:40%;text-align:center;">50%</td>
+                                        <td style="width:30%;text-align:right;">100%</td>
+                                    </table>
+                                    <p class="mt-2"><small class="text-muted">*50% des participants considèrent que ce candidat (ou cette proposition) est au moins "{{ winnerMention }}"</small></p>
+
                                 </div>
                             </div>
                         </div>
@@ -43,10 +75,28 @@
 
 
 
-                    <div class="text-muted" style="margin-top:-30px;"><i>Déterminé
-                            par {{ proposal.participations|length }} participations et la mention majoritaire
-                            : {{ winnerMention }}</i></div>
 
+                    {% if proposal.isNameRequired %}
+
+                         <h4 class="mt-2 title mt-5">Participants</h4>
+                    <div class="col-12 p-0">
+                        <div class="card mb-4   shadow p-3 mb-5 bg-white rounded align-self-stretch">
+                            <div class="card-body d-flex flex-column justify-content-between">
+
+                        {% if participations|length>=2 %}
+                            {% for participation in participations %}{% if loop.index >1 %},  {% endif %}{{ participation.author }}{% endfor %}
+                        {% else %}
+                            <em>Pas assez de participations pour afficher le nom des participants ... (minimum 2)</em>
+                        {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                        {% else %}
+                            <div class="text-muted" style="margin-top:-30px;"><i>Déterminé
+                                    par {{ proposal.participations|length }} participations
+                                    </i></div>
+
+                    {% endif %}
 
 
                 </div>
