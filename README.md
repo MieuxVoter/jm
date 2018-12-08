@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 2.0.0
+- Add Advanced option : Admin link, limit max users, send links by mail, Facebook sharing, asking name of users 
+
 #### 1.7.4
 - Bad default value on vote form
 
