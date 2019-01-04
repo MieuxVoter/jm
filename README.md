@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 2.0.1
+- Result page : display the exact percentage instead of 50% in the explanation sentence
+
 ### 2.0.0
 - Add Advanced option : Admin link, limit max users, send links by mail, Facebook sharing, asking name of users 
 
