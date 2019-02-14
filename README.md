@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 2.0.2
+- Start vote form : The limit of the number of candidates is now 100
+
 ### 2.0.1
 - Result page : display the exact percentage instead of 50% in the explanation sentence
 
