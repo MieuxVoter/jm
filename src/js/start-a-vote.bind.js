@@ -10,7 +10,7 @@ $(document).ready(function(){
        const $inputNumberOfChoices=$('#number_of_choices');
        const nItem=parseInt($inputNumberOfChoices.val())+1;
 
-       if(nItem<=50){
+       if(nItem<=100){
            $inputNumberOfChoices.val(nItem);
            let sItem=nItem;
            if(nItem<10){
