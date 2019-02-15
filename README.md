@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+#### 2.0.3
+- Remove links with Google Font and Youtube
+
 #### 2.0.2
 - Start vote form : The limit of the number of candidates is now 100
 
