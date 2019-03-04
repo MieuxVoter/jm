@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 22:38+0100\n"
-"PO-Revision-Date: 2019-03-04 22:38+0100\n"
+"POT-Creation-Date: 2019-03-04 22:43+0100\n"
+"PO-Revision-Date: 2019-03-04 22:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -30,7 +30,7 @@ msgstr "Home"
 msgid "Lancer un vote"
 msgstr "Launch a vote"
 
-#: body.html.twig:25
+#: body.html.twig:25 pages/privacy-policy.html.twig:6
 msgid "Politique de confidentialité"
 msgstr "Privacy Policy"
 
@@ -256,7 +256,7 @@ msgstr "WARNING: Project in test phase!"
 msgid "Code source de ce projet WEB :"
 msgstr "SOURCE Code for this WEB project:"
 
-#: pages/home.html.twig:146
+#: pages/home.html.twig:146 pages/privacy-policy.html.twig:21
 msgid "Projet WEB sur GitHub"
 msgstr "WEB Project on GitHub"
 
@@ -267,3 +267,60 @@ msgstr "SOURCE Code of the majority Judgement module in PHP:"
 #: pages/home.html.twig:148
 msgid "Class PHP sur GitHub"
 msgstr "PHP Class on GitHub"
+
+#: pages/privacy-policy.html.twig:8
+msgid ""
+"Ce site n'a aucun objectif commercial ou politique, il est (et restera) "
+"toujours gratuit, sans publicité et confidentiel (sans divulgation "
+"d'informations à des tiers)."
+msgstr ""
+"This site has no commercial or political objective, it is (and will remain) "
+"always free, without publicity and confidential (without divulging "
+"information to third parties)."
+
+#: pages/privacy-policy.html.twig:10
+msgid ""
+"Ce site ne conserve aucune donnée personnelle (pas d'inscription) et "
+"n'utilise pas de cookie. Les adresses e-mails éventuellement saisies ne sont "
+"pas sauvegardées. Toutes les données des votes sont automatiquement "
+"supprimées 30 jours après la fin du vote."
+msgstr ""
+"This site does not retain any personal data (no registration) and does not "
+"use a cookie. Email addresses that you may have entered are not saved. All "
+"voting data is automatically deleted 30 days after the end of the vote."
+
+#: pages/privacy-policy.html.twig:11
+msgid ""
+"Une option permet de demander la saisie d'un nom/prenom ou pseudo des "
+"participants. Dans ce cas, cette information sera conservée jusqu'à 30 jours "
+"après la fin du vote."
+msgstr ""
+"An option allows to request the entry of a name/surname or pseudo of the "
+"participants. In this case, this information will be kept up to 30 days "
+"after the end of the vote."
+
+#: pages/privacy-policy.html.twig:12
+msgid ""
+"En dehors d'une éventuelle opération de maintenance par un technicien "
+"personne n'accède aux données des votes (pas d'analyse ou de statistiques)."
+msgstr ""
+"Apart from a possible maintenance operation by a technician no one accesses "
+"the voting data (no analysis or statistics)."
+
+#: pages/privacy-policy.html.twig:13
+msgid ""
+"<b>ATTENTION :</b> Une option lors de la création d'un vote permet "
+"d'afficher un bouton de partage Facebook, en activant celle-ci vous activez "
+"également l'interconnexion avec FACEBOOK (cookies, etc..)"
+msgstr ""
+"<b> WARNING: </b> An option when creating a vote allows you to display a "
+"Facebook Share button, by activating it you also activate the "
+"interconnection with Facebook (cookies, etc...)"
+
+#: pages/privacy-policy.html.twig:14
+msgid "Pour toutes questions :"
+msgstr "For any questions:"
+
+#: pages/privacy-policy.html.twig:21
+msgid "Code source de ce projet :"
+msgstr "Source code of this project:"
