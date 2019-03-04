@@ -24,6 +24,10 @@ class LocaleSubscriber implements EventSubscriberInterface
 
         if(is_null($localeSession)){
             $localSession=$this->defaultLocale;
+            $localeBrowser=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+            if($localeBrowser==="fr" || $localeBrowser==="en"){
+                $localSession=$localeBrowser;
+            }
             $request->getSession()->set('_locale', $localSession);
         }
 

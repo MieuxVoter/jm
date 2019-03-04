@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-03-04 09:01+0100\n"
+"PO-Revision-Date: 2019-03-04 09:08+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ../templates\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: body.html.twig:19
+msgid "Accueil"
+msgstr "Home"
+
+#: body.html.twig:22
+msgid "Lancer un vote"
+msgstr "Launch a vote"
+
+#: body.html.twig:25
+msgid "Politique de confidentialité"
+msgstr "Privacy Policy"
+
+#: body.html.twig:32
+msgid "Codes source"
+msgstr "Source Codes"
+
+#: body.html.twig:34
+msgid "Plateforme de vote"
+msgstr "Voting platform"
+
+#: body.html.twig:35
+msgid "Class PHP"
+msgstr "PHP Class"
+
+#: body.html.twig:41
+msgid "Version française"
+msgstr "French Version"
+
+#: body.html.twig:44
+msgid "English version"
+msgstr "English version"
