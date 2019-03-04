@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 22:11+0100\n"
-"PO-Revision-Date: 2019-03-04 22:11+0100\n"
+"POT-Creation-Date: 2019-03-04 22:38+0100\n"
+"PO-Revision-Date: 2019-03-04 22:38+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -26,7 +26,7 @@ msgstr "Plateforme de vote utilisant le jugement majoritaire."
 msgid "Accueil"
 msgstr "Accueil"
 
-#: body.html.twig:22
+#: body.html.twig:22 pages/home.html.twig:16
 msgid "Lancer un vote"
 msgstr "Lancer un vote"
 
@@ -53,3 +53,223 @@ msgstr "Version française"
 #: body.html.twig:44
 msgid "English version"
 msgstr "English version"
+
+#: pages/home.html.twig:8
+msgid ""
+"Simple, gratuit et anonyme : organisez un vote à l'aide du Jugement "
+"Majoritaire."
+msgstr ""
+"Simple, gratuit et anonyme : organisez un vote à l'aide du Jugement "
+"Majoritaire."
+
+#: pages/home.html.twig:12
+msgid "Titre du vote"
+msgstr "Titre du vote"
+
+#: pages/home.html.twig:20
+msgid "Pas de publicité et pas de cookie publicitaire."
+msgstr "Pas de publicité et pas de cookie publicitaire."
+
+#: pages/home.html.twig:29
+msgid "Le Jugement Majoritaire, c'est quoi ?"
+msgstr "Le Jugement Majoritaire, c'est quoi ?"
+
+#: pages/home.html.twig:43
+msgid ""
+"Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur "
+"le site de l'association Mieux Voter :"
+msgstr ""
+"Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur "
+"le site de l'association Mieux Voter :"
+
+#: pages/home.html.twig:57
+msgid "Pour qui ?"
+msgstr "Pour qui ?"
+
+#: pages/home.html.twig:61
+msgid ""
+"Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) "
+"et vous désirez soumettre une proposition au Jugement\n"
+"                        Majoritaire."
+msgstr ""
+"Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) "
+"et vous désirez soumettre une proposition au Jugement\n"
+"                        Majoritaire."
+
+#: pages/home.html.twig:64
+msgid ""
+"Cet outil est particulièrement adapté à la prise de décisions en groupe, "
+"dans un contexte de vote non confidentiel où chaque participant donne son "
+"avis. Par exemple : l'un après l'autre derrière un même écran."
+msgstr ""
+"Cet outil est particulièrement adapté à la prise de décisions en groupe, "
+"dans un contexte de vote non confidentiel où chaque participant donne son "
+"avis. Par exemple : l'un après l'autre derrière un même écran."
+
+#: pages/home.html.twig:68
+msgid ""
+"Cette page n'est pas conçue pour des votes à fort enjeux car aucune "
+"vérification d'identité des votants n'est effectuée. Un participant peut "
+"voter autant de fois qu'il le souhaite.\n"
+"                        Il est cependant possible de savoir combien de "
+"participations ont été enregistrées à la fin d'un vote. Il est donc possible "
+"pour un groupe de personnes de déceller un problème, si il y a plus de "
+"participations que de personnes."
+msgstr ""
+"Cette page n'est pas conçue pour des votes à fort enjeux car aucune "
+"vérification d'identité des votants n'est effectuée. Un participant peut "
+"voter autant de fois qu'il le souhaite.\n"
+"                        Il est cependant possible de savoir combien de "
+"participations ont été enregistrées à la fin d'un vote. Il est donc possible "
+"pour un groupe de personnes de déceller un problème, si il y a plus de "
+"participations que de personnes."
+
+#: pages/home.html.twig:84
+msgid "Comment ça marche ?"
+msgstr "Comment ça marche ?"
+
+#: pages/home.html.twig:89
+msgid ""
+"Saisissez un titre et une description afin d'expliquer aux participants la "
+"raison de ce vote."
+msgstr ""
+"Saisissez un titre et une description afin d'expliquer aux participants la "
+"raison de ce vote."
+
+#: pages/home.html.twig:90
+msgid ""
+"Saisissez la durée de scrutin (le résultat ne sera visible qu'<u>une fois le "
+"vote terminé</u>)"
+msgstr ""
+"Saisissez la durée de scrutin (le résultat ne sera visible qu'<u>une fois le "
+"vote terminé</u>)"
+
+#: pages/home.html.twig:91
+msgid "Saisissez les propositions/candidats possibles."
+msgstr "Saisissez les propositions/candidats possibles."
+
+#: pages/home.html.twig:92
+msgid "Validez le formulaire."
+msgstr "Validez le formulaire."
+
+#: pages/home.html.twig:93
+msgid ""
+"Copiez-collez le lien fourni et partagez le aux personnes de votre choix."
+msgstr ""
+"Copiez-collez le lien fourni et partagez le aux personnes de votre choix."
+
+#: pages/home.html.twig:94
+msgid "Attention ! Conservez bien ce lien."
+msgstr "Attention ! Conservez bien ce lien."
+
+#: pages/home.html.twig:95
+msgid ""
+"Il vous permettra de voter <b>ET</b> de consulter le résultat du scrutin "
+"terminé."
+msgstr ""
+"Il vous permettra de voter <b>ET</b> de consulter le résultat du scrutin "
+"terminé."
+
+#: pages/home.html.twig:96
+msgid ""
+"Sur la page de vote, les participants peuvent donner leur avis sur chacun(e) "
+"des propositions/candidats."
+msgstr ""
+"Sur la page de vote, les participants peuvent donner leur avis sur chacun(e) "
+"des propositions/candidats."
+
+#: pages/home.html.twig:99
+msgid ""
+"Tous les votes sont <b>confidentiels</b>. Nous ne conservons <b>aucune "
+"donnée\n"
+"                                personnelle</b>. Les votes et les "
+"propositions seront <b>automatiquement supprimés</b>\n"
+"                            30 jours après la fin du vote."
+msgstr ""
+"Tous les votes sont <b>confidentiels</b>. Nous ne conservons <b>aucune "
+"donnée\n"
+"                                personnelle</b>. Les votes et les "
+"propositions seront <b>automatiquement supprimés</b>\n"
+"                            30 jours après la fin du vote."
+
+#: pages/home.html.twig:116
+msgid "Questions fréquentes ?"
+msgstr "Questions fréquentes ?"
+
+#: pages/home.html.twig:121
+msgid "Pourquoi c'est gratuit ?"
+msgstr "Pourquoi c'est gratuit ?"
+
+#: pages/home.html.twig:122
+msgid ""
+"Notre but est uniquement de promouvoir le Jugement Majoritaire. Nous pensons "
+"que c'est en l'utilisant dans la vie de tous les jours que nous pourrons "
+"faire progresser l'idée qu'il s'agit d'un mode de scrutin bien plus efficace "
+"que le simple comptage du nombre de voix."
+msgstr ""
+"Notre but est uniquement de promouvoir le Jugement Majoritaire. Nous pensons "
+"que c'est en l'utilisant dans la vie de tous les jours que nous pourrons "
+"faire progresser l'idée qu'il s'agit d'un mode de scrutin bien plus efficace "
+"que le simple comptage du nombre de voix."
+
+#: pages/home.html.twig:124
+msgid "Comment puis-je modifier mon vote ou ma participation ?"
+msgstr "Comment puis-je modifier mon vote ou ma participation ?"
+
+#: pages/home.html.twig:125
+msgid ""
+"Afin de préserver l'intégrité du résultat, ce n'est malheureusement pas "
+"possible. En revanche, il est trés simple de recommencer un nouveau vote "
+"(aucune limite de création)."
+msgstr ""
+"Afin de préserver l'intégrité du résultat, ce n'est malheureusement pas "
+"possible. En revanche, il est trés simple de recommencer un nouveau vote "
+"(aucune limite de création)."
+
+#: pages/home.html.twig:127
+msgid "J'ai perdu mon lien, comment puis je le récupérer ?"
+msgstr "J'ai perdu mon lien, comment puis je le récupérer ?"
+
+#: pages/home.html.twig:128
+msgid ""
+"N'ayant aucune information nous permettant de vous identifier, ce n'est "
+"malheureusement pas possible. En revanche, il est trés simple de recommencer "
+"un nouveau vote (aucune limite de création)."
+msgstr ""
+"N'ayant aucune information nous permettant de vous identifier, ce n'est "
+"malheureusement pas possible. En revanche, il est trés simple de recommencer "
+"un nouveau vote (aucune limite de création)."
+
+#: pages/home.html.twig:130
+msgid ""
+"Moi aussi je souhaite promouvoir le Jugement Majoritaire, que puis-je faire ?"
+msgstr ""
+"Moi aussi je souhaite promouvoir le Jugement Majoritaire, que puis-je faire ?"
+
+#: pages/home.html.twig:131
+msgid ""
+"Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici "
+"l'adresse de leur site :"
+msgstr ""
+"Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici "
+"l'adresse de leur site :"
+
+#: pages/home.html.twig:145
+msgid "ATTENTION : Projet en phase de test !"
+msgstr "ATTENTION : Projet en phase de test !"
+
+#: pages/home.html.twig:146
+msgid "Code source de ce projet WEB :"
+msgstr "Code source de ce projet WEB :"
+
+#: pages/home.html.twig:146
+msgid "Projet WEB sur GitHub"
+msgstr "Projet WEB sur GitHub"
+
+#: pages/home.html.twig:147
+msgid "Code source du module Jugement Majoritaire en PHP :"
+msgstr "Code source du module Jugement Majoritaire en PHP :"
+
+#: pages/home.html.twig:148
+msgid "Class PHP sur GitHub"
+msgstr "Class PHP sur GitHub"
