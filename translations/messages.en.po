@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 23:02+0100\n"
-"PO-Revision-Date: 2019-03-04 23:06+0100\n"
+"POT-Creation-Date: 2019-03-04 23:15+0100\n"
+"PO-Revision-Date: 2019-03-04 23:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -514,22 +514,30 @@ msgid "Vérifiez la saisie de cette adresse e-mail."
 msgstr "Check the entry of this email address."
 
 #: start-a-vote/form.html.twig:181
-msgid ""
-"Le mail contiendra le ou les liens nécessaires au déroulement du vote.<br /"
-">Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
+msgid "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
 msgstr ""
-"The mail will contain the link (or links) required to conduct the vote. < br/"
-"> Only one possible address (it will not be kept on our server)."
+"The mail will contain the link (or links) necessary for the conduct of the "
+"vote."
+
+#: start-a-vote/form.html.twig:181
+msgid "Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
+msgstr "Only one possible address (it will not be kept on our server)."
+
+#: start-a-vote/form.html.twig:188
+msgid "Partage Facebook"
+msgstr "Facebook sharing"
 
 #: start-a-vote/form.html.twig:189
 msgid ""
 "Un bouton de partage Facebook sera disponible sur le formulaire de vote et "
-"sur la page de résultat<br />Attention : Facebook aura alors accès aux "
-"données du scrutin."
+"sur la page de résultat"
 msgstr ""
 "A Facebook sharing button will be available on the voting form and on the "
-"result page < br/> Attention: Facebook will then have access to the poll "
-"data."
+"result page"
+
+#: start-a-vote/form.html.twig:189
+msgid "Attention : Facebook aura alors accès aux données du scrutin."
+msgstr "Warining: Facebook will then have access to the poll data."
 
 #: start-a-vote/form.html.twig:196
 msgid "Demander un nom/pseudo aux participants"
@@ -546,3 +554,44 @@ msgstr "Warning! Keep this link well."
 #: start-a-vote/form.html.twig:211
 msgid "Valider"
 msgstr "Submit"
+
+#: start-a-vote/save.html.twig:12
+msgid "Proposition enregistrée !"
+msgstr "Proposals"
+
+#: start-a-vote/save.html.twig:13
+msgid "Vous pouvez maintenant partager le lien du vote aux participants :"
+msgstr "You can now share the voting link to the participants:"
+
+#: start-a-vote/save.html.twig:19
+msgid "Veuillez patienter ..."
+msgstr "Please wait..."
+
+#: start-a-vote/save.html.twig:28 start-a-vote/save.html.twig:50
+msgid "Copier"
+msgstr "Copy"
+
+#: start-a-vote/save.html.twig:32
+msgid "Pensez a enregistrer ce lien dans les favoris de votre navigateur !"
+msgstr "Remember to save this link in your browser favorites!"
+
+#: start-a-vote/save.html.twig:36
+msgid ""
+"Vous avez opté pour l'option partage <b>FACEBOOK</b>. Voici donc le bouton "
+"pour partager ce vote :"
+msgstr ""
+"You have opted for the share <b> FACEBOOK </b> option. So here is the button "
+"to share this vote:"
+
+#: start-a-vote/save.html.twig:43
+msgid "Lien <u>d'aperçu des résultats</u> en temps réel :"
+msgstr "<u>Results Overview</u> link in real time:"
+
+#: start-a-vote/save.html.twig:54
+msgid ""
+"Pensez a enregistrer également ce lien dans les favoris de votre navigateur !"
+msgstr "Remember to also save this link in your browser favorites!"
+
+#: start-a-vote/save.html.twig:68
+msgid "Participer maintenant"
+msgstr "Join now"

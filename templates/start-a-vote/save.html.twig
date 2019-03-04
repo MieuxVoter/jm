@@ -9,14 +9,14 @@
         {% endif %}
         <div class="row ">
             <div class="col-12 text-center">
-                <h1 class="title mb-5">Proposition enregistrée !</h1>
-                <p>Vous pouvez maintenant partager le lien du vote aux participants :</p>
+                <h1 class="title mb-5">{% trans %}Proposition enregistrée !{% endtrans %}</h1>
+                <p>{% trans %}Vous pouvez maintenant partager le lien du vote aux participants :{% endtrans %}</p>
             </div>
         </div>
         <div class="row ">
             <div class="col-12 col-md-6 m-auto text-center">
                 {% if redirect %}
-                <input type="text" class="form-control" disabled value="Veuillez patienter ...">
+                <input type="text" class="form-control" disabled value="{% trans %}Veuillez patienter ...{% endtrans %}">
                 {% else %}
 
                 <div class="input-group  ">
@@ -25,33 +25,33 @@
 
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary copy-to-clipboard" data-target="#url" type="button"><i
-                                    class="fas fa-copy mr-2"></i> Copier</button>
+                                    class="fas fa-copy mr-2"></i> {% trans %}Copier{% endtrans %}</button>
                     </div>
 
                 </div>
-                <small class="text-primary">Pensez a enregistrer ce lien dans les favoris de votre navigateur !</small>
+                <small class="text-primary">{% trans %}Pensez a enregistrer ce lien dans les favoris de votre navigateur !{% endtrans %}</small>
 
                 {%  if  proposal.isFacebookEnabled %}
                 <div class="text-center mt-4 alert alert-primary ">
-                    <p>Vous avez opté pour l'option partage <b>FACEBOOK</b>. Voici donc le bouton pour partager ce vote :</p>
+                    <p>{% trans %}Vous avez opté pour l'option partage <b>FACEBOOK</b>. Voici donc le bouton pour partager ce vote :{% endtrans %}</p>
                     <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url("app_jm_vote",{'url_key':  app.request.query.get('key') })|url_encode}}&layout=button&size=large&mobile_iframe=true&appId={{ facebook_api_id }}&width=89&height=28" width="89" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                 </div>
                 {% endif %}
 
                 {% if  proposal.urlResultKey  %}
                     <div class="col-12 text-center mt-5">
-                        <p>Lien <u>d'aperçu des résultats</u> en temps réel :</p>
+                        <p>{% trans %}Lien <u>d'aperçu des résultats</u> en temps réel :{% endtrans %}</p>
                         <div class="input-group  ">
                             <input type="text" class="form-control autoselect" id="url_result"
                                    value="{{ url("app_jm_vote",{'url_key':  proposal.urlResultKey }) }}">
 
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary copy-to-clipboard" data-target="#url_result" type="button"><i
-                                            class="fas fa-copy mr-2"></i> Copier</button>
+                                            class="fas fa-copy mr-2"></i> {% trans %}Copier{% endtrans %}</button>
                             </div>
 
                         </div>
-                        <small class="text-primary">Pensez a enregistrer également ce lien dans les favoris de votre navigateur !</small>
+                        <small class="text-primary">{% trans %}Pensez a enregistrer également ce lien dans les favoris de votre navigateur !{% endtrans %}</small>
                     </div>
                 {% endif %}
 
@@ -65,7 +65,7 @@
             <div class="col-12 text-center">
 
                 <a href="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}" class="btn btn-success"><i
-                            class="fas fa-users mr-2"></i>Participer maintenant</a>
+                            class="fas fa-users mr-2"></i>{% trans %}Participer maintenant{% endtrans %}</a>
 
                 {% endif %}
 
