@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 22:43+0100\n"
-"PO-Revision-Date: 2019-03-04 22:44+0100\n"
+"POT-Creation-Date: 2019-03-04 23:02+0100\n"
+"PO-Revision-Date: 2019-03-04 23:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -61,7 +61,7 @@ msgid ""
 msgstr ""
 "Simple, free and anonymous: organize a vote using the majority judgment."
 
-#: pages/home.html.twig:12
+#: pages/home.html.twig:12 start-a-vote/form.html.twig:23
 msgid "Titre du vote"
 msgstr "Vote title"
 
@@ -324,3 +324,225 @@ msgstr "For any questions:"
 #: pages/privacy-policy.html.twig:21
 msgid "Code source de ce projet :"
 msgstr "Source code of this project:"
+
+#: start-a-vote/form.html.twig:10
+msgid "Nouveau vote"
+msgstr "New vote"
+
+#: start-a-vote/form.html.twig:21
+msgid "Titre"
+msgstr "Title"
+
+#: start-a-vote/form.html.twig:21
+msgid "(obligatoire)"
+msgstr "(mandatory)"
+
+#: start-a-vote/form.html.twig:25
+msgid "Le titre saisi n'est pas correcte !"
+msgstr "The title entered is not correct!"
+
+#: start-a-vote/form.html.twig:33
+msgid "Auteur"
+msgstr "Author"
+
+#: start-a-vote/form.html.twig:33
+msgid "(Optionel)"
+msgstr "(Optional)"
+
+#: start-a-vote/form.html.twig:35
+msgid "Votre nom/pseudo"
+msgstr "Your name/Nickname"
+
+#: start-a-vote/form.html.twig:42
+msgid "Présentation"
+msgstr "Presentation"
+
+#: start-a-vote/form.html.twig:42
+msgid "(500 caractères max.)"
+msgstr "(500 characters max.)"
+
+#: start-a-vote/form.html.twig:44
+msgid "Décrivez ici votre proposition de départ ou la raison de votre vote"
+msgstr "Describe your initial proposal or the reason for your vote"
+
+#: start-a-vote/form.html.twig:46
+msgid "La présentation saisie n'est pas correcte !"
+msgstr "The input presentation is not correct!"
+
+#: start-a-vote/form.html.twig:54
+msgid "Fin du scrutin :"
+msgstr "End of poll:"
+
+#: start-a-vote/form.html.twig:56
+msgid "Dans 5 min."
+msgstr "In 5 minutes."
+
+#: start-a-vote/form.html.twig:57
+msgid "Dans 10 min."
+msgstr "In 10 minutes."
+
+#: start-a-vote/form.html.twig:58
+msgid "Dans 15 min."
+msgstr "In 15 minutes."
+
+#: start-a-vote/form.html.twig:59
+msgid "Dans 30 min."
+msgstr "In 30 minutes."
+
+#: start-a-vote/form.html.twig:60
+msgid "Dans 1h"
+msgstr "In 1h"
+
+#: start-a-vote/form.html.twig:61
+msgid "Dans 2h"
+msgstr "In 2h"
+
+#: start-a-vote/form.html.twig:62
+msgid "Dans 6h"
+msgstr "In 6h"
+
+#: start-a-vote/form.html.twig:63
+msgid "Dans 12h"
+msgstr "In 12h"
+
+#: start-a-vote/form.html.twig:64
+msgid "Dans 24h"
+msgstr "In 24h"
+
+#: start-a-vote/form.html.twig:65
+msgid "Dans 48h"
+msgstr "In 48h"
+
+#: start-a-vote/form.html.twig:66
+msgid "Dans une semaine"
+msgstr "In a week"
+
+#: start-a-vote/form.html.twig:67
+msgid "Dans deux semaines"
+msgstr "In two weeks"
+
+#: start-a-vote/form.html.twig:68
+msgid "Dans trois semaines"
+msgstr "In three weeks"
+
+#: start-a-vote/form.html.twig:69
+msgid "Dans un mois"
+msgstr "In a month"
+
+#: start-a-vote/form.html.twig:70
+msgid "Dans deux mois"
+msgstr "In two months"
+
+#: start-a-vote/form.html.twig:71
+msgid "Dans trois mois"
+msgstr "In three months"
+
+#: start-a-vote/form.html.twig:72
+msgid "Dans six mois"
+msgstr "In six months"
+
+#: start-a-vote/form.html.twig:75
+msgid "La durée saisie n'est pas correcte !"
+msgstr "The time entered is not correct!"
+
+#: start-a-vote/form.html.twig:85
+msgid "Propositions"
+msgstr "Proposals"
+
+#: start-a-vote/form.html.twig:111
+msgid "Proposition/Candidat :"
+msgstr "Proposal/Candidate:"
+
+#: start-a-vote/form.html.twig:111
+msgid "(150 car. max.)"
+msgstr "(150 car. Max.)"
+
+#: start-a-vote/form.html.twig:115
+msgid "Proposition ..."
+msgstr "Proposal..."
+
+#: start-a-vote/form.html.twig:117
+msgid "Explication de cette proposition ..."
+msgstr "Explanation of this proposal..."
+
+#: start-a-vote/form.html.twig:131
+msgid "Merci de saisir au moins deux propositions (avec du texte) !"
+msgstr "Please enter at least two proposals (with text)!"
+
+#: start-a-vote/form.html.twig:137
+msgid "Ajouter une proposition"
+msgstr "Add a proposal"
+
+#: start-a-vote/form.html.twig:149
+msgid "Options facultatives"
+msgstr "Optional Options"
+
+#: start-a-vote/form.html.twig:161
+msgid ""
+"Générer un lien permettant de visualiser le résultat du vote à n'importe "
+"quel moment</b><br/>Les participants seront informés que l'organisateur du "
+"vote peut consulter les résultats en temps réel."
+msgstr ""
+"Generate a link to view the outcome of the vote at any time </b> <br/> "
+"participants will be informed that the voting organizer can view the results "
+"in real time."
+
+#: start-a-vote/form.html.twig:168
+msgid "Limiter le nombre de participants à"
+msgstr "Limit the number of participants to"
+
+#: start-a-vote/form.html.twig:169
+msgid "Vous devez saisir un nombre entre 2 et 100"
+msgstr "You must enter a number between 2 and 100"
+
+#: start-a-vote/form.html.twig:171
+msgid ""
+"Le résultat sera visible immédiatement après que le dernier vote soit "
+"enregistré"
+msgstr "The result will be visible immediately after the last vote is recorded"
+
+#: start-a-vote/form.html.twig:178
+msgid "Envoyer par e-mail à l'adresse suivante :"
+msgstr "Send by e-mail to the following address:"
+
+#: start-a-vote/form.html.twig:178
+msgid "votre@email.com"
+msgstr "your@mail.com"
+
+#: start-a-vote/form.html.twig:179
+msgid "Vérifiez la saisie de cette adresse e-mail."
+msgstr "Check the entry of this email address."
+
+#: start-a-vote/form.html.twig:181
+msgid ""
+"Le mail contiendra le ou les liens nécessaires au déroulement du vote.<br /"
+">Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
+msgstr ""
+"The mail will contain the link (or links) required to conduct the vote. < br/"
+"> Only one possible address (it will not be kept on our server)."
+
+#: start-a-vote/form.html.twig:189
+msgid ""
+"Un bouton de partage Facebook sera disponible sur le formulaire de vote et "
+"sur la page de résultat<br />Attention : Facebook aura alors accès aux "
+"données du scrutin."
+msgstr ""
+"A Facebook sharing button will be available on the voting form and on the "
+"result page < br/> Attention: Facebook will then have access to the poll "
+"data."
+
+#: start-a-vote/form.html.twig:196
+msgid "Demander un nom/pseudo aux participants"
+msgstr "Ask participants for a name/nickname"
+
+#: start-a-vote/form.html.twig:197
+msgid "Permet de savoir qui a participé ou non sur la page de résultat"
+msgstr "Lets you know who participated or not on the result page"
+
+#: start-a-vote/form.html.twig:211
+msgid "Attention ! Vous ne pourrez plus faire de modification."
+msgstr "Warning! Keep this link well."
+
+#: start-a-vote/form.html.twig:211
+msgid "Valider"
+msgstr "Submit"
