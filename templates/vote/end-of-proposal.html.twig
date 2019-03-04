@@ -1,1 +1,1 @@
-<div class="text-center"><p>Une fois le vote terminé, les <u>resultats seront accessibles sur cette même adresse</u> pendant 30 jours<br />Fin du vote le : <b>{{ proposal.dateEnd|date("d/m/Y") }} à {{ proposal.dateEnd|date("H:i") }}</b> - {{ timezone }}</p></div>
+<div class="text-center"><p>{% trans %}Une fois le vote terminé, les <u>resultats seront accessibles sur cette même adresse</u> pendant 30 jours{% endtrans %}<br />{% trans %}Fin du vote le :{% endtrans %}<b>{{ proposal.dateEnd|date("d/m/Y") }} - {{ proposal.dateEnd|date("H:i") }}</b> - {{ timezone }}</p></div>

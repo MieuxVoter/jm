@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 23:15+0100\n"
-"PO-Revision-Date: 2019-03-04 23:17+0100\n"
+"POT-Creation-Date: 2019-03-04 23:44+0100\n"
+"PO-Revision-Date: 2019-03-04 23:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -563,15 +563,16 @@ msgstr "Proposals"
 msgid "Vous pouvez maintenant partager le lien du vote aux participants :"
 msgstr "You can now share the voting link to the participants:"
 
-#: start-a-vote/save.html.twig:19
+#: start-a-vote/save.html.twig:19 vote/save.html.twig:32
 msgid "Veuillez patienter ..."
 msgstr "Please wait..."
 
 #: start-a-vote/save.html.twig:28 start-a-vote/save.html.twig:50
+#: vote/save.html.twig:41
 msgid "Copier"
 msgstr "Copy"
 
-#: start-a-vote/save.html.twig:32
+#: start-a-vote/save.html.twig:32 vote/save.html.twig:46
 msgid "Pensez a enregistrer ce lien dans les favoris de votre navigateur !"
 msgstr "Remember to save this link in your browser favorites!"
 
@@ -594,4 +595,106 @@ msgstr "Remember to also save this link in your browser favorites!"
 
 #: start-a-vote/save.html.twig:68
 msgid "Participer maintenant"
-msgstr "Join now"
+msgstr "Participate now"
+
+#: vote/end-of-proposal.html.twig:1
+msgid ""
+"Une fois le vote terminé, les <u>resultats seront accessibles sur cette même "
+"adresse</u> pendant 30 jours"
+msgstr ""
+"Once the vote is completed, the <u> results will be accessible on this same "
+"</u> address for 30 days"
+
+#: vote/end-of-proposal.html.twig:1
+msgid "Fin du vote le :"
+msgstr "End of vote on:"
+
+#: vote/form.html.twig:15 vote/save.html.twig:13
+msgid "Ooops ! Scrutin inexistant"
+msgstr "Ooops! Non-existent ballot"
+
+#: vote/form.html.twig:16 vote/save.html.twig:14
+msgid "Ce scrutin n'existe pas ou n'est plus disponible aux votes."
+msgstr "This election does not exist or is no longer available for voting."
+
+#: vote/form.html.twig:17 vote/save.html.twig:15
+msgid "N'hésitez pas à créer un nouveau scrutin"
+msgstr "Feel free to create a new poll"
+
+#: vote/form.html.twig:17
+msgid ""
+"en\n"
+"                            cliquant-ici"
+msgstr "by clicking here"
+
+#: vote/form.html.twig:31
+msgid "Proposé par :"
+msgstr "Proposed by:"
+
+#: vote/form.html.twig:35
+msgid ""
+"<b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des "
+"votes en temps réel."
+msgstr ""
+"<b> Warning: </b> The author of this vote has access to the results of the "
+"votes in real time."
+
+#: vote/form.html.twig:73
+msgid "Trés Bien"
+msgstr "Very good"
+
+#: vote/form.html.twig:74
+msgid "Bien"
+msgstr "Good"
+
+#: vote/form.html.twig:75
+msgid "Assez Bien"
+msgstr "Pretty good"
+
+#: vote/form.html.twig:76
+msgid "Passable"
+msgstr "Passable"
+
+#: vote/form.html.twig:77
+msgid "Insuffisant"
+msgstr "Insufficient"
+
+#: vote/form.html.twig:78
+msgid "A Rejeter"
+msgstr "to dismiss"
+
+#: vote/form.html.twig:130
+msgid ""
+"A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire "
+"pour valider ce vote."
+msgstr ""
+"At the request of the organiser, the input of a name/pseudo is obligatory to "
+"validate this vote."
+
+#: vote/form.html.twig:133
+msgid ""
+"Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur "
+"de savoir qui a participé ou non."
+msgstr ""
+"Your name will not be associated with your vote, it just allows the "
+"organizer to know who participated or not."
+
+#: vote/form.html.twig:142
+msgid "Valider mon vote !"
+msgstr "Submit my vote !"
+
+#: vote/not-enough-vote.html.twig:15
+msgid "Ooops ! Trop peu de participations"
+msgstr "Ooops! Too few participations"
+
+#: vote/not-enough-vote.html.twig:16
+msgid "Ce scrutin ne comporte pas assez de vote pour afficher le résultat."
+msgstr "There are not enough votes in this ballot to show the result."
+
+#: vote/save.html.twig:15
+msgid "en cliquant-ici"
+msgstr "by clicking here"
+
+#: vote/save.html.twig:22
+msgid "Participation enregistrée !"
+msgstr "Registered Participation!"

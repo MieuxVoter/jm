@@ -12,10 +12,10 @@
         {% if error==true %}
             <div class="row ">
                 <div class="col-12 text-center">
-                    <h1 class="title">Ooops ! Scrutin inexistant</h1>
-                    <p>Ce scrutin n'existe pas ou n'est plus disponible aux votes.</p>
-                    <p>N'hésitez pas à créer un nouveau scrutin <a href="{{ path("app_jm_form") }}">en
-                            cliquant-ici</a></p>
+                    <h1 class="title">{% trans %}Ooops ! Scrutin inexistant{% endtrans %}</h1>
+                    <p>{% trans %}Ce scrutin n'existe pas ou n'est plus disponible aux votes.{% endtrans %}</p>
+                    <p>{% trans %}N'hésitez pas à créer un nouveau scrutin {% endtrans %}<a href="{{ path("app_jm_form") }}">{% trans %}en
+                            cliquant-ici{% endtrans %}</a></p>
                 </div>
             </div>
         {% else %}
@@ -28,11 +28,11 @@
                     <div class="col-12">
 
                         <p>{{ proposal.presentation }}</p>
-                        <h6><i class="text-muted">Proposé par : {{ proposal.author|default('Anonyme') }}</i></h6>
+                        <h6><i class="text-muted">{% trans %}Proposé par :{% endtrans %} {{ proposal.author|default('Anonyme') }}</i></h6>
                     </div>
                     {% if  proposal.urlResultKey  %}
                         <div class="mt-4 col-12 alert alert-primary">
-                            <b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des votes en temps réel.
+                            {% trans %}<b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des votes en temps réel.{% endtrans %}
                         </div>
                     {% endif %}
                 </div>
@@ -69,17 +69,26 @@
                                             </div>
                                         </div>
                                     </div> #}
+                                    <div class="d-none">
+                                        {% trans %}Trés Bien{% endtrans %}
+                                        {% trans %}Bien{% endtrans %}
+                                        {% trans %}Assez Bien{% endtrans %}
+                                        {% trans %}Passable{% endtrans %}
+                                        {% trans %}Insuffisant{% endtrans %}
+                                        {% trans %}A Rejeter{% endtrans %}
+                                    </div>
                                     <div class="row mt-5">
                                         <input type="hidden" class="form-control jsInputMention"
                                                id="choice_value_{{ loop.index }}"
                                                name="choice_value_{{ choice.id }}" value="{{ selected_values["choice_value_"~choice.id] }}">
                                         {% for choice_value,choice_label in choices|reverse %}
+
                                             <div class="col-3 col-md-4 col-lg-2 p-0 text-center mb-4">
 
                                                 <a  class="w-100 jsSelectMention {% if choice_value==selected_values["choice_value_"~choice.id] %}mention-selected{% endif %}"
                                                    data-value="{{ choice_value }}" href="javascript:void(0);">
                                                     <img src="/css/img/{{ choice_value }}.png" width="80%"  class="m-auto d-block pointer" >
-                                                    <span style="font-size:12px;color:#000;">{{choice_label }}</span>
+                                                    <span style="font-size:12px;color:#000;">{{choice_label|trans }}</span>
                                                 </a></div>
                                         {% endfor %}
                                     </div>
@@ -118,10 +127,10 @@
                          <input type="text" class="form-control  {{ author_Invalid }}" id="author" maxlength="250" name="author" value=""
                                 placeholder="Votre nom/pseudo">
                          <div class="invalid-feedback">
-                            A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire pour valider ce vote.
+                            {% trans %}A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire pour valider ce vote.{% endtrans %}
                          </div>
                          <small  class="form-text text-muted">
-                             Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur de savoir qui a participé ou non.
+                             {% trans %}Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur de savoir qui a participé ou non.{% endtrans %}
                          </small>
                      </div>
                  </div>
@@ -130,7 +139,7 @@
 
 
                 <div class="text-center p-4">
-                    <button class="btn btn-success "><i class="fas fa-check mr-2"></i>Valider mon vote !</button>
+                    <button class="btn btn-success "><i class="fas fa-check mr-2"></i>{% trans %}Valider mon vote !{% endtrans %}</button>
                 </div>
                 {%  if  proposal.isFacebookEnabled %}
                     <div class="text-center mt-4 ">

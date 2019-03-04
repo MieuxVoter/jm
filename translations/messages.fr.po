@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 23:14+0100\n"
-"PO-Revision-Date: 2019-03-04 23:15+0100\n"
+"POT-Creation-Date: 2019-03-04 23:43+0100\n"
+"PO-Revision-Date: 2019-03-04 23:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -523,18 +523,10 @@ msgid "Vérifiez la saisie de cette adresse e-mail."
 msgstr "Vérifiez la saisie de cette adresse e-mail."
 
 #: start-a-vote/form.html.twig:181
-#| msgid ""
-#| "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
-#| "<br />Une seule adresse possible (Il ne sera pas conservé sur notre "
-#| "serveur)."
 msgid "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
 msgstr "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
 
 #: start-a-vote/form.html.twig:181
-#| msgid ""
-#| "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
-#| "<br />Une seule adresse possible (Il ne sera pas conservé sur notre "
-#| "serveur)."
 msgid "Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
 msgstr ""
 "Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
@@ -544,10 +536,6 @@ msgid "Partage Facebook"
 msgstr "Partage Facebook"
 
 #: start-a-vote/form.html.twig:189
-#| msgid ""
-#| "Un bouton de partage Facebook sera disponible sur le formulaire de vote "
-#| "et sur la page de résultat<br />Attention : Facebook aura alors accès aux "
-#| "données du scrutin."
 msgid ""
 "Un bouton de partage Facebook sera disponible sur le formulaire de vote et "
 "sur la page de résultat"
@@ -576,7 +564,6 @@ msgid "Valider"
 msgstr "Valider"
 
 #: start-a-vote/save.html.twig:12
-#| msgid "Propositions"
 msgid "Proposition enregistrée !"
 msgstr "Proposition enregistrée !"
 
@@ -584,15 +571,16 @@ msgstr "Proposition enregistrée !"
 msgid "Vous pouvez maintenant partager le lien du vote aux participants :"
 msgstr "Vous pouvez maintenant partager le lien du vote aux participants :"
 
-#: start-a-vote/save.html.twig:19
+#: start-a-vote/save.html.twig:19 vote/save.html.twig:32
 msgid "Veuillez patienter ..."
 msgstr "Veuillez patienter ..."
 
 #: start-a-vote/save.html.twig:28 start-a-vote/save.html.twig:50
+#: vote/save.html.twig:41
 msgid "Copier"
 msgstr "Copier"
 
-#: start-a-vote/save.html.twig:32
+#: start-a-vote/save.html.twig:32 vote/save.html.twig:46
 msgid "Pensez a enregistrer ce lien dans les favoris de votre navigateur !"
 msgstr "Pensez a enregistrer ce lien dans les favoris de votre navigateur !"
 
@@ -617,3 +605,109 @@ msgstr ""
 #: start-a-vote/save.html.twig:68
 msgid "Participer maintenant"
 msgstr "Participer maintenant"
+
+#: vote/end-of-proposal.html.twig:1
+msgid ""
+"Une fois le vote terminé, les <u>resultats seront accessibles sur cette même "
+"adresse</u> pendant 30 jours"
+msgstr ""
+"Une fois le vote terminé, les <u>resultats seront accessibles sur cette même "
+"adresse</u> pendant 30 jours"
+
+#: vote/end-of-proposal.html.twig:1
+#| msgid "Fin du scrutin :"
+msgid "Fin du vote le :"
+msgstr "Fin du vote le :"
+
+#: vote/form.html.twig:15 vote/save.html.twig:13
+msgid "Ooops ! Scrutin inexistant"
+msgstr "Ooops ! Scrutin inexistant"
+
+#: vote/form.html.twig:16 vote/save.html.twig:14
+msgid "Ce scrutin n'existe pas ou n'est plus disponible aux votes."
+msgstr "Ce scrutin n'existe pas ou n'est plus disponible aux votes."
+
+#: vote/form.html.twig:17 vote/save.html.twig:15
+msgid "N'hésitez pas à créer un nouveau scrutin"
+msgstr "N'hésitez pas à créer un nouveau scrutin"
+
+#: vote/form.html.twig:17
+msgid ""
+"en\n"
+"                            cliquant-ici"
+msgstr ""
+"en\n"
+"                            cliquant-ici"
+
+#: vote/form.html.twig:31
+msgid "Proposé par :"
+msgstr "Proposé par :"
+
+#: vote/form.html.twig:35
+msgid ""
+"<b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des "
+"votes en temps réel."
+msgstr ""
+"<b>ATTENTION :</b> L'auteur de ce vote dispose d'un accès aux résultats des "
+"votes en temps réel."
+
+#: vote/form.html.twig:73
+msgid "Trés Bien"
+msgstr "Trés Bien"
+
+#: vote/form.html.twig:74
+msgid "Bien"
+msgstr "Bien"
+
+#: vote/form.html.twig:75
+msgid "Assez Bien"
+msgstr "Assez Bien"
+
+#: vote/form.html.twig:76
+msgid "Passable"
+msgstr "Passable"
+
+#: vote/form.html.twig:77
+msgid "Insuffisant"
+msgstr "Insuffisant"
+
+#: vote/form.html.twig:78
+msgid "A Rejeter"
+msgstr "A Rejeter"
+
+#: vote/form.html.twig:130
+msgid ""
+"A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire "
+"pour valider ce vote."
+msgstr ""
+"A la demande de l'organisteur, la saisie d'un nom/pseudo est obligatoire "
+"pour valider ce vote."
+
+#: vote/form.html.twig:133
+msgid ""
+"Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur "
+"de savoir qui a participé ou non."
+msgstr ""
+"Votre nom ne sera pas associé à votre vote, il permet juste à l'organisateur "
+"de savoir qui a participé ou non."
+
+#: vote/form.html.twig:142
+msgid "Valider mon vote !"
+msgstr "Valider mon vote !"
+
+#: vote/not-enough-vote.html.twig:15
+msgid "Ooops ! Trop peu de participations"
+msgstr "Ooops ! Trop peu de participations"
+
+#: vote/not-enough-vote.html.twig:16
+msgid "Ce scrutin ne comporte pas assez de vote pour afficher le résultat."
+msgstr "Ce scrutin ne comporte pas assez de vote pour afficher le résultat."
+
+#: vote/save.html.twig:15
+msgid "en cliquant-ici"
+msgstr "en cliquant-ici"
+
+#: vote/save.html.twig:22
+#| msgid "Proposition enregistrée !"
+msgid "Participation enregistrée !"
+msgstr "Participation enregistrée !"
