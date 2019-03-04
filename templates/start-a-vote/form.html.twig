@@ -165,7 +165,7 @@
                                 <input type="checkbox"  value="yes" name="limitParticipation"  id="limitParticipation" {% if limitParticipation=="yes" %}checked{% endif %}>
                                 <span class="slider round"></span>
                             </label>
-                            <div class="switch-label"><b>{% trans %}Limiter le nombre de participants à {% endtrans %}<input name="limitParticipationValue" type="number" value="{{ limitParticipationValue }}" class="form-control d-inline-block {{ limitParticipationValue_Invalid }}" style="width:75px;" > <div class="invalid-feedback">
+                            <div class="switch-label"><b>{% trans %}Limiter le nombre de participants à {% endtrans %} <input name="limitParticipationValue" type="number" value="{{ limitParticipationValue }}" class="form-control d-inline-block {{ limitParticipationValue_Invalid }}" style="width:75px;" > <div class="invalid-feedback">
                                         {% trans %}Vous devez saisir un nombre entre 2 et 100{% endtrans %}
                                     </div></b>
                                 <br />{% trans %}Le résultat sera visible immédiatement après que le dernier vote soit enregistré{% endtrans %}</div>
@@ -178,7 +178,7 @@
                             <div class="switch-label"><b>{% trans %}Envoyer par e-mail à l'adresse suivante :{% endtrans %} <input name="mailValue" type="text" value="{{ mailValue }}" placeholder="{% trans %}votre@email.com{% endtrans %}" class="form-control d-inline-block {{ mailValue_Invalid }}" style="width:200px;" ><div class="invalid-feedback">
                                         {% trans %}Vérifiez la saisie de cette adresse e-mail.{% endtrans %}
                                     </div></b>
-                                <br />{% trans %}Le mail contiendra le ou les liens nécessaires au déroulement du vote.{% endtrans %}{% trans %}Une seule adresse possible (Il ne sera pas conservé sur notre serveur).{% endtrans %}</div>
+                                <br />{% trans %}Le mail contiendra le ou les liens nécessaires au déroulement du vote.{% endtrans %}<br />{% trans %}Une seule adresse possible (Il ne sera pas conservé sur notre serveur).{% endtrans %}</div>
                         </li>
                         <li class="mt-4">
                             <label class="switch">
