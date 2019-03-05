@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-04 23:44+0100\n"
-"PO-Revision-Date: 2019-03-04 23:44+0100\n"
+"POT-Creation-Date: 2019-03-05 20:08+0100\n"
+"PO-Revision-Date: 2019-03-05 20:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -609,15 +609,15 @@ msgstr ""
 msgid "Fin du vote le :"
 msgstr "End of vote on:"
 
-#: vote/form.html.twig:15 vote/save.html.twig:13
+#: vote/form.html.twig:15 vote/result.html.twig:18 vote/save.html.twig:13
 msgid "Ooops ! Scrutin inexistant"
 msgstr "Ooops! Non-existent ballot"
 
-#: vote/form.html.twig:16 vote/save.html.twig:14
+#: vote/form.html.twig:16 vote/result.html.twig:19 vote/save.html.twig:14
 msgid "Ce scrutin n'existe pas ou n'est plus disponible aux votes."
 msgstr "This election does not exist or is no longer available for voting."
 
-#: vote/form.html.twig:17 vote/save.html.twig:15
+#: vote/form.html.twig:17 vote/result.html.twig:20 vote/save.html.twig:15
 msgid "N'hésitez pas à créer un nouveau scrutin"
 msgstr "Feel free to create a new poll"
 
@@ -627,7 +627,7 @@ msgid ""
 "                            cliquant-ici"
 msgstr "by clicking here"
 
-#: vote/form.html.twig:31
+#: vote/form.html.twig:31 vote/result.html.twig:31
 msgid "Proposé par :"
 msgstr "Proposed by:"
 
@@ -691,9 +691,48 @@ msgstr "Ooops! Too few participations"
 msgid "Ce scrutin ne comporte pas assez de vote pour afficher le résultat."
 msgstr "There are not enough votes in this ballot to show the result."
 
-#: vote/save.html.twig:15
+#: vote/result.html.twig:20 vote/save.html.twig:15
 msgid "en cliquant-ici"
 msgstr "by clicking here"
+
+#: vote/result.html.twig:36
+msgid "Candidat/proposition retenu(e)"
+msgstr "Candidate/Proposal retained"
+
+#: vote/result.html.twig:75
+msgid ""
+"* La majorité des participants considère que ce candidat/proposition est au "
+"moins"
+msgstr ""
+"* The majority of participants consider that this candidate/proposal is at "
+"least"
+
+#: vote/result.html.twig:87
+msgid "Participants"
+msgstr "Participants"
+
+#: vote/result.html.twig:95
+msgid ""
+"Pas assez de participations pour afficher le nom des participants ... "
+"(minimum 2)"
+msgstr ""
+"Not enough entries to display the names of the participants... (Minimum 2)"
+
+#: vote/result.html.twig:101
+msgid "Déterminé par %n% participations"
+msgstr "Determined by %n% participations"
+
+#: vote/result.html.twig:112
+msgid "Classement complet"
+msgstr "Complete ranking"
+
+#: vote/result.html.twig:136
+msgid "Profils de mérite"
+msgstr "Merit Profiles"
+
+#: vote/result.html.twig:183
+msgid "Histogramme"
+msgstr "Histogram"
 
 #: vote/save.html.twig:22
 msgid "Participation enregistrée !"
