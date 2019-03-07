@@ -6,8 +6,11 @@
         {% block header %}{% endblock %}
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light shadow">
             <a class="navbar-brand" href="{{ path("app_jm_home") }}">
+                {% if app.request.getLocale()=="fr" %}
                <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo.png" style="width:200px;" />
-
+                {% else %}
+                <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo-en.png" style="width:200px;" />
+                {% endif %}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,8 +55,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 pr-4 pl-4 mt-5">
-                    <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo-beta.png"
-                         style="width:100%;max-width:300px;display:block;margin:auto;"/>
+                    {% if app.request.getLocale()=="fr" %}
+                    <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo-beta.png" style="width:100%;max-width:300px;display:block;margin:auto;"/>
+                    {% else %}
+                        <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo-beta-en.png" style="width:100%;max-width:300px;display:block;margin:auto;"/>
+                    {% endif %}
                 </div>
             </div>
         </div>
