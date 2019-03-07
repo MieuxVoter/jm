@@ -12,10 +12,14 @@
     <meta name="viewport" content="width = device-width,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,  user-scalable=no" >
     <meta property="og:url"           content="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="{% block ogtitle %}Jugement Majoritaire{% endblock %}" />
-    <meta property="og:description"   content="{% block ogdescription %}Plateforme de vote utilisant le jugement majoritaire.{% endblock %}" />
-    <meta property="og:image"         content="{{ app.request.getSchemeAndHttpHost() }}/css/img/jugement-majoritaire.png" />
-    <title>{% block title %}Jugement Majoritaire{% endblock %}</title>
+    <meta property="og:title"         content="{% block ogtitle %}{% trans %}Jugement Majoritaire{% endtrans %}{% endblock %}" />
+    <meta property="og:description"   content="{% block ogdescription %}{% trans %}Plateforme de vote utilisant le jugement majoritaire.{% endtrans %}{% endblock %}" />
+    {% if app.request.getLocale()=="fr" %}
+         <meta property="og:image"         content="{{ app.request.getSchemeAndHttpHost() }}/css/img/jugement-majoritaire.png" />
+    {% else %}
+        <meta property="og:image"         content="{{ app.request.getSchemeAndHttpHost() }}/css/img/jugement-majoritaire-en.png" />
+    {% endif %}
+    <title>{% block title %}{% trans %}Jugement Majoritaire{% endtrans %}{% endblock %}</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ app.request.getSchemeAndHttpHost() }}/css/img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ app.request.getSchemeAndHttpHost() }}/css/img/favicon/apple-icon-60x60.png">

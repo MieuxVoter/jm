@@ -7,7 +7,7 @@
         <form method="post" action="{{ path("app_jm_form") }}"  autocomplete="off" class="need-validated ">
             <div class="row ">
                 <div class="col-12">
-                    <h1 class="title">Nouveau vote</h1>
+                    <h1 class="title">{% trans %}Nouveau vote{% endtrans %}</h1>
                     <hr/>
 
 
@@ -18,11 +18,11 @@
             <div class="row mt-5">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="author" ><b>Titre</b> <span class="text-muted">(obligatoire)</span></label>
+                        <label for="author" ><b>{% trans %}Titre{% endtrans %}</b> <span class="text-muted">{% trans %}(obligatoire){% endtrans %}</span></label>
                         <input type="text" class="form-control {{ title_Invalid }}" id="title" maxlength="250" name="title" value="{{ title }}"
-                               placeholder="Titre du vote">
+                               placeholder="{% trans %}Titre du vote{% endtrans %}">
                         <div class="invalid-feedback">
-                            Le titre saisi n'est pas correcte !
+                            {% trans %}Le titre saisi n'est pas correcte !{% endtrans %}
                         </div>
                     </div>
                 </div>
@@ -30,20 +30,20 @@
             <div class="row mt-3">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="author" ><b>Auteur</b> <span class="text-muted">(Optionel)</span></label>
+                        <label for="author" ><b>{% trans %}Auteur{% endtrans %}</b> <span class="text-muted">{% trans %}(Optionel){% endtrans %}</span></label>
                         <input type="text" class="form-control" id="author" maxlength="250" name="author" value="{{ author }}"
-                               placeholder="Votre nom/pseudo">
+                               placeholder="{% trans %}Votre nom/pseudo{% endtrans %}">
                     </div>
                 </div>
             </div>
             <div class="row  mt-3">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="email"><b>Présentation</b> <span class="text-muted">(500 caractères max.)</span></label>
+                        <label for="email"><b>{% trans %}Présentation{% endtrans %}</b> <span class="text-muted">{% trans %}(500 caractères max.){% endtrans %}</span></label>
                         <textarea class="form-control {{ presentation_Invalid }}" rows="5" maxlength="500" id="presentation" name="presentation"
-                                  placeholder="Décrivez ici votre proposition de départ ou la raison de votre vote">{{ presentation }}</textarea>
+                                  placeholder="{% trans %}Décrivez ici votre proposition de départ ou la raison de votre vote{% endtrans %}">{{ presentation }}</textarea>
                         <div class="invalid-feedback">
-                            La présentation saisie n'est pas correcte !
+                            {% trans %}La présentation saisie n'est pas correcte !{% endtrans %}
                         </div>
                     </div>
                 </div>
@@ -51,28 +51,28 @@
             <div class="row mt-3">
                 <div class="col-12">
                     <div class="mb-3">
-                        <label for="time_before_end"><b>Fin du scrutin :</b></label>
+                        <label for="time_before_end"><b>{% trans %}Fin du scrutin :{% endtrans %}</b></label>
                         <select id="time_before_end"  name="time_before_end" class="form-control {{ time_before_end_Invalid }}">
-                            <option value="5 minutes" {% if time_before_end=="5 minutes" %}selected{% endif %} >Dans 5 min.</option>
-                            <option value="10 minutes" {% if time_before_end=="10 minutes" %}selected{% endif %} >Dans 10 min.</option>
-                            <option value="15 minutes" {% if time_before_end=="15 minutes" %}selected{% endif %} >Dans 15 min.</option>
-                            <option value="30 minutes" {% if time_before_end=="30 minutes" %}selected{% endif %} >Dans 30 min.</option>
-                            <option value="1 hour" {% if time_before_end=="1 hour" %}selected{% endif %} >Dans 1h</option>
-                            <option value="2 hours" {% if time_before_end=="2 hours" %}selected{% endif %} >Dans 2h</option>
-                            <option value="6 hours" {% if time_before_end=="6 hours" %}selected{% endif %} >Dans 6h</option>
-                            <option value="12 hours" {% if time_before_end=="12 hours" %}selected{% endif %}>Dans 12h</option>
-                            <option value="24 hours" {% if time_before_end=="24 hours" %}selected{% endif %}>Dans 24h</option>
-                            <option value="2 days" {% if time_before_end=="2 days" %}selected{% endif %}>Dans 48h</option>
-                            <option value="1 week" {% if time_before_end=="1 week" %}selected{% endif %}>Dans une semaine</option>
-                            <option value="2 week" {% if time_before_end=="2 week" %}selected{% endif %}>Dans deux semaines</option>
-                            <option value="3 week" {% if time_before_end=="3 week" %}selected{% endif %}>Dans trois semaines</option>
-                            <option value="1 month" {% if time_before_end=="1 month" %}selected{% endif %}>Dans un mois</option>
-                            <option value="2 month" {% if time_before_end=="2 month" %}selected{% endif %}>Dans deux mois</option>
-                            <option value="3 month" {% if time_before_end=="3 month" %}selected{% endif %}>Dans trois mois</option>
-                            <option value="6 month" {% if time_before_end=="6 month" %}selected{% endif %}>Dans six mois</option>
+                            <option value="5 minutes" {% if time_before_end=="5 minutes" %}selected{% endif %} >{% trans %}Dans 5 min.{% endtrans %}</option>
+                            <option value="10 minutes" {% if time_before_end=="10 minutes" %}selected{% endif %} >{% trans %}Dans 10 min.{% endtrans %}</option>
+                            <option value="15 minutes" {% if time_before_end=="15 minutes" %}selected{% endif %} >{% trans %}Dans 15 min.{% endtrans %}</option>
+                            <option value="30 minutes" {% if time_before_end=="30 minutes" %}selected{% endif %} >{% trans %}Dans 30 min.{% endtrans %}</option>
+                            <option value="1 hour" {% if time_before_end=="1 hour" %}selected{% endif %} >{% trans %}Dans 1h{% endtrans %}</option>
+                            <option value="2 hours" {% if time_before_end=="2 hours" %}selected{% endif %} >{% trans %}Dans 2h{% endtrans %}</option>
+                            <option value="6 hours" {% if time_before_end=="6 hours" %}selected{% endif %} >{% trans %}Dans 6h{% endtrans %}</option>
+                            <option value="12 hours" {% if time_before_end=="12 hours" %}selected{% endif %}>{% trans %}Dans 12h{% endtrans %}</option>
+                            <option value="24 hours" {% if time_before_end=="24 hours" %}selected{% endif %}>{% trans %}Dans 24h{% endtrans %}</option>
+                            <option value="2 days" {% if time_before_end=="2 days" %}selected{% endif %}>{% trans %}Dans 48h{% endtrans %}</option>
+                            <option value="1 week" {% if time_before_end=="1 week" %}selected{% endif %}>{% trans %}Dans une semaine{% endtrans %}</option>
+                            <option value="2 week" {% if time_before_end=="2 week" %}selected{% endif %}>{% trans %}Dans deux semaines{% endtrans %}</option>
+                            <option value="3 week" {% if time_before_end=="3 week" %}selected{% endif %}>{% trans %}Dans trois semaines{% endtrans %}</option>
+                            <option value="1 month" {% if time_before_end=="1 month" %}selected{% endif %}>{% trans %}Dans un mois{% endtrans %}</option>
+                            <option value="2 month" {% if time_before_end=="2 month" %}selected{% endif %}>{% trans %}Dans deux mois{% endtrans %}</option>
+                            <option value="3 month" {% if time_before_end=="3 month" %}selected{% endif %}>{% trans %}Dans trois mois{% endtrans %}</option>
+                            <option value="6 month" {% if time_before_end=="6 month" %}selected{% endif %}>{% trans %}Dans six mois{% endtrans %}</option>
                         </select>
                         <div class="invalid-feedback">
-                            La durée saisie n'est pas correcte !
+                            {% trans %}La durée saisie n'est pas correcte !{% endtrans %}
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
 
             <div class="row mt-4">
                 <div class="col-12">
-                    <h2 class="title">Propositions </h2>
+                    <h2 class="title">{% trans %}Propositions{% endtrans %}</h2>
                     <hr/>
                 </div>
             </div>
@@ -108,13 +108,13 @@
                                     <span class="badge badge-primary"><h3 class="title m-0" id="choice_number_{{ num }}">{{ num }}</h3></span>
                                 </div>
                                 <div class="flex-grow-1 pl-4 pr-4">
-                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">Proposition/Candidat : <span class="text-muted">(150 car. max.)</span></label>
+                                    <label id="choice_label_{{ num }}" for="choice_value_{{ num }}">{% trans %}Proposition/Candidat :{% endtrans %} <span class="text-muted">{% trans %}(150 car. max.){% endtrans %}</span></label>
                                     <input type="hidden" class="form-control fieldRemoveChoice" id="remove_choice_init"
                                            name="remove_choice_{{ num }}" value="{{ choice.isDeleted }}">
                                     <input type="text" class="form-control" id="choice_value_{{ num }}" maxlength="150"
-                                           name="choice_value_{{ num }}" placeholder="Proposition ..." value="{{ choice.label }}" {% if choice.isDeleted==1 %}readonly{% endif %}>
+                                           name="choice_value_{{ num }}" placeholder="{% trans %}Proposition ...{% endtrans %}" value="{{ choice.label }}" {% if choice.isDeleted==1 %}readonly{% endif %}>
                                     <textarea class="form-control" rows="5" maxlength="500" id="choice_explanation_{{ num }}" name="choice_explanation_{{ num }}" {% if choice.isDeleted==1 %}readonly{% endif %}
-                                              placeholder="Explication de cette proposition ..."></textarea>
+                                              placeholder="{% trans %}Explication de cette proposition ...{% endtrans %}"></textarea>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
                                     <button type="button" class="btn btn-outline-danger btnRemoveChoice"><i class="fas {% if choice.isDeleted==1 %}fa-undo{% else %}fa-trash{% endif %}"></i></button>
@@ -128,15 +128,13 @@
                 <div class="col-12">
                     <input type="hidden" id="number_of_choices" class="form-control {{ number_of_choices_Invalid }}" name="number_of_choices" value="{{ number_of_choices }}">
                     <div class="invalid-feedback">
-                        Merci de saisir au moins deux propositions (avec du texte) !
+                        {% trans %}Merci de saisir au moins deux propositions (avec du texte) !{% endtrans %}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <button class="btn btn-primary " type="button" id="addAChoice"><i class="fas fa-plus-square mr-2"></i> Ajouter une
-                        proposition
-                    </button>
+                    <button class="btn btn-primary " type="button" id="addAChoice"><i class="fas fa-plus-square mr-2"></i> {% trans %}Ajouter une proposition{% endtrans %}</button>
                 </div>
             </div>
 
@@ -148,7 +146,7 @@
             </p>#}
             <div class="row mt-5">
                 <div class="col-12">
-                    <h2 class="title">Options facultatives</h2>
+                    <h2 class="title">{% trans %}Options facultatives{% endtrans %}</h2>
 
                 </div>
             </div>
@@ -160,43 +158,43 @@
                                 <input type="checkbox"  value="yes" name="visibleBeforeEnd"  id="visibleBeforeEnd"  {% if visibleBeforeEnd=="yes" %}checked{% endif %} >
                                 <span class="slider round"></span>
                             </label>
-                            <div class="switch-label"><b>Générer un lien permettant de visualiser le résultat du vote à n'importe quel moment</b><br/>Les participants seront informés que l'organisateur du vote peut consulter les résultats en temps réel.</div>
+                            <div class="switch-label"><b>{% trans %}Générer un lien permettant de visualiser le résultat du vote à n'importe quel moment</b><br/>Les participants seront informés que l'organisateur du vote peut consulter les résultats en temps réel.{% endtrans %}</div>
                         </li>
                         <li class="mt-4">
                             <label class="switch">
                                 <input type="checkbox"  value="yes" name="limitParticipation"  id="limitParticipation" {% if limitParticipation=="yes" %}checked{% endif %}>
                                 <span class="slider round"></span>
                             </label>
-                            <div class="switch-label"><b>Limiter le nombre de participants à <input name="limitParticipationValue" type="number" value="{{ limitParticipationValue }}" class="form-control d-inline-block {{ limitParticipationValue_Invalid }}" style="width:75px;" > <div class="invalid-feedback">
-                                        Vous devez saisir un nombre entre 2 et 100
+                            <div class="switch-label"><b>{% trans %}Limiter le nombre de participants à {% endtrans %} <input name="limitParticipationValue" type="number" value="{{ limitParticipationValue }}" class="form-control d-inline-block {{ limitParticipationValue_Invalid }}" style="width:75px;" > <div class="invalid-feedback">
+                                        {% trans %}Vous devez saisir un nombre entre 2 et 100{% endtrans %}
                                     </div></b>
-                                <br />Le résultat sera visible immédiatement après que le dernier vote soit enregistré</div>
+                                <br />{% trans %}Le résultat sera visible immédiatement après que le dernier vote soit enregistré{% endtrans %}</div>
                         </li>
                         <li class="mt-4">
                             <label class="switch">
                                 <input type="checkbox"  value="yes" name="sendMail"  id="sendMail"  {% if sendMail=="yes" %}checked{% endif %}>
                                 <span class="slider round"></span>
                             </label>
-                            <div class="switch-label"><b>Envoyer par e-mail à l'adresse suivante : <input name="mailValue" type="text" value="{{ mailValue }}" placeholder="votre@email.com" class="form-control d-inline-block {{ mailValue_Invalid }}" style="width:200px;" ><div class="invalid-feedback">
-                                        Vérifiez la saisie de cette adresse e-mail.
+                            <div class="switch-label"><b>{% trans %}Envoyer par e-mail à l'adresse suivante :{% endtrans %} <input name="mailValue" type="text" value="{{ mailValue }}" placeholder="{% trans %}votre@email.com{% endtrans %}" class="form-control d-inline-block {{ mailValue_Invalid }}" style="width:200px;" ><div class="invalid-feedback">
+                                        {% trans %}Vérifiez la saisie de cette adresse e-mail.{% endtrans %}
                                     </div></b>
-                                <br />Le mail contiendra le ou les liens nécessaires au déroulement du vote.<br />Une seule adresse possible (Il ne sera pas conservé sur notre serveur).</div>
+                                <br />{% trans %}Le mail contiendra le ou les liens nécessaires au déroulement du vote.{% endtrans %}<br />{% trans %}Une seule adresse possible (Il ne sera pas conservé sur notre serveur).{% endtrans %}</div>
                         </li>
                         <li class="mt-4">
                             <label class="switch">
                                 <input type="checkbox"  value="yes" name="facebookEnabled"  id="facebookEnabled" {% if facebookEnabled=="yes" %}checked{% endif %}>
                                 <span class="slider round"></span>
                             </label>
-                            <div class="switch-label"><b>Partage Facebook</b>
-                                <br />Un bouton de partage Facebook sera disponible sur le formulaire de vote et sur la page de résultat<br />Attention : Facebook aura alors accès aux données du scrutin.</div>
+                            <div class="switch-label"><b>{% trans %}Partage Facebook{% endtrans %}</b>
+                                <br />{% trans %}Un bouton de partage Facebook sera disponible sur le formulaire de vote et sur la page de résultat{% endtrans %}<br />{% trans %}Attention : Facebook aura alors accès aux données du scrutin.{% endtrans %}</div>
                         </li>
                         <li class="mt-4">
                             <label class="switch">
                                 <input type="checkbox"  value="yes" name="nameRequired"  id="nameRequired"  {% if nameRequired=="yes" %}checked{% endif %} >
                                 <span class="slider round"></span>
                             </label>
-                            <div class="switch-label"><b>Demander un nom/pseudo aux participants</b>
-                                <br />Permet de savoir qui a participé ou non sur la page de résultat<br /></div>
+                            <div class="switch-label"><b>{% trans %}Demander un nom/pseudo aux participants{% endtrans %}</b>
+                                <br />{% trans %}Permet de savoir qui a participé ou non sur la page de résultat{% endtrans %}<br /></div>
                         </li>
 
 
@@ -210,7 +208,7 @@
             <div class="row mt-5">
                 <div class="col-12 pb-5 text-center">
                     {#<a href="{{ path("app_jm_form") }}" class="btn btn-outline-danger float-left" ><i class="fas fa-trash mr-2"></i> Effacer</a>#}
-                    <button class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Attention ! Vous ne pourrez plus faire de modification."><i class="fas fa-check mr-2"></i> Valider</button>
+                    <button class="btn btn-success " data-toggle="tooltip" data-placement="top" title="{% trans %}Attention ! Vous ne pourrez plus faire de modification.{% endtrans %}"><i class="fas fa-check mr-2"></i> {% trans %}Valider{% endtrans %}</button>
                 </div>
             </div>
 

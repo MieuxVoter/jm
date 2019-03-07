@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 2.1.0
+- English version
+
 #### 2.0.3
 - Remove links with Google Font and Youtube
 
