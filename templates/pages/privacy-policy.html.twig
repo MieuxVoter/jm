@@ -3,24 +3,22 @@
 {% block main %}
 
     <div class="container">
-        <h1>Politique de confidentialité</h1>
+        <h1>{% trans %}Politique de confidentialité{% endtrans %}</h1>
        <h5>
-        Ce site n'a aucun objectif commercial ou politique, il est (et restera) toujours gratuit, sans publicité et confidentiel (sans divulgation d'informations à des tiers).
+           {% trans %}Ce site n'a aucun objectif commercial ou politique, il est (et restera) toujours gratuit, sans publicité et confidentiel (sans divulgation d'informations à des tiers).{% endtrans %}
        </h5>
-        <p class="mt-5">Ce site ne conserve aucune donnée personnelle (pas d'inscription) et n'utilise pas de cookie. Les adresses e-mails éventuellement saisies ne sont pas sauvegardées. Toutes les données des votes sont automatiquement supprimées 30 jours après la fin du vote.</p>
-        <p>Une option permet de demander la saisie d'un nom/prenom ou pseudo des participants. Dans ce cas, cette information sera conservée jusqu'à 30 jours après la fin du vote.</p>
-        <p>En dehors d'une éventuelle opération de maintenance par un technicien personne n'accède aux données des votes (pas d'analyse ou de statistiques).</p>
-        <p ><b>ATTENTION :</b> Une option lors de la création d'un vote permet d'afficher un bouton de partage Facebook, en activant celle-ci vous activez également l'interconnexion avec FACEBOOK (cookies, etc..)</p>
-        <p class="mb-5"> Pour toutes questions : <a href="mailto:contact@jugementmajoritaire.net">contact@jugementmajoritaire.net</a></p>
+        <p class="mt-5">{% trans %}Ce site ne conserve aucune donnée personnelle (pas d'inscription) et n'utilise pas de cookie. Les adresses e-mails éventuellement saisies ne sont pas sauvegardées. Toutes les données des votes sont automatiquement supprimées 30 jours après la fin du vote.{% endtrans %}</p>
+        <p>{% trans %}Une option permet de demander la saisie d'un nom/prenom ou pseudo des participants. Dans ce cas, cette information sera conservée jusqu'à 30 jours après la fin du vote.{% endtrans %}</p>
+        <p>{% trans %}En dehors d'une éventuelle opération de maintenance par un technicien personne n'accède aux données des votes (pas d'analyse ou de statistiques).{% endtrans %}</p>
+        <p >{% trans %}<b>ATTENTION :</b> Une option lors de la création d'un vote permet d'afficher un bouton de partage Facebook, en activant celle-ci vous activez également l'interconnexion avec FACEBOOK (cookies, etc..){% endtrans %}</p>
+        <p class="mb-5">{% trans %}Pour toutes questions : {% endtrans %} <a href="mailto:contact@jugementmajoritaire.net">contact@jugementmajoritaire.net</a></p>
     </div>
 
         <div class="bg-primary">
             <div class="container pt-5 pb-5">
                 <div class="alert alert-primary ">
 
-                    <em>Code source de ce projet : <a href="https://github.com/oceanBigOne/jm" target="_blank">Projet
-                                WEB
-                                sur GitHub</a></em>
+                    <em>{% trans %}Code source de ce projet : {% endtrans %} <a href="https://github.com/oceanBigOne/jm" target="_blank">{% trans %}Projet WEB sur GitHub{% endtrans %}</a></em>
 
                 </div>
 

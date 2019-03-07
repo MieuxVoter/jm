@@ -10,17 +10,16 @@
         {% if error == true %}
             <div class="row">
                 <div class="col-12">
-                    <h1 class="title">Ooops ! Scrutin inexistant</h1>
-                    <p>Ce scrutin n'existe pas ou n'est plus disponible aux votes.</p>
-                    <p>N'hésitez pas à créer un nouveau scrutin <a href="{{ path("app_jm_form") }}">en
-                            cliquant-ici</a></p>
+                    <h1 class="title">{% trans %}Ooops ! Scrutin inexistant{% endtrans %}</h1>
+                    <p>{% trans %}Ce scrutin n'existe pas ou n'est plus disponible aux votes.{% endtrans %}</p>
+                    <p>{% trans %}N'hésitez pas à créer un nouveau scrutin {% endtrans %}<a href="{{ path("app_jm_form") }}">{% trans %}en cliquant-ici{% endtrans %}</a></p>
                 </div>
             </div>
         {% else %}
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="title">Participation enregistrée !</h1>
+                    <h1 class="title">{% trans %}Participation enregistrée !{% endtrans %}</h1>
                     <div class="pt-3 pb-3">
                         {% include "vote/end-of-proposal.html.twig" %}
                     </div>
@@ -30,7 +29,7 @@
             <div class="row ">
                 <div class="col-12 col-md-6 m-auto text-center">
                     {% if redirect %}
-                        <input type="text" class="form-control" disabled value="Veuillez patienter ...">
+                        <input type="text" class="form-control" disabled value="{% trans %}Veuillez patienter ...{% endtrans %}">
                     {% else %}
                         <div class="input-group  ">
                             <input type="text" class="form-control autoselect" id="url"
@@ -39,13 +38,12 @@
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary copy-to-clipboard" data-target="#url"
                                         type="button"><i
-                                            class="fas fa-copy mr-2"></i> Copier
+                                            class="fas fa-copy mr-2"></i> {% trans %}Copier{% endtrans %}
                                 </button>
                             </div>
 
                         </div>
-                        <small class="text-primary">Pensez a enregistrer ce lien dans les favoris de votre navigateur
-                            !
+                        <small class="text-primary">{% trans %}Pensez a enregistrer ce lien dans les favoris de votre navigateur !{% endtrans %}
                         </small>
                         {%  if  proposal.isFacebookEnabled %}
                             <div class="text-center mt-4 ">
