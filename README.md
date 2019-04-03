@@ -53,6 +53,10 @@ That's all...
 
 ## Versions
 
+- Shuffle array of choices on vote form
+- Use abstractController interface instead of deprecated Controller Interface
+- update bootstrap
+
 ### 2.1.1
 - English version (fixed translation)
 

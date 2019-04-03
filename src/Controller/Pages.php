@@ -7,9 +7,9 @@
 namespace App\Controller;
 
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
 
-class Pages extends Controller
+class Pages extends AbstractController
 {
 
     public function home(){

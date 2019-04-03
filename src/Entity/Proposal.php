@@ -202,6 +202,18 @@ class Proposal
         return $this->choices;
     }
 
+    /**
+     * @return Choice[]
+     */
+    public function getShuffleChoices(): array
+    {
+            $array=$this->choices->toArray();
+            shuffle($array);
+            return $array;
+
+
+    }
+
     public function addChoice(Choice $choice): self
     {
         if (!$this->choices->contains($choice)) {

@@ -9,9 +9,9 @@ namespace App\Controller;
 
 
 use App\Entity\Proposal;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
 
-class Clear extends Controller
+class Clear extends AbstractController
 {
 
     public function run(){

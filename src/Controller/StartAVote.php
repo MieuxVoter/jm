@@ -10,13 +10,15 @@ namespace App\Controller;
 
 use App\Entity\Choice;
 use App\Entity\Proposal;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Service\ParametersService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
 
-class StartAVote extends Controller
+
+class StartAVote extends AbstractController
 {
-    public function form(){
+    public function form(ParametersService $params){
 
-        date_default_timezone_set($this->container->getParameter('timezone'));
+        date_default_timezone_set($params->get('timezone'));
 
         $isSaved=false;
 
@@ -27,7 +29,7 @@ class StartAVote extends Controller
         }
         $proposal=null;
         $dataForm=[];
-        $dataForm["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
+        $dataForm["facebook_api_id"]=$params->get('facebook_api_id');
         $dataForm["redirect"]=false;
         $dataForm["author"]="";
         $dataForm["title"]="";
@@ -198,8 +200,8 @@ class StartAVote extends Controller
                 $entityManager->persist($proposal);
                 $entityManager->flush();
 
-                $key=$proposal->getId().sha1($proposal->getId().strtotime("now").substr($this->container->getParameter('saltkey'),0,10));
-                $keyResult=$proposal->getId().sha1("RESULT".$proposal->getId().strtotime("now").substr($this->container->getParameter('saltkey'),0,10));
+                $key=$proposal->getId().sha1($proposal->getId().strtotime("now").substr($params->get('saltkey'),0,10));
+                $keyResult=$proposal->getId().sha1("RESULT".$proposal->getId().strtotime("now").substr($params->get('saltkey'),0,10));
 
                 $proposal->setUrlKey($key);
 
