@@ -53,6 +53,8 @@ That's all...
 
 ## Versions
 
+- update bootstrap
+
 ### 2.1.1
 - English version (fixed translation)
 
