@@ -11,18 +11,17 @@ namespace App\Controller;
 use App\Entity\Choice;
 use App\Entity\Participation;
 use App\Entity\Proposal;
+use App\Service\ParametersService;
 
 use oceanBigOne\MajorityJudgment\Ballot;
-use oceanBigOne\MajorityJudgment\Candidate;
-use oceanBigOne\MajorityJudgment\Mention;
 use oceanBigOne\MajorityJudgment\MeritProfile;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
 
-class Vote extends Controller
+class Vote extends AbstractController
 {
-    public function form($url_key){
+    public function form($url_key, ParametersService $params){
 
-        date_default_timezone_set($this->container->getParameter('timezone'));
+        date_default_timezone_set($params->get('timezone'));
         $error=0;
 
         $isSaved=false;
@@ -34,7 +33,7 @@ class Vote extends Controller
         }
 
         $dataForm=[];
-        $dataForm["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
+        $dataForm["facebook_api_id"]=$params->get('facebook_api_id');
         $dataForm["redirect"]=false;
         $dataForm["url_key"]=$url_key;
         $dataForm["author"] = $_POST["author"] ?? "";
@@ -42,7 +41,7 @@ class Vote extends Controller
         $dataForm["toastrmessage"]=null;
         $dataForm["author_Invalid"]="";
 
-        $choices=$this->container->getParameter('choice_values');
+        $choices=$params->get('choice_values');
         $dataForm["choices"]=$choices;
         $choiceValues=array_keys($choices);
 
@@ -167,13 +166,13 @@ class Vote extends Controller
     }
 
 
-    public function showResult($proposal){
+    public function showResult($proposal, ParametersService $params){
         $dataTemplate=[];
         $dataTemplate["proposal"]=$proposal;
-        $dataTemplate["facebook_api_id"]=$this->container->getParameter('facebook_api_id');
-        $mentions=$this->container->getParameter('choice_values');
+        $dataTemplate["facebook_api_id"]=$params->get('facebook_api_id');
+        $mentions=$params->get('choice_values');
         $dataTemplate["mentions"]=$mentions;
-        $dataTemplate["mention_colors"]=$this->container->getParameter('choice_colors');
+        $dataTemplate["mention_colors"]=$params->get('choice_colors');
 
 
 
