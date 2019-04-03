@@ -53,6 +53,9 @@ That's all...
 
 ## Versions
 
+### 2.1.1
+- English version (fixed translation)
+
 ### 2.1.0
 - English version
 

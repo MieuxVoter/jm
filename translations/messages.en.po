@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2019-03-05 20:08+0100\n"
-"PO-Revision-Date: 2019-03-07 19:39+0100\n"
+"PO-Revision-Date: 2019-03-07 21:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -641,15 +641,15 @@ msgstr ""
 
 #: vote/form.html.twig:73
 msgid "Trés Bien"
-msgstr "Very good"
+msgstr "Excellent"
 
 #: vote/form.html.twig:74
 msgid "Bien"
-msgstr "Good"
+msgstr "Very Good"
 
 #: vote/form.html.twig:75
 msgid "Assez Bien"
-msgstr "Pretty good"
+msgstr "Good"
 
 #: vote/form.html.twig:76
 msgid "Passable"
@@ -657,11 +657,11 @@ msgstr "Fair"
 
 #: vote/form.html.twig:77
 msgid "Insuffisant"
-msgstr "Insufficient"
+msgstr "Poor"
 
 #: vote/form.html.twig:78
 msgid "A Rejeter"
-msgstr "to dismiss"
+msgstr "To Reject"
 
 #: vote/form.html.twig:130
 msgid ""
