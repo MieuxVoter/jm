@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-05 20:08+0100\n"
-"PO-Revision-Date: 2019-03-05 20:08+0100\n"
+"POT-Creation-Date: 2019-04-07 18:57+0200\n"
+"PO-Revision-Date: 2019-04-07 19:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: base.html.twig:15 base.html.twig:18
+#: base.html.twig:15 base.html.twig:22
 msgid "Jugement Majoritaire"
 msgstr "Jugement Majoritaire"
 
@@ -22,35 +22,35 @@ msgstr "Jugement Majoritaire"
 msgid "Plateforme de vote utilisant le jugement majoritaire."
 msgstr "Plateforme de vote utilisant le jugement majoritaire."
 
-#: body.html.twig:19
+#: body.html.twig:22
 msgid "Accueil"
 msgstr "Accueil"
 
-#: body.html.twig:22 pages/home.html.twig:16
+#: body.html.twig:25 pages/home.html.twig:16
 msgid "Lancer un vote"
 msgstr "Lancer un vote"
 
-#: body.html.twig:25 pages/privacy-policy.html.twig:6
+#: body.html.twig:28 pages/privacy-policy.html.twig:6
 msgid "Politique de confidentialité"
 msgstr "Politique de confidentialité"
 
-#: body.html.twig:32
+#: body.html.twig:35
 msgid "Codes source"
 msgstr "Codes source"
 
-#: body.html.twig:34
+#: body.html.twig:37
 msgid "Plateforme de vote"
 msgstr "Plateforme de vote"
 
-#: body.html.twig:35
+#: body.html.twig:38
 msgid "Class PHP"
 msgstr "Class PHP"
 
-#: body.html.twig:41
+#: body.html.twig:44
 msgid "Version française"
 msgstr "Version française"
 
-#: body.html.twig:44
+#: body.html.twig:47
 msgid "English version"
 msgstr "English version"
 
@@ -75,36 +75,45 @@ msgid "Le Jugement Majoritaire, c'est quoi ?"
 msgstr "Le Jugement Majoritaire, c'est quoi ?"
 
 #: pages/home.html.twig:43
+#| msgid ""
+#| "Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre "
+#| "sur le site de l'association Mieux Voter :"
 msgid ""
-"Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur "
-"le site de l'association Mieux Voter :"
+"Pour en savoir plus sur le Jugement Majoritaire, rendez-vous sur le site de "
+"l'association Mieux Voter :"
 msgstr ""
-"Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur "
-"le site de l'association Mieux Voter :"
+"Pour en savoir plus sur le Jugement Majoritaire, rendez-vous sur le site de "
+"l'association Mieux Voter :"
 
 #: pages/home.html.twig:57
 msgid "Pour qui ?"
 msgstr "Pour qui ?"
 
 #: pages/home.html.twig:61
+#| msgid ""
+#| "Vous êtes un petit groupe de personnes (association, groupe d'amis, "
+#| "etc...) et vous désirez soumettre une proposition au Jugement\n"
+#| "                        Majoritaire."
 msgid ""
-"Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) "
-"et vous désirez soumettre une proposition au Jugement\n"
+"Vous êtes un groupe de personnes (association, groupe d'amis, syndicat, "
+"entreprise etc...) et vous désirez soumettre une proposition au Jugement\n"
 "                        Majoritaire."
 msgstr ""
-"Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) "
-"et vous désirez soumettre une proposition au Jugement\n"
+"Vous êtes un groupe de personnes (association, groupe d'amis, syndicat, "
+"entreprise etc...) et vous désirez soumettre une proposition au Jugement\n"
 "                        Majoritaire."
 
 #: pages/home.html.twig:64
+#| msgid ""
+#| "Cet outil est particulièrement adapté à la prise de décisions en groupe, "
+#| "dans un contexte de vote non confidentiel où chaque participant donne son "
+#| "avis. Par exemple : l'un après l'autre derrière un même écran."
 msgid ""
-"Cet outil est particulièrement adapté à la prise de décisions en groupe, "
-"dans un contexte de vote non confidentiel où chaque participant donne son "
-"avis. Par exemple : l'un après l'autre derrière un même écran."
+"Cet outil est particulièrement adapté à la prise de décisions collectives, "
+"dans un contexte de vote non confidentiel."
 msgstr ""
-"Cet outil est particulièrement adapté à la prise de décisions en groupe, "
-"dans un contexte de vote non confidentiel où chaque participant donne son "
-"avis. Par exemple : l'un après l'autre derrière un même écran."
+"Cet outil est particulièrement adapté à la prise de décisions collectives, "
+"dans un contexte de vote non confidentiel."
 
 #: pages/home.html.twig:68
 msgid ""
@@ -247,12 +256,8 @@ msgstr ""
 "Moi aussi je souhaite promouvoir le Jugement Majoritaire, que puis-je faire ?"
 
 #: pages/home.html.twig:131
-msgid ""
-"Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici "
-"l'adresse de leur site :"
-msgstr ""
-"Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici "
-"l'adresse de leur site :"
+msgid "Rapprochez-vous de l'association MIEUX VOTER !"
+msgstr "Rapprochez-vous de l'association MIEUX VOTER !"
 
 #: pages/home.html.twig:145
 msgid "ATTENTION : Projet en phase de test !"
@@ -719,7 +724,6 @@ msgstr ""
 "moins"
 
 #: vote/result.html.twig:87
-#| msgid "Participer maintenant"
 msgid "Participants"
 msgstr "Participants"
 
@@ -750,3 +754,10 @@ msgstr "Histogramme"
 #: vote/save.html.twig:22
 msgid "Participation enregistrée !"
 msgstr "Participation enregistrée !"
+
+#~ msgid ""
+#~ "Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. "
+#~ "Voici l'adresse de leur site :"
+#~ msgstr ""
+#~ "Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. "
+#~ "Voici l'adresse de leur site :"
