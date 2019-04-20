@@ -102,14 +102,6 @@
                                                     </div>
                                                 {% endfor %}
                                     </div>
-                                    <div class="row " >
-                                        <div class="col-12">
-                                            <input type="hidden"class="form-control  {{ number_of_fake_votes_Invalid }}" >
-                                            <div class="invalid-feedback">
-                                                {% trans %}ERREUR : Chaque candidat n'a pas le même nombre de votes{% endtrans %}
-                                            </div>
-                                         </div>
-                                    </div>
 
 
 
@@ -124,10 +116,24 @@
                     {% endfor %}
 
                 </div>
+            </div>
+            <div class="row pb-2">
                 <div class="col-12">
                     <input type="hidden" id="number_of_choices" class="form-control {{ number_of_choices_Invalid }}" name="number_of_choices" value="{{ number_of_choices }}">
                     <div class="invalid-feedback">
                         {% trans %}Merci de saisir au moins deux propositions (avec du texte) !{% endtrans %}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <input type="hidden"class="form-control  {{ number_of_fake_votes_Invalid }}" >
+                    <div class="invalid-feedback">
+                        {% trans %}- ERREUR : Chaque candidat n'a pas le même nombre de votes{% endtrans %}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <input type="hidden" class="form-control  {{ number_of_fake_votes_is_too_big }}" >
+                    <div class="invalid-feedback">
+                        {% trans %}- ERREUR : Nombre de votes maximum dépassé ! (100 MAX){% endtrans %}
                     </div>
                 </div>
             </div>

@@ -62,6 +62,7 @@ class Result extends AbstractController
         $dataForm["mailValue_Invalid"]="";
         $dataForm["limitParticipationValue_Invalid"]="";
         $dataForm["number_of_fake_votes_Invalid"]="";
+        $dataForm["number_of_fake_votes_is_too_big"]="";
 
         //ajoute les mentions
         $dataForm["mentions"]=$params->get('choice_values');
@@ -135,6 +136,7 @@ class Result extends AbstractController
             //nombre de choix  incorrects
             $nbEnabledChoices=0;
             $nbVotesPerChoice=[];
+
             for($i=1;$i<=$dataForm["number_of_choices"];$i++){
                 $nbVote=0;
                 $num=$i;
@@ -156,9 +158,12 @@ class Result extends AbstractController
                 $dataFakeVotes=[];
                 foreach($dataForm["mentions"] as $mention_value=>$mention_label){
                     $dataFakeVotes[$mention_value]=$_POST["fakevote_".$mention_value."_".$num]??0;
-                    $nbVote+=$dataFakeVotes[$mention_value];
+                    $nbVote += $dataFakeVotes[$mention_value];
                 }
-                $nbVotesPerChoice[$nbVote]=1;
+                if(!$choice->getIsDeleted()){
+                    $nbVotesPerChoice[$nbVote]=1;
+                }
+
                 $choice->setFakeVotes($dataFakeVotes);
             }
 
@@ -166,6 +171,15 @@ class Result extends AbstractController
                 $error++;
                 $dataForm["number_of_fake_votes_Invalid"]="is-invalid";
             }
+
+            if(count($nbVotesPerChoice)==1){
+                $nbVotes=array_keys($nbVotesPerChoice);
+                if($nbVotes[0]>100){
+                    $error++;
+                    $dataForm["number_of_fake_votes_is_too_big"]="is-invalid";
+                }
+            }
+
             if($nbEnabledChoices<2){
                 $error++;
                 $dataForm["number_of_choices_Invalid"]="is-invalid";
@@ -240,6 +254,11 @@ class Result extends AbstractController
                     $entityManager->persist($choice);
                 }
                 $entityManager->flush();
+
+
+                //génération et sauvegardes des votes
+
+
 
                 $dataForm["redirect"]=true;
 
