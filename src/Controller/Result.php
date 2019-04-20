@@ -9,8 +9,10 @@ namespace App\Controller;
 
 
 use App\Entity\Choice;
+use App\Entity\Participation;
 use App\Entity\Proposal;
 use App\Service\ParametersService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
 
 
@@ -112,8 +114,6 @@ class Result extends AbstractController
                 $error++;
             }
 
-
-
             //pas de titre
             if($dataForm["title"]===""){
                 $dataForm["title_Invalid"]="is-invalid";
@@ -126,12 +126,7 @@ class Result extends AbstractController
                 $error++;
             }
 
-            //duree incorrect
-            $time_end=strtotime("now +".$dataForm["time_before_end"]);
-            if($time_end<strtotime("now") || $time_end>strtotime("now +7 month")){
-                $dataForm["time_before_end_Invalid"]="is-invalid";
-                $error++;
-            }
+
 
             //nombre de choix  incorrects
             $nbEnabledChoices=0;
@@ -157,7 +152,7 @@ class Result extends AbstractController
                 }
                 $dataFakeVotes=[];
                 foreach($dataForm["mentions"] as $mention_value=>$mention_label){
-                    $dataFakeVotes[$mention_value]=$_POST["fakevote_".$mention_value."_".$num]??0;
+                    $dataFakeVotes[$mention_value]=intval($_POST["fakevote_".$mention_value."_".$num]??0);
                     $nbVote += $dataFakeVotes[$mention_value];
                 }
                 if(!$choice->getIsDeleted()){
@@ -185,6 +180,7 @@ class Result extends AbstractController
                 $dataForm["number_of_choices_Invalid"]="is-invalid";
             }
 
+
             //si aucune erreur
             if($error==0){
                 $isSaved=true;
@@ -197,16 +193,16 @@ class Result extends AbstractController
                 $proposal->setTitle($dataForm["title"]);
                 $proposal->setNumberOfChoices($nbEnabledChoices);
 
-                $date_start=new \DateTime();
+                $date_start=new DateTime();
                 $date_start->setTimestamp(strtotime("now"));
                 $proposal->setDateStart($date_start);
 
-                $date_end=new \DateTime();
-                $date_end->setTimestamp($time_end);
+                $date_end=new DateTime();
+                $date_end->setTimestamp(strtotime("now +1 seconde"));
                 $proposal->setDateEnd($date_end);
 
-                $date_delete=new \DateTime();
-                $date_delete->setTimestamp(strtotime("now +".$dataForm["time_before_end"] ."+30 days"));
+                $date_delete=new DateTime();
+                $date_delete->setTimestamp(strtotime("now +30 days"));
                 $proposal->setDateDelete($date_delete);
 
                 //Options
@@ -225,7 +221,7 @@ class Result extends AbstractController
                 }else{
                     $proposal->setIsNameRequired(false);
                 }
-
+                $proposal->setIsFakeVote(true);
 
                 $entityManager->persist($proposal);
                 $entityManager->flush();
@@ -256,7 +252,40 @@ class Result extends AbstractController
                 $entityManager->flush();
 
 
-                //génération et sauvegardes des votes
+                //génération et sauvegardes des votes sur une seule participation
+
+                $participation = new Participation();
+                $participation->setProposal($proposal);
+                $participation->setAuthor("SYSTEM");
+                $date_start = new DateTime();
+                $date_start->setTimestamp(strtotime("now"));
+                $participation->setDateCreate($date_start);
+                $entityManager->persist($participation);
+                $entityManager->flush();
+
+                foreach($choicesToSave as $choice ){
+                   $fakeVotes=$choice->getFakeVotes();
+                    foreach($fakeVotes as $mention_value=>$number_of_votes){
+                        while($number_of_votes>0){
+                            $number_of_votes--;
+
+
+
+                            $vote = new \App\Entity\Vote();
+                            $vote->setProposal($proposal);
+                            $vote->setParticipation($participation);
+                            $vote->setChoice($choice);
+                            $vote->setVoteValue($mention_value);
+                            $entityManager->persist($vote);
+                            $entityManager->flush();
+
+                        }
+
+                    }
+                }
+
+
+
 
 
 

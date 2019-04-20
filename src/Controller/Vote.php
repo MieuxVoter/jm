@@ -88,7 +88,7 @@ class Vote extends AbstractController
 
             //si la proposition est finie
             if($proposal->getDateEnd()->getTimestamp() < strtotime("now") || $isResultLink==true || ($proposal->getMaxParticipation()>1 and $nbParticipations>=$proposal->getMaxParticipation() ) ){
-                return $this->showResult($proposal);
+                return $this->showResult($proposal,$params);
 
             }else{
                 //si proposition toujours en cours

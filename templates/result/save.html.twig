@@ -5,12 +5,12 @@
 {% block main %}
     <div class="container">
         {% if redirect %}
-            <script> document.location.href = '{{ path("app_jm_form") }}?redirect-save=true&key={{ proposal.urlKey }}' </script>
+            <script> document.location.href = '{{ path("app_jm_result") }}?redirect-save=true&key={{ proposal.urlKey }}' </script>
         {% endif %}
         <div class="row ">
             <div class="col-12 text-center">
                 <h1 class="title mb-5">{% trans %}Proposition enregistrée !{% endtrans %}</h1>
-                <p>{% trans %}Vous pouvez maintenant partager le lien du vote aux participants :{% endtrans %}</p>
+                <p>{% trans %}Vous pouvez maintenant partager le lien du résultat aux participants :{% endtrans %}</p>
             </div>
         </div>
         <div class="row ">
@@ -38,23 +38,6 @@
                 </div>
                 {% endif %}
 
-                {% if  proposal.urlResultKey  %}
-                    <div class="col-12 text-center mt-5">
-                        <p>{% trans %}Lien <u>d'aperçu des résultats</u> en temps réel :{% endtrans %}</p>
-                        <div class="input-group  ">
-                            <input type="text" class="form-control autoselect" id="url_result"
-                                   value="{{ url("app_jm_vote",{'url_key':  proposal.urlResultKey }) }}">
-
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary copy-to-clipboard" data-target="#url_result" type="button"><i
-                                            class="fas fa-copy mr-2"></i> {% trans %}Copier{% endtrans %}</button>
-                            </div>
-
-                        </div>
-                        <small class="text-primary">{% trans %}Pensez a enregistrer également ce lien dans les favoris de votre navigateur !{% endtrans %}</small>
-                    </div>
-                {% endif %}
-
 
 
 
@@ -65,7 +48,7 @@
             <div class="col-12 text-center">
 
                 <a href="{{ url("app_jm_vote",{'url_key':  app.request.query.get('key')  }) }}" class="btn btn-success"><i
-                            class="fas fa-users mr-2"></i>{% trans %}Participer maintenant{% endtrans %}</a>
+                            class="fas fa-users mr-2"></i>{% trans %}Afficher maintenant{% endtrans %}</a>
 
                 {% endif %}
 
