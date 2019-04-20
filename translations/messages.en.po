@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-04-20 18:00+0200\n"
-"PO-Revision-Date: 2019-04-20 18:01+0200\n"
+"POT-Creation-Date: 2019-04-20 19:44+0200\n"
+"PO-Revision-Date: 2019-04-20 19:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -758,7 +758,7 @@ msgid "Déterminé par %n% participations"
 msgstr "Determined by %n% participations"
 
 #: vote/result.html.twig:105
-msgid "Les votes de cette proposition ont été saisies manuellement."
+msgid "Les votes de cette proposition ont été saisis manuellement."
 msgstr "The votes of this proposal have been entered manually."
 
 #: vote/result.html.twig:113

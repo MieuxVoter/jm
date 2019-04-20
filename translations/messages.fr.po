@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-04-20 17:59+0200\n"
-"PO-Revision-Date: 2019-04-20 18:00+0200\n"
+"POT-Creation-Date: 2019-04-20 19:43+0200\n"
+"PO-Revision-Date: 2019-04-20 19:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -455,9 +455,6 @@ msgid "Partage Facebook"
 msgstr "Partage Facebook"
 
 #: result/form.html.twig:177
-#| msgid ""
-#| "Un bouton de partage Facebook sera disponible sur le formulaire de vote "
-#| "et sur la page de résultat"
 msgid "Un bouton de partage Facebook sera disponible sur la page de résultat"
 msgstr "Un bouton de partage Facebook sera disponible sur la page de résultat"
 
@@ -478,7 +475,6 @@ msgid "Proposition enregistrée !"
 msgstr "Proposition enregistrée !"
 
 #: result/save.html.twig:13
-#| msgid "Vous pouvez maintenant partager le lien du vote aux participants :"
 msgid "Vous pouvez maintenant partager le lien du résultat aux participants :"
 msgstr "Vous pouvez maintenant partager le lien du résultat aux participants :"
 
@@ -506,7 +502,6 @@ msgstr ""
 "pour partager ce vote :"
 
 #: result/save.html.twig:51
-#| msgid "Participer maintenant"
 msgid "Afficher maintenant"
 msgstr "Afficher maintenant"
 
@@ -775,8 +770,8 @@ msgid "Déterminé par %n% participations"
 msgstr "Déterminé par %n% participations"
 
 #: vote/result.html.twig:105
-msgid "Les votes de cette proposition ont été saisies manuellement."
-msgstr "Les votes de cette proposition ont été saisies manuellement."
+msgid "Les votes de cette proposition ont été saisis manuellement."
+msgstr "Les votes de cette proposition ont été saisis manuellement."
 
 #: vote/result.html.twig:113
 msgid "Classement complet"
