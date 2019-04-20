@@ -61,6 +61,7 @@ class Result extends AbstractController
         $dataForm["number_of_choices_Invalid"]="";
         $dataForm["mailValue_Invalid"]="";
         $dataForm["limitParticipationValue_Invalid"]="";
+        $dataForm["number_of_fake_votes_Invalid"]="";
 
         //ajoute les mentions
         $dataForm["mentions"]=$params->get('choice_values');
@@ -133,7 +134,9 @@ class Result extends AbstractController
 
             //nombre de choix  incorrects
             $nbEnabledChoices=0;
+            $nbVotesPerChoice=[];
             for($i=1;$i<=$dataForm["number_of_choices"];$i++){
+                $nbVote=0;
                 $num=$i;
                 if($i<10){
                     $num="0".$i;
@@ -146,14 +149,23 @@ class Result extends AbstractController
                 $choice->setSortValue($i);
                 $choice->setIsDeleted($_POST["remove_choice_".$num]??1);
                 $choices[]=$choice;
-
                 if(!$choiceDisable &&  $choice->getLabel()!=""){
                     $nbEnabledChoices++;
                     $choicesToSave[]=$choice;
                 }
+                $dataFakeVotes=[];
+                foreach($dataForm["mentions"] as $mention_value=>$mention_label){
+                    $dataFakeVotes[$mention_value]=$_POST["fakevote_".$mention_value."_".$num]??0;
+                    $nbVote+=$dataFakeVotes[$mention_value];
+                }
+                $nbVotesPerChoice[$nbVote]=1;
+                $choice->setFakeVotes($dataFakeVotes);
             }
 
-
+            if(count($nbVotesPerChoice)>1){
+                $error++;
+                $dataForm["number_of_fake_votes_Invalid"]="is-invalid";
+            }
             if($nbEnabledChoices<2){
                 $error++;
                 $dataForm["number_of_choices_Invalid"]="is-invalid";

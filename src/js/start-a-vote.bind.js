@@ -10,19 +10,29 @@ $(document).ready(function(){
        const $inputNumberOfChoices=$('#number_of_choices');
        const nItem=parseInt($inputNumberOfChoices.val())+1;
 
-       if(nItem<=100){
+       if(nItem<=100) {
            $inputNumberOfChoices.val(nItem);
-           let sItem=nItem;
-           if(nItem<10){
-               sItem='0'+sItem;
+           let sItem = nItem;
+           if (nItem < 10) {
+               sItem = '0' + sItem;
            }
-           const $newChoice=$choiceInit.clone();
-           $newChoice.find("#choice_number_init").attr("id","choice_number_"+sItem).html(sItem);
-           $newChoice.find("#choice_label_init").attr("id","choice_label_"+sItem);
-           $newChoice.find("[for=choice_value_init]").attr("for","choice_value_"+sItem);
-           $newChoice.find("#choice_value_init").attr("id","choice_value_"+sItem).attr("name","choice_value_"+sItem);
-           $newChoice.find("#choice_explanation_init").attr("id","choice_explanation_"+sItem).attr("name","choice_explanation_"+sItem);
-           $newChoice.find("#remove_choice_init").attr("id","remove_choice_"+sItem).attr("name","remove_choice_"+sItem);
+           const $newChoice = $choiceInit.clone();
+           $newChoice.find("#choice_number_init").attr("id", "choice_number_" + sItem).html(sItem);
+           $newChoice.find("#choice_label_init").attr("id", "choice_label_" + sItem);
+           $newChoice.find("[for=choice_value_init]").attr("for", "choice_value_" + sItem);
+           $newChoice.find("#choice_value_init").attr("id", "choice_value_" + sItem).attr("name", "choice_value_" + sItem);
+           $newChoice.find("#choice_explanation_init").attr("id", "choice_explanation_" + sItem).attr("name", "choice_explanation_" + sItem);
+           $newChoice.find("#remove_choice_init").attr("id", "remove_choice_" + sItem).attr("name", "remove_choice_" + sItem);
+
+           if ($newChoice.find("#fakevote_vote_0_init").length) {
+               $newChoice.find("#fakevote_vote_0_init").attr("id", "fakevote_vote_0_" + sItem).attr("name", "fakevote_vote_0_" + sItem);
+               $newChoice.find("#fakevote_vote_1_init").attr("id", "fakevote_vote_1_" + sItem).attr("name", "fakevote_vote_1_" + sItem);
+               $newChoice.find("#fakevote_vote_2_init").attr("id", "fakevote_vote_2_" + sItem).attr("name", "fakevote_vote_2_" + sItem);
+               $newChoice.find("#fakevote_vote_3_init").attr("id", "fakevote_vote_3_" + sItem).attr("name", "fakevote_vote_3_" + sItem);
+               $newChoice.find("#fakevote_vote_4_init").attr("id", "fakevote_vote_4_" + sItem).attr("name", "fakevote_vote_4_" + sItem);
+               $newChoice.find("#fakevote_vote_5_init").attr("id", "fakevote_vote_5_" + sItem).attr("name", "fakevote_vote_5_" + sItem);
+            }
+
            $newChoice.removeClass("d-none");
            $('#choices').append($newChoice);
        }else{
