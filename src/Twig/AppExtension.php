@@ -13,7 +13,8 @@ class AppExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('publicFile', array($this, 'publicFile'))
+            new TwigFunction('publicFile', array($this, 'publicFile')),
+            new TwigFunction('jsonDecode',  array($this, 'jsonDecode'))
         );
     }
 
@@ -26,5 +27,10 @@ class AppExtension extends AbstractExtension
     {
         $filemtime=filemtime("../public".$path);
         return $path."?v=".$filemtime;
+    }
+
+    public function jsonDecode($string)
+    {
+        return json_decode($string,true);
     }
 }

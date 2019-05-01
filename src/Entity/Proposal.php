@@ -98,6 +98,11 @@ class Proposal
      */
     private $is_name_required;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFakeVote;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
@@ -367,6 +372,18 @@ class Proposal
     public function setIsNameRequired(?bool $is_name_required): self
     {
         $this->is_name_required = $is_name_required;
+
+        return $this;
+    }
+
+    public function getIsFakeVote(): ?bool
+    {
+        return $this->isFakeVote;
+    }
+
+    public function setIsFakeVote(bool $isFakeVote): self
+    {
+        $this->isFakeVote = $isFakeVote;
 
         return $this;
     }

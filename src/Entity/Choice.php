@@ -49,6 +49,11 @@ class Choice
      */
     private $explanation;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $fakeVotes = [];
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -146,6 +151,18 @@ class Choice
     public function setExplanation(?string $explanation): self
     {
         $this->explanation = $explanation;
+
+        return $this;
+    }
+
+    public function getFakeVotes(): ?array
+    {
+        return $this->fakeVotes;
+    }
+
+    public function setFakeVotes(?array $fakeVotes): self
+    {
+        $this->fakeVotes = $fakeVotes;
 
         return $this;
     }
