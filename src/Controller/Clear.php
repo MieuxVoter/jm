@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Proposal;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
+use Symfony\Component\Filesystem\Filesystem;
 
 class Clear extends AbstractController
 {
@@ -22,7 +23,12 @@ class Clear extends AbstractController
 
         $em = $this->getDoctrine()->getEntityManager();
         $n=0;
+        $filesystem = new Filesystem();
         foreach($proposals as $proposal){
+            $result_cached=__DIR__ . '/../../var/cached-result/' . $proposal->getUrlKey();
+            if( $filesystem->exists($result_cached) ){
+                $filesystem->remove($result_cached);
+            }
             $em->remove($proposal);
             $n++;
         }
