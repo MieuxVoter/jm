@@ -25,3 +25,7 @@ app_jm_clear:
 app_jm_result:
  path: /result
  controller: App\Controller\Result::form
+
+app_jm_generate_results:
+ path: /generate-results
+ controller: App\Controller\GenerateResults::run

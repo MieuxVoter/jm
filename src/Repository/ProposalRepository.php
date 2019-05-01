@@ -33,6 +33,22 @@ class ProposalRepository extends ServiceEntityRepository
         ;
     }
 
+    //    /**
+//     * @return Proposal[] Returns an array of Proposal objects
+//     */
+
+    public function findByDateEndBetween(\DateTime $dateBefore,\DateTime $dateAfter): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.date_end > :date_before')
+            ->andWhere('p.date_end < :date_after')
+            ->setParameter('date_before', $dateBefore)
+            ->setParameter('date_after', $dateAfter)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Proposal
