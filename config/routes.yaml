@@ -22,3 +22,7 @@ app_jm_vote:
 app_jm_clear:
  path: /clear
  controller: App\Controller\Clear::run
+
+app_jm_generate_results:
+ path: /generate-results
+ controller: App\Controller\GenerateResults::run

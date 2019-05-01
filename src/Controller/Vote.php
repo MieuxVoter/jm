@@ -204,8 +204,12 @@ class Vote extends AbstractController
 
 
 
-    public function compilResult($proposal, ParametersService $params){
-        $out="";
+    public function compilResult($proposal, ParametersService $params,$container=null){
+
+        if(is_null($container)){
+            $container=$this;
+        }
+
         $dataTemplate=[];
         $dataTemplate["proposal"]=$proposal;
         $dataTemplate["facebook_api_id"]=$params->get('facebook_api_id');
@@ -220,12 +224,12 @@ class Vote extends AbstractController
         $candidates=$proposal->getChoices();
 
         //recupere les votes
-        $repositoryVote = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
+        $repositoryVote = $container->getDoctrine()->getRepository(\App\Entity\Vote::class);
         $votes = $repositoryVote->findBy(['proposal' => $proposal->getId()]);
 
         //recupere les participants
         $dataTemplate["participations"]=[];
-        $repositoryParticipations = $this->getDoctrine()->getRepository(\App\Entity\Participation::class);
+        $repositoryParticipations = $container->getDoctrine()->getRepository(\App\Entity\Participation::class);
         $dataTemplate["participations"] = $repositoryParticipations->findBy(['proposal' => $proposal->getId()]);
         shuffle($dataTemplate["participations"]);
 
@@ -274,7 +278,7 @@ class Vote extends AbstractController
 
 
             //affiche les profiles de merite pour chaque candidat/choix
-            $repositoryChoice = $this->getDoctrine()->getRepository(Choice::class);
+            $repositoryChoice = $container->getDoctrine()->getRepository(Choice::class);
             $dataTemplate["result"] = [];
             $dataTemplate["meritProfiles"] = [];
             foreach ($result as $candidate) {
