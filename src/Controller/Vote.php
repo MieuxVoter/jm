@@ -22,7 +22,7 @@ class Vote extends AbstractController
 {
     public function form($url_key, ParametersService $params)
     {
-
+        set_time_limit(60*5);
         date_default_timezone_set($params->get('timezone'));
         $error = 0;
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-04-20 19:44+0200\n"
-"PO-Revision-Date: 2019-04-20 19:44+0200\n"
+"POT-Creation-Date: 2019-05-01 18:14+0200\n"
+"PO-Revision-Date: 2019-05-01 18:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -80,11 +80,11 @@ msgstr "What is the majority judgment?"
 
 #: pages/home.html.twig:43
 msgid ""
-"Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur "
-"le site de l'association Mieux Voter :"
+"Pour en savoir plus sur le Jugement Majoritaire, rendez-vous sur le site de "
+"l'association Mieux Voter :"
 msgstr ""
-"To learn more about the majority judgment, you can go to the website of the "
-"association better vote:"
+"To find out more about the majority judgement, visit the website of the "
+"better vote Association:"
 
 #: pages/home.html.twig:57
 msgid "Pour qui ?"
@@ -92,22 +92,20 @@ msgstr "For Who?"
 
 #: pages/home.html.twig:61
 msgid ""
-"Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) "
-"et vous désirez soumettre une proposition au Jugement\n"
+"Vous êtes un groupe de personnes (association, groupe d'amis, syndicat, "
+"entreprise etc...) et vous désirez soumettre une proposition au Jugement\n"
 "                        Majoritaire."
 msgstr ""
-"You are a small group of people (Association, Group of Friends, etc...) and "
-"you wish to submit a proposal to the majority judgment."
+"You are a group of people (Association, group of friends, Union, company "
+"etc...) and you wish to submit a proposal to the majority judgement."
 
 #: pages/home.html.twig:64
 msgid ""
-"Cet outil est particulièrement adapté à la prise de décisions en groupe, "
-"dans un contexte de vote non confidentiel où chaque participant donne son "
-"avis. Par exemple : l'un après l'autre derrière un même écran."
+"Cet outil est particulièrement adapté à la prise de décisions collectives, "
+"dans un contexte de vote non confidentiel."
 msgstr ""
-"This tool is particularly suitable for group decision making, in a non-"
-"confidential voting context where each participant gives their opinion. For "
-"example: One after the other behind the same screen."
+"This tool is particularly suitable for collective decision-making, in a non-"
+"confidential voting context."
 
 #: pages/home.html.twig:68
 msgid ""
@@ -246,12 +244,8 @@ msgid ""
 msgstr "I too wish to promote the majority judgment, what can I do?"
 
 #: pages/home.html.twig:131
-msgid ""
-"Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici "
-"l'adresse de leur site :"
-msgstr ""
-"We advise you to get closer to the french association \"MIEUX VOTER"
-"\" (better voting). Here is the address of their site:"
+msgid "Rapprochez-vous de l'association MIEUX VOTER !"
+msgstr "Get closer to the MIEUX VOTER Association!"
 
 #: pages/home.html.twig:145
 msgid "ATTENTION : Projet en phase de test !"
@@ -776,3 +770,22 @@ msgstr "Histogram"
 #: vote/save.html.twig:22
 msgid "Participation enregistrée !"
 msgstr "Registered Participation!"
+
+#: vote/too-much-vote-for-preview.html.twig:15
+msgid "Ooops ! Trop de participations !"
+msgstr "Ooops! Too many participations!"
+
+#: vote/too-much-vote-for-preview.html.twig:16
+msgid ""
+"Ce scrutin ne comporte trop de vote pour afficher le résultat en temps réel. "
+"Le résultat ne sera visible qu'une fois le vote terminé."
+msgstr ""
+"This poll has too much voting to display the result in real time. The result "
+"will only be visible once the vote has been completed."
+
+#~ msgid ""
+#~ "Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. "
+#~ "Voici l'adresse de leur site :"
+#~ msgstr ""
+#~ "We advise you to get closer to the french association \"MIEUX VOTER"
+#~ "\" (better voting). Here is the address of their site:"

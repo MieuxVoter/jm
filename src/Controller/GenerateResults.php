@@ -18,7 +18,7 @@ class GenerateResults extends AbstractController
 {
 
     public function run(ParametersService $params){
-        set_time_limit(0);
+        set_time_limit(60*60);
         $filesystem = new Filesystem();
         $n=0;
         $dataTemplate=[];
