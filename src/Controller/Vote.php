@@ -16,49 +16,51 @@ use App\Service\ParametersService;
 use oceanBigOne\MajorityJudgment\Ballot;
 use oceanBigOne\MajorityJudgment\MeritProfile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
+use Symfony\Component\Filesystem\Filesystem;
 
 class Vote extends AbstractController
 {
-    public function form($url_key, ParametersService $params){
+    public function form($url_key, ParametersService $params)
+    {
 
         date_default_timezone_set($params->get('timezone'));
-        $error=0;
+        $error = 0;
 
-        $isSaved=false;
+        $isSaved = false;
 
-        $redirectSave=$_GET["redirect-save"] ?? "";
+        $redirectSave = $_GET["redirect-save"] ?? "";
 
-        if($redirectSave!=""){
-            $isSaved=true;
+        if ($redirectSave != "") {
+            $isSaved = true;
         }
 
-        $dataForm=[];
-        $dataForm["facebook_api_id"]=$params->get('facebook_api_id');
-        $dataForm["redirect"]=false;
-        $dataForm["url_key"]=$url_key;
+        $dataForm = [];
+        $dataForm["facebook_api_id"] = $params->get('facebook_api_id');
+        $dataForm["redirect"] = false;
+        $dataForm["url_key"] = $url_key;
         $dataForm["author"] = $_POST["author"] ?? "";
-        $dataForm["error"]=false;
-        $dataForm["toastrmessage"]=null;
-        $dataForm["author_Invalid"]="";
+        $dataForm["error"] = false;
+        $dataForm["toastrmessage"] = null;
+        $dataForm["author_Invalid"] = "";
 
-        $choices=$params->get('choice_values');
-        $dataForm["choices"]=$choices;
-        $choiceValues=array_keys($choices);
+        $choices = $params->get('choice_values');
+        $dataForm["choices"] = $choices;
+        $choiceValues = array_keys($choices);
 
         $repositoryProposal = $this->getDoctrine()->getRepository(Proposal::class);
         $proposal = $repositoryProposal->findOneBy(['url_key' => $url_key]);
-        $isResultLink=false;
-        if(is_null($proposal)){
+        $isResultLink = false;
+        if (is_null($proposal)) {
             $proposal = $repositoryProposal->findOneBy(['url_result_key' => $url_key]);
-            if(!is_null($proposal)) {
+            if (!is_null($proposal)) {
                 $isResultLink = true;
             }
         }
 
-        $dataForm["selected_values"]=[];
+        $dataForm["selected_values"] = [];
 
         //si une proposition trouvée
-        if(!is_null($proposal)){
+        if (!is_null($proposal)) {
 
 
             //compte le nombre de participations
@@ -67,7 +69,7 @@ class Vote extends AbstractController
             $votes = $repositoryVote->findBy(['proposal' => $proposal->getId()]);
 
 
-            $nChoices=0;
+            $nChoices = 0;
             foreach ($proposal->getChoices() as $choice) {
                 $nChoices++;
                 $vote_value = null;
@@ -83,29 +85,39 @@ class Vote extends AbstractController
                 $dataForm["toastrmessage"] = ["type" => "error", "title" => "Erreur", "text" => "Vous devez évaluer toutes les propositions !"];
 
             }
-            $nbParticipations =count($votes)/$nChoices;
+            $nbParticipations = count($votes) / $nChoices;
 
 
-            //si la proposition est finie
-            if($proposal->getDateEnd()->getTimestamp() < strtotime("now") || $isResultLink==true || ($proposal->getMaxParticipation()>1 and $nbParticipations>=$proposal->getMaxParticipation() ) ){
-                return $this->showResult($proposal);
+            //si la proposition est finie ou qu'on a un lien d'affichae temps reel
+            if ($proposal->getDateEnd()->getTimestamp() < strtotime("now") || $isResultLink == true || ($proposal->getMaxParticipation() > 1 and $nbParticipations >= $proposal->getMaxParticipation())) {
 
-            }else{
+                //si affichage temps réeel et que le nombre de participation ne permet pas un affichage en temps réel
+                if ($isResultLink && $nbParticipations > 100) {
+                    $dataTemplate = [];
+                    $dataTemplate["proposal"] = $proposal;
+                    $dataTemplate["facebook_api_id"] = $params->get('facebook_api_id');
+                    return $this->render('vote/too-much-vote-for-preview.html.twig', $dataTemplate);
+                } else {
+                    return $this->showResult($proposal, $nbParticipations, $params);
+                }
+
+
+            } else {
                 //si proposition toujours en cours
                 //ET si données envoyéé en post
-                if(count($_POST)) {
+                if (count($_POST)) {
 
 
                     //TODO : vérification d'erreurs possibles ?
-                    if($proposal->getIsNameRequired() && trim($dataForm["author"])===""){
+                    if ($proposal->getIsNameRequired() && trim($dataForm["author"]) === "") {
                         $error++;
-                        $dataForm["author_Invalid"]="is-invalid";
+                        $dataForm["author_Invalid"] = "is-invalid";
                     }
 
 
-                    if($error==0) {
+                    if ($error == 0) {
 
-                        $isSaved=true;
+                        $isSaved = true;
 
                         $entityManager = $this->getDoctrine()->getManager();
 
@@ -147,18 +159,18 @@ class Vote extends AbstractController
 
             }
 
-            $dataForm["proposal"]=$proposal;
-            $dataForm["timezone"]=date_default_timezone_get();
-            if($isSaved){
+            $dataForm["proposal"] = $proposal;
+            $dataForm["timezone"] = date_default_timezone_get();
+            if ($isSaved) {
                 return $this->render('vote/save.html.twig', $dataForm);
-            }else{
+            } else {
                 return $this->render('vote/form.html.twig', $dataForm);
             }
 
-        }else{
-            $dataForm["proposal"]=new Proposal();
-            $dataForm["error"]=true;
-            $dataForm["timezone"]=date_default_timezone_get();
+        } else {
+            $dataForm["proposal"] = new Proposal();
+            $dataForm["error"] = true;
+            $dataForm["timezone"] = date_default_timezone_get();
             return $this->render('vote/form.html.twig', $dataForm);
         }
 
@@ -166,7 +178,34 @@ class Vote extends AbstractController
     }
 
 
-    public function showResult($proposal, ParametersService $params){
+    public function showResult($proposal, $nbParticipations, ParametersService $params)
+    {
+        $filesystem = new Filesystem();
+        $filesystem->mkdir([__DIR__ . '/../../var/cached-result/'], 0777);
+        //si le fichier de cache exist et qu'il ne s'agit pas d'une prévisualisation du resultat
+        if (
+            ($filesystem->exists(__DIR__ . '/../../var/cached-result/' . $proposal->getUrlKey()))
+            &&
+            ($proposal->getDateEnd()->getTimestamp() < strtotime("now") || ($proposal->getMaxParticipation() > 1 and $nbParticipations >= $proposal->getMaxParticipation()))
+        ) {
+            $serialized_result = file_get_contents(__DIR__ . '/../../var/cached-result/' . $proposal->getUrlKey());
+        } else {
+            $serialized_result = $this->compilResult($proposal, $params);
+        }
+        $result = unserialize($serialized_result);
+        if ($result["number_of_votes"] >= 2){
+            return  $this->render('vote/result.html.twig', $result);
+        }else{
+            return $this->render('vote/not-enough-vote.html.twig', $result);
+        }
+
+    }
+
+
+
+
+    public function compilResult($proposal, ParametersService $params){
+        $out="";
         $dataTemplate=[];
         $dataTemplate["proposal"]=$proposal;
         $dataTemplate["facebook_api_id"]=$params->get('facebook_api_id');
@@ -216,11 +255,12 @@ class Vote extends AbstractController
             $ballot->addCandidate($candidateToObject[$candidat->getLabel()]);
         }
 
+        $dataTemplate["number_of_votes"]=count($votes);
 
-        //ajoutes les votes
-        if(count($votes)>=2) {
+        //si assez de votes
+        if($dataTemplate["number_of_votes"]>=2) {
 
-
+            //ajoutes les votes
             foreach ($votes as $vote) {
                 try {
                     $ballot->addVote(new \oceanBigOne\MajorityJudgment\Vote($candidateToObject[$vote->getChoice()->getLabel()], $mentionToObject[$vote->getVoteValue()]));
@@ -259,9 +299,19 @@ class Vote extends AbstractController
             $dataTemplate["winnerMentionColor"] = $dataTemplate["mention_colors"][$mentionLabelToValue[$dataTemplate["result"][0]["majorityMention"]->getLabel()]];
             $dataTemplate["mentionLabelToValue"] = $mentionLabelToValue;
 
-            return $this->render('vote/result.html.twig', $dataTemplate);
+            $filesystem = new Filesystem();
+            $filesystem->mkdir([__DIR__.'/../../var/cached-result/'], 0777);
+            $serialized_result=serialize($dataTemplate);
+            file_put_contents(__DIR__.'/../../var/cached-result/'.$proposal->getUrlKey(),$serialized_result);
+
+            //$out= $this->render('vote/result.html.twig', $dataTemplate);
         }else{
-            return $this->render('vote/not-enough-vote.html.twig', $dataTemplate);
+            //$out=  $this->render('vote/not-enough-vote.html.twig', $dataTemplate);
+            $serialized_result=serialize($dataTemplate);
         }
+
+
+        return $serialized_result;
+
     }
 }

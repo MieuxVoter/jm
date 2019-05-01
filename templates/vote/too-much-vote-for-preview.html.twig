@@ -1,0 +1,22 @@
+{% extends "body.html.twig" %}
+
+{% block title %}{{ proposal.title }}{% endblock %}
+{% block ogtitle %}{{ proposal.title }}{% endblock %}
+{% block ogdescription %}{{ proposal.presentation }}{% endblock %}
+
+{% block main %}
+
+
+
+    <div class="container">
+
+        <div class="row ">
+            <div class="col-12 text-center">
+                <h1 class="title">{% trans %}Ooops ! Trop de participations !{% endtrans %}</h1>
+                <p>{% trans %}Ce scrutin ne comporte trop de vote pour afficher le résultat en temps réel. Le résultat ne sera visible qu'une fois le vote terminé.{% endtrans %}</p>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
