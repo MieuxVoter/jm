@@ -162,6 +162,7 @@ class StartAVote extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
 
                 $proposal=new Proposal();
+                $proposal->setIsFakeVote(false);
                 $proposal->setAuthor($dataForm["author"]);
                 $proposal->setPresentation($dataForm["presentation"]);
                 $proposal->setTitle($dataForm["title"]);
