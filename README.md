@@ -53,11 +53,14 @@ That's all...
 
 ## Versions
 
-### 2.1.2
+#### 2.1.3
+- tar update
+
+#### 2.1.2
 - Jquery update
 - popper.js update
 
-### 2.1.1
+#### 2.1.1
 - English version (fixed translation)
 
 ### 2.1.0

@@ -13,7 +13,8 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.14.7",
     "sass": "^1.14.3",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "tar": ">=4.4.8"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
