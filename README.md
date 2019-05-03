@@ -53,6 +53,10 @@ That's all...
 
 ## Versions
 
+### 2.1.2
+- Jquery update
+- popper.js update
+
 ### 2.1.1
 - English version (fixed translation)
 
