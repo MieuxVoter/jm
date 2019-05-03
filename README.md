@@ -57,6 +57,10 @@ That's all...
 - Use abstractController interface instead of deprecated Controller Interface
 - update bootstrap
 
+### 2.1.2
+- Jquery update
+- popper.js update
+
 ### 2.1.1
 - English version (fixed translation)
 
