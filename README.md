@@ -58,7 +58,10 @@ That's all...
 
 ## Versions
 
-#### 2.2.0
+#### 2.2.1
+- update npm dependencies
+
+### 2.2.0
 - Strip poll
 - Cached result (fix a performance problem)
 - Add Mieux Voter Logo
