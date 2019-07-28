@@ -9,12 +9,14 @@ namespace App\Controller;
 
 
 use App\Entity\Choice;
+use App\Entity\Participation;
 use App\Entity\Proposal;
 use App\Service\ParametersService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController ;
 
 
-class StartAVote extends AbstractController
+class Result extends AbstractController
 {
     public function form(ParametersService $params){
 
@@ -61,6 +63,12 @@ class StartAVote extends AbstractController
         $dataForm["number_of_choices_Invalid"]="";
         $dataForm["mailValue_Invalid"]="";
         $dataForm["limitParticipationValue_Invalid"]="";
+        $dataForm["number_of_fake_votes_Invalid"]="";
+        $dataForm["number_of_fake_votes_is_too_big"]="";
+
+        //ajoute les mentions
+        $dataForm["mentions"]=$params->get('choice_values');
+
 
 
         if(count($_POST)==1){
@@ -97,7 +105,7 @@ class StartAVote extends AbstractController
             $dataForm["limitParticipationValue_Invalid"]="";
             if($dataForm["limitParticipation"]=="yes" && ( intval($dataForm["limitParticipationValue"])<2 || intval($dataForm["limitParticipationValue"])>=100 ) ){
                 $dataForm["limitParticipationValue_Invalid"]="is-invalid";
-                 $error++;
+                $error++;
             }
 
             $dataForm["mailValue_Invalid"]="";
@@ -105,8 +113,6 @@ class StartAVote extends AbstractController
                 $dataForm["mailValue_Invalid"]="is-invalid";
                 $error++;
             }
-
-
 
             //pas de titre
             if($dataForm["title"]===""){
@@ -120,16 +126,14 @@ class StartAVote extends AbstractController
                 $error++;
             }
 
-            //duree incorrect
-            $time_end=strtotime("now +".$dataForm["time_before_end"]);
-            if($time_end<strtotime("now") || $time_end>strtotime("now +7 month")){
-                $dataForm["time_before_end_Invalid"]="is-invalid";
-                $error++;
-            }
+
 
             //nombre de choix  incorrects
             $nbEnabledChoices=0;
+            $nbVotesPerChoice=[];
+
             for($i=1;$i<=$dataForm["number_of_choices"];$i++){
+                $nbVote=0;
                 $num=$i;
                 if($i<10){
                     $num="0".$i;
@@ -142,18 +146,40 @@ class StartAVote extends AbstractController
                 $choice->setSortValue($i);
                 $choice->setIsDeleted($_POST["remove_choice_".$num]??1);
                 $choices[]=$choice;
-
                 if(!$choiceDisable &&  $choice->getLabel()!=""){
                     $nbEnabledChoices++;
                     $choicesToSave[]=$choice;
                 }
+                $dataFakeVotes=[];
+                foreach($dataForm["mentions"] as $mention_value=>$mention_label){
+                    $dataFakeVotes[$mention_value]=intval($_POST["fakevote_".$mention_value."_".$num]??0);
+                    $nbVote += $dataFakeVotes[$mention_value];
+                }
+                if(!$choice->getIsDeleted()){
+                    $nbVotesPerChoice[$nbVote]=1;
+                }
+
+                $choice->setFakeVotes($dataFakeVotes);
             }
 
+            if(count($nbVotesPerChoice)>1){
+                $error++;
+                $dataForm["number_of_fake_votes_Invalid"]="is-invalid";
+            }
+
+            if(count($nbVotesPerChoice)==1){
+                $nbVotes=array_keys($nbVotesPerChoice);
+                if($nbVotes[0]>100){
+                    $error++;
+                    $dataForm["number_of_fake_votes_is_too_big"]="is-invalid";
+                }
+            }
 
             if($nbEnabledChoices<2){
                 $error++;
                 $dataForm["number_of_choices_Invalid"]="is-invalid";
             }
+
 
             //si aucune erreur
             if($error==0){
@@ -162,22 +188,21 @@ class StartAVote extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
 
                 $proposal=new Proposal();
-                $proposal->setIsFakeVote(false);
                 $proposal->setAuthor($dataForm["author"]);
                 $proposal->setPresentation($dataForm["presentation"]);
                 $proposal->setTitle($dataForm["title"]);
                 $proposal->setNumberOfChoices($nbEnabledChoices);
 
-                $date_start=new \DateTime();
+                $date_start=new DateTime();
                 $date_start->setTimestamp(strtotime("now"));
                 $proposal->setDateStart($date_start);
 
-                $date_end=new \DateTime();
-                $date_end->setTimestamp($time_end);
+                $date_end=new DateTime();
+                $date_end->setTimestamp(strtotime("now +1 seconde"));
                 $proposal->setDateEnd($date_end);
 
-                $date_delete=new \DateTime();
-                $date_delete->setTimestamp(strtotime("now +".$dataForm["time_before_end"] ."+30 days"));
+                $date_delete=new DateTime();
+                $date_delete->setTimestamp(strtotime("now +30 days"));
                 $proposal->setDateDelete($date_delete);
 
                 //Options
@@ -196,7 +221,7 @@ class StartAVote extends AbstractController
                 }else{
                     $proposal->setIsNameRequired(false);
                 }
-
+                $proposal->setIsFakeVote(true);
 
                 $entityManager->persist($proposal);
                 $entityManager->flush();
@@ -225,6 +250,44 @@ class StartAVote extends AbstractController
                     $entityManager->persist($choice);
                 }
                 $entityManager->flush();
+
+
+                //génération et sauvegardes des votes sur une seule participation
+
+                $participation = new Participation();
+                $participation->setProposal($proposal);
+                $participation->setAuthor("SYSTEM");
+                $date_start = new DateTime();
+                $date_start->setTimestamp(strtotime("now"));
+                $participation->setDateCreate($date_start);
+                $entityManager->persist($participation);
+                $entityManager->flush();
+
+                foreach($choicesToSave as $choice ){
+                   $fakeVotes=$choice->getFakeVotes();
+                    foreach($fakeVotes as $mention_value=>$number_of_votes){
+                        while($number_of_votes>0){
+                            $number_of_votes--;
+
+
+
+                            $vote = new \App\Entity\Vote();
+                            $vote->setProposal($proposal);
+                            $vote->setParticipation($participation);
+                            $vote->setChoice($choice);
+                            $vote->setVoteValue($mention_value);
+                            $entityManager->persist($vote);
+                            $entityManager->flush();
+
+                        }
+
+                    }
+                }
+
+
+
+
+
 
                 $dataForm["redirect"]=true;
 
@@ -267,9 +330,9 @@ class StartAVote extends AbstractController
             }
             $dataForm["proposal"]=$proposal;
 
-            return $this->render('start-a-vote/save.html.twig', $dataForm);
+            return $this->render('result/save.html.twig', $dataForm);
         }else{
-            return $this->render('start-a-vote/form.html.twig', $dataForm);
+            return $this->render('result/form.html.twig', $dataForm);
         }
 
     }

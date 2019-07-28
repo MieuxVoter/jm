@@ -14,7 +14,6 @@ app_jm_form:
  path: /start
  controller: App\Controller\StartAVote::form
 
-
 app_jm_vote:
  path: /vote/{url_key}
  controller: App\Controller\Vote::form
@@ -22,3 +21,11 @@ app_jm_vote:
 app_jm_clear:
  path: /clear
  controller: App\Controller\Clear::run
+
+app_jm_result:
+ path: /result
+ controller: App\Controller\Result::form
+
+app_jm_generate_results:
+ path: /generate-results
+ controller: App\Controller\GenerateResults::run

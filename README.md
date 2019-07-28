@@ -48,6 +48,11 @@ php bin/console doctrine:migrations:migrate
 ```
 php bin/console cache:clear --no-warmup -e prod
 ```
+- set cron with WGET to clear old data and generate result cache
+```
+* */6 * * * wget -q --delete-after [URL]/clear
+* */1 * * * wget -q --delete-after [URL]/generate-results
+``` 
 
 That's all...
 

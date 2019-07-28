@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-05 20:08+0100\n"
-"PO-Revision-Date: 2019-03-07 21:08+0100\n"
+"POT-Creation-Date: 2019-05-01 18:14+0200\n"
+"PO-Revision-Date: 2019-05-01 18:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: base.html.twig:15 base.html.twig:18
+#: base.html.twig:15 base.html.twig:22
 msgid "Jugement Majoritaire"
 msgstr "Majority Judgment"
 
@@ -22,35 +22,39 @@ msgstr "Majority Judgment"
 msgid "Plateforme de vote utilisant le jugement majoritaire."
 msgstr "Voting platform using the majority judgment."
 
-#: body.html.twig:19
+#: body.html.twig:22
 msgid "Accueil"
 msgstr "Home"
 
-#: body.html.twig:22 pages/home.html.twig:16
+#: body.html.twig:25 pages/home.html.twig:16
 msgid "Lancer un vote"
 msgstr "Launch a vote"
 
-#: body.html.twig:25 pages/privacy-policy.html.twig:6
+#: body.html.twig:28
+msgid "Dépouiller un scrutin"
+msgstr "Strip a poll"
+
+#: body.html.twig:31 pages/privacy-policy.html.twig:6
 msgid "Politique de confidentialité"
 msgstr "Privacy Policy"
 
-#: body.html.twig:32
+#: body.html.twig:38
 msgid "Codes source"
 msgstr "Source Codes"
 
-#: body.html.twig:34
+#: body.html.twig:40
 msgid "Plateforme de vote"
 msgstr "Voting platform"
 
-#: body.html.twig:35
+#: body.html.twig:41
 msgid "Class PHP"
 msgstr "PHP Class"
 
-#: body.html.twig:41
+#: body.html.twig:47
 msgid "Version française"
 msgstr "French Version"
 
-#: body.html.twig:44
+#: body.html.twig:50
 msgid "English version"
 msgstr "English version"
 
@@ -61,7 +65,8 @@ msgid ""
 msgstr ""
 "Simple, free and anonymous: organize a vote using the majority judgment."
 
-#: pages/home.html.twig:12 start-a-vote/form.html.twig:23
+#: pages/home.html.twig:12 result/form.html.twig:23
+#: start-a-vote/form.html.twig:23
 msgid "Titre du vote"
 msgstr "Vote title"
 
@@ -75,11 +80,11 @@ msgstr "What is the majority judgment?"
 
 #: pages/home.html.twig:43
 msgid ""
-"Pour en savoir plus sur le Jugement Majoritaire, vous pouvez vous rendre sur "
-"le site de l'association Mieux Voter :"
+"Pour en savoir plus sur le Jugement Majoritaire, rendez-vous sur le site de "
+"l'association Mieux Voter :"
 msgstr ""
-"To learn more about the majority judgment, you can go to the website of the "
-"association better vote:"
+"To find out more about the majority judgement, visit the website of the "
+"better vote Association:"
 
 #: pages/home.html.twig:57
 msgid "Pour qui ?"
@@ -87,22 +92,20 @@ msgstr "For Who?"
 
 #: pages/home.html.twig:61
 msgid ""
-"Vous êtes un petit groupe de personnes (association, groupe d'amis, etc...) "
-"et vous désirez soumettre une proposition au Jugement\n"
+"Vous êtes un groupe de personnes (association, groupe d'amis, syndicat, "
+"entreprise etc...) et vous désirez soumettre une proposition au Jugement\n"
 "                        Majoritaire."
 msgstr ""
-"You are a small group of people (Association, Group of Friends, etc...) and "
-"you wish to submit a proposal to the majority judgment."
+"You are a group of people (Association, group of friends, Union, company "
+"etc...) and you wish to submit a proposal to the majority judgement."
 
 #: pages/home.html.twig:64
 msgid ""
-"Cet outil est particulièrement adapté à la prise de décisions en groupe, "
-"dans un contexte de vote non confidentiel où chaque participant donne son "
-"avis. Par exemple : l'un après l'autre derrière un même écran."
+"Cet outil est particulièrement adapté à la prise de décisions collectives, "
+"dans un contexte de vote non confidentiel."
 msgstr ""
-"This tool is particularly suitable for group decision making, in a non-"
-"confidential voting context where each participant gives their opinion. For "
-"example: One after the other behind the same screen."
+"This tool is particularly suitable for collective decision-making, in a non-"
+"confidential voting context."
 
 #: pages/home.html.twig:68
 msgid ""
@@ -241,12 +244,8 @@ msgid ""
 msgstr "I too wish to promote the majority judgment, what can I do?"
 
 #: pages/home.html.twig:131
-msgid ""
-"Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. Voici "
-"l'adresse de leur site :"
-msgstr ""
-"We advise you to get closer to the french association \"MIEUX VOTER"
-"\" (better voting). Here is the address of their site:"
+msgid "Rapprochez-vous de l'association MIEUX VOTER !"
+msgstr "Get closer to the MIEUX VOTER Association!"
 
 #: pages/home.html.twig:145
 msgid "ATTENTION : Projet en phase de test !"
@@ -325,49 +324,174 @@ msgstr "For any questions:"
 msgid "Code source de ce projet :"
 msgstr "Source code of this project:"
 
-#: start-a-vote/form.html.twig:10
+#: result/form.html.twig:10 start-a-vote/form.html.twig:10
 msgid "Nouveau vote"
 msgstr "New vote"
 
-#: start-a-vote/form.html.twig:21
+#: result/form.html.twig:21 start-a-vote/form.html.twig:21
 msgid "Titre"
 msgstr "Title"
 
-#: start-a-vote/form.html.twig:21
+#: result/form.html.twig:21 start-a-vote/form.html.twig:21
 msgid "(obligatoire)"
 msgstr "(mandatory)"
 
-#: start-a-vote/form.html.twig:25
+#: result/form.html.twig:25 start-a-vote/form.html.twig:25
 msgid "Le titre saisi n'est pas correcte !"
 msgstr "The title entered is not correct!"
 
-#: start-a-vote/form.html.twig:33
+#: result/form.html.twig:33 start-a-vote/form.html.twig:33
 msgid "Auteur"
 msgstr "Author"
 
-#: start-a-vote/form.html.twig:33
+#: result/form.html.twig:33 start-a-vote/form.html.twig:33
 msgid "(Optionel)"
 msgstr "(Optional)"
 
-#: start-a-vote/form.html.twig:35
+#: result/form.html.twig:35 start-a-vote/form.html.twig:35
 msgid "Votre nom/pseudo"
 msgstr "Your name/Nickname"
 
-#: start-a-vote/form.html.twig:42
+#: result/form.html.twig:42 start-a-vote/form.html.twig:42
 msgid "Présentation"
 msgstr "Presentation"
 
-#: start-a-vote/form.html.twig:42
+#: result/form.html.twig:42 start-a-vote/form.html.twig:42
 msgid "(500 caractères max.)"
 msgstr "(500 characters max.)"
 
-#: start-a-vote/form.html.twig:44
+#: result/form.html.twig:44 start-a-vote/form.html.twig:44
 msgid "Décrivez ici votre proposition de départ ou la raison de votre vote"
 msgstr "Describe your initial proposal or the reason for your vote"
 
-#: start-a-vote/form.html.twig:46
+#: result/form.html.twig:46 start-a-vote/form.html.twig:46
 msgid "La présentation saisie n'est pas correcte !"
 msgstr "The input presentation is not correct!"
+
+#: result/form.html.twig:57 start-a-vote/form.html.twig:85
+msgid "Propositions"
+msgstr "Proposals"
+
+#: result/form.html.twig:83 start-a-vote/form.html.twig:111
+msgid "Proposition/Candidat :"
+msgstr "Proposal/Candidate:"
+
+#: result/form.html.twig:83 start-a-vote/form.html.twig:111
+msgid "(150 car. max.)"
+msgstr "(150 car. Max.)"
+
+#: result/form.html.twig:87 start-a-vote/form.html.twig:115
+msgid "Proposition ..."
+msgstr "Proposal..."
+
+#: result/form.html.twig:89 start-a-vote/form.html.twig:117
+msgid "Explication de cette proposition ..."
+msgstr "Explanation of this proposal..."
+
+#: result/form.html.twig:91
+msgid ""
+"Saissisez ici le nombre de votes pour chaque mention (ATTTENTION : Chaque "
+"candidat doit avoir le même nombre de votes)"
+msgstr ""
+"Here are the number of votes for each mention (ATTTENTION: each candidate "
+"must have the same number of votes)"
+
+#: result/form.html.twig:124 start-a-vote/form.html.twig:131
+msgid "Merci de saisir au moins deux propositions (avec du texte) !"
+msgstr "Please enter at least two proposals (with text)!"
+
+#: result/form.html.twig:130
+msgid "- ERREUR : Chaque candidat n'a pas le même nombre de votes"
+msgstr "-ERROR: each candidate does not have the same number of votes"
+
+#: result/form.html.twig:136
+msgid "- ERREUR : Nombre de votes maximum dépassé ! (100 MAX)"
+msgstr "-ERROR: maximum number of votes exceeded! (100 MAX)"
+
+#: result/form.html.twig:142 start-a-vote/form.html.twig:137
+msgid "Ajouter une proposition"
+msgstr "Add a proposal"
+
+#: result/form.html.twig:154 start-a-vote/form.html.twig:149
+msgid "Options facultatives"
+msgstr "Optional Options"
+
+#: result/form.html.twig:166 start-a-vote/form.html.twig:178
+msgid "Envoyer par e-mail à l'adresse suivante :"
+msgstr "Send by e-mail to the following address:"
+
+#: result/form.html.twig:166 start-a-vote/form.html.twig:178
+msgid "votre@email.com"
+msgstr "your@mail.com"
+
+#: result/form.html.twig:167 start-a-vote/form.html.twig:179
+msgid "Vérifiez la saisie de cette adresse e-mail."
+msgstr "Check the entry of this email address."
+
+#: result/form.html.twig:169 start-a-vote/form.html.twig:181
+msgid "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
+msgstr ""
+"The mail will contain the link (or links) necessary for the conduct of the "
+"vote."
+
+#: result/form.html.twig:169 start-a-vote/form.html.twig:181
+msgid "Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
+msgstr "Only one possible address (it will not be kept on our server)."
+
+#: result/form.html.twig:176 start-a-vote/form.html.twig:188
+msgid "Partage Facebook"
+msgstr "Facebook sharing"
+
+#: result/form.html.twig:177
+msgid "Un bouton de partage Facebook sera disponible sur la page de résultat"
+msgstr "A Facebook share button will be available on the result page"
+
+#: result/form.html.twig:177 start-a-vote/form.html.twig:189
+msgid "Attention : Facebook aura alors accès aux données du scrutin."
+msgstr "Warining: Facebook will then have access to the poll data."
+
+#: result/form.html.twig:191 start-a-vote/form.html.twig:211
+msgid "Attention ! Vous ne pourrez plus faire de modification."
+msgstr "Warning! Keep this link well."
+
+#: result/form.html.twig:191 start-a-vote/form.html.twig:211
+msgid "Valider"
+msgstr "Submit"
+
+#: result/save.html.twig:12 start-a-vote/save.html.twig:12
+msgid "Proposition enregistrée !"
+msgstr "Proposals"
+
+#: result/save.html.twig:13
+msgid "Vous pouvez maintenant partager le lien du résultat aux participants :"
+msgstr "You can now share the result link to the participants:"
+
+#: result/save.html.twig:19 start-a-vote/save.html.twig:19
+#: vote/save.html.twig:32
+msgid "Veuillez patienter ..."
+msgstr "Please wait..."
+
+#: result/save.html.twig:28 start-a-vote/save.html.twig:28
+#: start-a-vote/save.html.twig:50 vote/save.html.twig:41
+msgid "Copier"
+msgstr "Copy"
+
+#: result/save.html.twig:32 start-a-vote/save.html.twig:32
+#: vote/save.html.twig:46
+msgid "Pensez a enregistrer ce lien dans les favoris de votre navigateur !"
+msgstr "Remember to save this link in your browser favorites!"
+
+#: result/save.html.twig:36 start-a-vote/save.html.twig:36
+msgid ""
+"Vous avez opté pour l'option partage <b>FACEBOOK</b>. Voici donc le bouton "
+"pour partager ce vote :"
+msgstr ""
+"You have opted for the share <b> FACEBOOK </b> option. So here is the button "
+"to share this vote:"
+
+#: result/save.html.twig:51
+msgid "Afficher maintenant"
+msgstr "Show now"
 
 #: start-a-vote/form.html.twig:54
 msgid "Fin du scrutin :"
@@ -445,38 +569,6 @@ msgstr "In six months"
 msgid "La durée saisie n'est pas correcte !"
 msgstr "The time entered is not correct!"
 
-#: start-a-vote/form.html.twig:85
-msgid "Propositions"
-msgstr "Proposals"
-
-#: start-a-vote/form.html.twig:111
-msgid "Proposition/Candidat :"
-msgstr "Proposal/Candidate:"
-
-#: start-a-vote/form.html.twig:111
-msgid "(150 car. max.)"
-msgstr "(150 car. Max.)"
-
-#: start-a-vote/form.html.twig:115
-msgid "Proposition ..."
-msgstr "Proposal..."
-
-#: start-a-vote/form.html.twig:117
-msgid "Explication de cette proposition ..."
-msgstr "Explanation of this proposal..."
-
-#: start-a-vote/form.html.twig:131
-msgid "Merci de saisir au moins deux propositions (avec du texte) !"
-msgstr "Please enter at least two proposals (with text)!"
-
-#: start-a-vote/form.html.twig:137
-msgid "Ajouter une proposition"
-msgstr "Add a proposal"
-
-#: start-a-vote/form.html.twig:149
-msgid "Options facultatives"
-msgstr "Optional Options"
-
 #: start-a-vote/form.html.twig:161
 msgid ""
 "Générer un lien permettant de visualiser le résultat du vote à n'importe "
@@ -501,32 +593,6 @@ msgid ""
 "enregistré"
 msgstr "The result will be visible immediately after the last vote is recorded"
 
-#: start-a-vote/form.html.twig:178
-msgid "Envoyer par e-mail à l'adresse suivante :"
-msgstr "Send by e-mail to the following address:"
-
-#: start-a-vote/form.html.twig:178
-msgid "votre@email.com"
-msgstr "your@mail.com"
-
-#: start-a-vote/form.html.twig:179
-msgid "Vérifiez la saisie de cette adresse e-mail."
-msgstr "Check the entry of this email address."
-
-#: start-a-vote/form.html.twig:181
-msgid "Le mail contiendra le ou les liens nécessaires au déroulement du vote."
-msgstr ""
-"The mail will contain the link (or links) necessary for the conduct of the "
-"vote."
-
-#: start-a-vote/form.html.twig:181
-msgid "Une seule adresse possible (Il ne sera pas conservé sur notre serveur)."
-msgstr "Only one possible address (it will not be kept on our server)."
-
-#: start-a-vote/form.html.twig:188
-msgid "Partage Facebook"
-msgstr "Facebook sharing"
-
 #: start-a-vote/form.html.twig:189
 msgid ""
 "Un bouton de partage Facebook sera disponible sur le formulaire de vote et "
@@ -534,10 +600,6 @@ msgid ""
 msgstr ""
 "A Facebook sharing button will be available on the voting form and on the "
 "result page"
-
-#: start-a-vote/form.html.twig:189
-msgid "Attention : Facebook aura alors accès aux données du scrutin."
-msgstr "Warining: Facebook will then have access to the poll data."
 
 #: start-a-vote/form.html.twig:196
 msgid "Demander un nom/pseudo aux participants"
@@ -547,42 +609,9 @@ msgstr "Ask participants for a name/nickname"
 msgid "Permet de savoir qui a participé ou non sur la page de résultat"
 msgstr "Lets you know who participated or not on the result page"
 
-#: start-a-vote/form.html.twig:211
-msgid "Attention ! Vous ne pourrez plus faire de modification."
-msgstr "Warning! Keep this link well."
-
-#: start-a-vote/form.html.twig:211
-msgid "Valider"
-msgstr "Submit"
-
-#: start-a-vote/save.html.twig:12
-msgid "Proposition enregistrée !"
-msgstr "Proposals"
-
 #: start-a-vote/save.html.twig:13
 msgid "Vous pouvez maintenant partager le lien du vote aux participants :"
 msgstr "You can now share the voting link to the participants:"
-
-#: start-a-vote/save.html.twig:19 vote/save.html.twig:32
-msgid "Veuillez patienter ..."
-msgstr "Please wait..."
-
-#: start-a-vote/save.html.twig:28 start-a-vote/save.html.twig:50
-#: vote/save.html.twig:41
-msgid "Copier"
-msgstr "Copy"
-
-#: start-a-vote/save.html.twig:32 vote/save.html.twig:46
-msgid "Pensez a enregistrer ce lien dans les favoris de votre navigateur !"
-msgstr "Remember to save this link in your browser favorites!"
-
-#: start-a-vote/save.html.twig:36
-msgid ""
-"Vous avez opté pour l'option partage <b>FACEBOOK</b>. Voici donc le bouton "
-"pour partager ce vote :"
-msgstr ""
-"You have opted for the share <b> FACEBOOK </b> option. So here is the button "
-"to share this vote:"
 
 #: start-a-vote/save.html.twig:43
 msgid "Lien <u>d'aperçu des résultats</u> en temps réel :"
@@ -722,18 +751,41 @@ msgstr ""
 msgid "Déterminé par %n% participations"
 msgstr "Determined by %n% participations"
 
-#: vote/result.html.twig:112
+#: vote/result.html.twig:105
+msgid "Les votes de cette proposition ont été saisis manuellement."
+msgstr "The votes of this proposal have been entered manually."
+
+#: vote/result.html.twig:113
 msgid "Classement complet"
 msgstr "Complete ranking"
 
-#: vote/result.html.twig:136
+#: vote/result.html.twig:137
 msgid "Profils de mérite"
 msgstr "Merit Profiles"
 
-#: vote/result.html.twig:183
+#: vote/result.html.twig:184
 msgid "Histogramme"
 msgstr "Histogram"
 
 #: vote/save.html.twig:22
 msgid "Participation enregistrée !"
 msgstr "Registered Participation!"
+
+#: vote/too-much-vote-for-preview.html.twig:15
+msgid "Ooops ! Trop de participations !"
+msgstr "Ooops! Too many participations!"
+
+#: vote/too-much-vote-for-preview.html.twig:16
+msgid ""
+"Ce scrutin ne comporte trop de vote pour afficher le résultat en temps réel. "
+"Le résultat ne sera visible qu'une fois le vote terminé."
+msgstr ""
+"This poll has too much voting to display the result in real time. The result "
+"will only be visible once the vote has been completed."
+
+#~ msgid ""
+#~ "Nous vous conseillons de vous rapprocher de l'association MIEUX VOTER. "
+#~ "Voici l'adresse de leur site :"
+#~ msgstr ""
+#~ "We advise you to get closer to the french association \"MIEUX VOTER"
+#~ "\" (better voting). Here is the address of their site:"
