@@ -58,9 +58,10 @@ That's all...
 
 ## Versions
 
-- strip poll
-- cached result (fix a performance problem)
-- add Mieux Voter Logo
+#### 2.2.0
+- Strip poll
+- Cached result (fix a performance problem)
+- Add Mieux Voter Logo
 - Shuffle array of choices on vote form
 - Use abstractController interface instead of deprecated Controller Interface
 - update bootstrap
