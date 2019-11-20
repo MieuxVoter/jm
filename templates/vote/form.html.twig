@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-12">
 
-                        <p>{{ proposal.presentation }}</p>
+                        <p>{{ proposal.presentation|striptags('<b><i><strong><em>')|linkParser|raw|nl2br }}</p>
                         <h6><i class="text-muted">{% trans %}Proposé par :{% endtrans %} {{ proposal.author|default('Anonyme') }}</i></h6>
                     </div>
                     {% if  proposal.urlResultKey  %}
@@ -45,7 +45,7 @@
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div><h5 class="card-title title  ">{{ choice.label }}</h5>
                                         <hr />
-                                        <p class="card-text"> {{ choice.explanation }}</p>
+                                        <p class="card-text"> {{ choice.explanation|striptags('<b><i><strong><em>')|linkParser|raw|nl2br }}</p>
                                     </div>
                                    {# <div>
                                         <div class="float-left" style="height:48px;line-height:48px;"><b>Qu'en pensez-vous ?
