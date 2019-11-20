@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Choice;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-//
+
 
 /**
  * @method Choice|null find($id, $lockMode = null, $lockVersion = null)
