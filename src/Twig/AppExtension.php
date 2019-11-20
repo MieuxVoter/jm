@@ -6,6 +6,7 @@
 
 namespace App\Twig;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
@@ -14,8 +15,16 @@ class AppExtension extends AbstractExtension
     {
         return array(
             new TwigFunction('publicFile', array($this, 'publicFile')),
-            new TwigFunction('jsonDecode',  array($this, 'jsonDecode'))
+            new TwigFunction('jsonDecode',  array($this, 'jsonDecode')),
+            new TwigFunction('linkParser',  array($this, 'linkParser'))
         );
+    }
+
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('linkParser', [$this, 'linkParser']),
+        ];
     }
 
     /**
@@ -32,5 +41,12 @@ class AppExtension extends AbstractExtension
     public function jsonDecode($string)
     {
         return json_decode($string,true);
+    }
+
+    public function linkParser($string)
+    {
+
+        $string=preg_replace('|([\w\d]*)\s?(https?://([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i', '$1 <a href="$2" target="_blank">$3</a>', $string);
+        return $string;
     }
 }

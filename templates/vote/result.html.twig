@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-12">
 
-                    <p>{{ proposal.presentation }}</p>
+                    <p>{{ proposal.presentation|striptags('<b><i><strong><em>')|linkParser|raw|nl2br }}</p>
                     <h6><i class="text-muted">{% trans %}Proposé par :{% endtrans %} {{ proposal.author|default('Anonyme') }}</i></h6>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         <div class="card mb-4   shadow p-3 mb-5 bg-white rounded align-self-stretch">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div><h5 class="card-title title mt-0 ">{{ result[0].candidate.label }}</h5>
-                                    <p class="card-text mt-2 mb-2"> {{ result[0].candidate.explanation }}</p>
+                                    <p class="card-text mt-2 mb-2"> {{ result[0].candidate.explanation|striptags('<b><i><strong><em>')|linkParser|raw|nl2br }}</p>
                                     <table style="width:100%;" cellpadding="0" cellspacing="0" >
                                         <td style="width:50%;text-align:right;"><div class="talkbubble"><img src="/css/img/{{ mentionLabelToValue[result[0].majorityMention.label] }}.png" style="width:32px;" class="mr-2"> {{ winnerMention|trans }}* </div></td>
                                         <td style="width:50%"></td>
@@ -121,7 +121,7 @@
 
                                 <br/>
                                 <small class="form-text text-muted">
-                                    {{ winner.candidate.explanation }}
+                                    {{ winner.candidate.explanation|striptags('<b><i><strong><em>')|linkParser|raw|nl2br }}
                                 </small>
                             </li>
                         {% endfor %}
