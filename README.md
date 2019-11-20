@@ -60,7 +60,7 @@ That's all...
 
 #### 2.2.2
 - security fix
-- format vote card (link and line break)
+- format vote card (bold <b>, Italic <i>, link and line break)
 
 #### 2.2.1
 - update npm dependencies
