@@ -58,6 +58,10 @@ That's all...
 
 ## Versions
 
+#### 2.2.2
+- security fix
+- format vote card (link and line break)
+
 #### 2.2.1
 - update npm dependencies
 
