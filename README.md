@@ -58,6 +58,9 @@ That's all...
 
 ## Versions
 
+#### 2.2.3
+- bug fix : counter of participations on result page
+
 #### 2.2.2
 - security fix
 - format vote card (bold <b>, Italic <i>, link and line break)
