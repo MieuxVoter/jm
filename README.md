@@ -58,6 +58,9 @@ That's all...
 
 ## Versions
 
+#### 2.2.4
+- bug fix : viewing result admin page can cache result data before the end of vote
+
 #### 2.2.3
 - bug fix : counter of participations on result page
 

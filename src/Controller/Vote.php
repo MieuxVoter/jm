@@ -150,6 +150,11 @@ class Vote extends AbstractController
                             $vote->setVoteValue($vote_value);
                             $entityManager->persist($vote);
                             $entityManager->flush();
+
+                            $filesystem = new Filesystem();
+                            if ($filesystem->exists(__DIR__ . '/../../var/cached-result/' . $proposal->getUrlKey())){
+                                $filesystem->remove(__DIR__ . '/../../var/cached-result/' . $proposal->getUrlKey());
+                            }
                         }
 
                         $dataForm["redirect"] = true;
