@@ -448,7 +448,7 @@ msgstr "A Facebook share button will be available on the result page"
 
 #: result/form.html.twig:177 start-a-vote/form.html.twig:189
 msgid "Attention : Facebook aura alors accès aux données du scrutin."
-msgstr "Warining: Facebook will then have access to the poll data."
+msgstr "Warning: Facebook will then have access to the poll data."
 
 #: result/form.html.twig:191 start-a-vote/form.html.twig:211
 msgid "Attention ! Vous ne pourrez plus faire de modification."
