@@ -58,6 +58,9 @@ That's all...
 
 ## Versions
 
+#### 2.2.5
+- add banner and link to new app 
+
 #### 2.2.4
 - bug fix : viewing result admin page can cache result data before the end of vote
 
