@@ -4,7 +4,7 @@
 {% block body %}
     <header>
         {% block header %}{% endblock %}
-        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light shadow">
+        <nav class="navbar navbar-expand-xl navbar-light fixed-top bg-light shadow">
             <a class="navbar-brand" href="{{ path("app_jm_home") }}">
                 {% if app.request.getLocale()=="fr" %}
                <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo.png" style="width:200px;" />
@@ -30,7 +30,9 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="{{ path("app_jm_privacypolicy") }}">{% trans %}Politique de confidentialité{% endtrans %}</a>
                     </li>
-
+                    <li class="nav-item ">
+                        <a class="nav-link text-primary underline" href="https://app.mieuxvoter.fr"><i class="fas fa-bell mr-2"></i> Nouvelle version</a>
+                    </li>
 
                 </ul>
                 <ul class="navbar-nav pull-right">
@@ -63,6 +65,12 @@
                     {% else %}
                         <img src="{{ app.request.getSchemeAndHttpHost() }}/css/img/logo-beta-en.png" style="width:100%;max-width:300px;display:block;margin:auto;"/>
                     {% endif %}
+                </div>
+                <div class="col-12  text-center ">
+                    <h3>La nouvelle version est enfin disponible !</h3>
+                    <p style="margin:auto;width:100%; max-width:480px">Toujours aussi simple, gratuite et anonyme, cette nouvelle version maintenue par une équipe active en Open-Source vous offrira encore plus de possibilités.<br><br>Découvrez-là dès à présent !</p>
+                    <p><a href="https://app.mieuxvoter.fr" class="btn btn-primary mt-2 mb-5"><i class="fas fa-external-link-square-alt mr-2"></i>Nouvelle version</a>
+                    </p>
                 </div>
             </div>
         </div>
