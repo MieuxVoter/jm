@@ -712,7 +712,7 @@ msgstr "Insuffisant"
 
 #: vote/form.html.twig:78
 msgid "A Rejeter"
-msgstr "A Rejeter"
+msgstr "À Rejeter"
 
 #: vote/form.html.twig:130
 msgid ""
